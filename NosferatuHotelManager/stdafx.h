@@ -13,11 +13,3 @@
 
 
 // TODO: reference additional headers your program requires here
-#include <string>
-#include <vector>
-#include <map>
-#include <iostream>
-#include <fstream>
-
-#include <SFML\Graphics.hpp>
-#include <SFML\Audio.hpp>
