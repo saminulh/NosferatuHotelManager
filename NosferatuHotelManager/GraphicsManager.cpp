@@ -4,7 +4,16 @@
 
 bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 {
-	return false;
+	sf::Font font;
+
+	if (!font.loadFromFile(_fileName))
+	{
+		//LOG ERROR
+		return false;
+	}
+
+	fontsMap.insert(std::pair<std::string, sf::Font>(_mapIndex, font));
+	return true;	
 }
 
 bool GraphicsManager::LoadTexture(std::string _fileName, std::string _mapIndex)
