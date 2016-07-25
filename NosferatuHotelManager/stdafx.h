@@ -13,3 +13,9 @@
 
 
 // TODO: reference additional headers your program requires here
+#include <string>
+#include <vector>
+#include <map>
+#include <iostream>
+
+#include <SFML\Graphics.hpp>
