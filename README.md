@@ -1,0 +1,2 @@
+# NosferatuHotelManager
+Spoopy vampire hotel.
