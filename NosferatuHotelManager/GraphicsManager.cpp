@@ -1,6 +1,9 @@
-#include "GraphicsManager.h"
 #include "stdafx.h"
 #include "GraphicsManager.h"
+
+GraphicsManager::GraphicsManager()
+{
+}
 
 bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 {

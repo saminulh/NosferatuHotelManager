@@ -17,5 +17,9 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <fstream>
 
 #include <SFML\Graphics.hpp>
+
+//Include classes all files need
+#include "DebugLogManager.h"

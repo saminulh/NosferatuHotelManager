@@ -2,11 +2,15 @@
 //
 
 #include "stdafx.h"
-#include <iostream>
 
 int main()
 {
 	std::cin.get();
+
+	DebugLogManager debug;
+
+	debug.Log(0, "Test!");
+
     return 0;
 }
 
