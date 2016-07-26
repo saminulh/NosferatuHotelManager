@@ -8,7 +8,7 @@ bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 
 	if (!font.loadFromFile(_fileName))
 	{
-		//LOG ERROR
+		///TODO: LOG ERROR
 		return false;
 	}
 
@@ -18,15 +18,24 @@ bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 
 bool GraphicsManager::LoadTexture(std::string _fileName, std::string _mapIndex)
 {
-	return false;
+	sf::Texture texture;
+
+	if (!texture.loadFromFile(_fileName))
+	{
+		///TODO: LOG ERROR
+		return false;
+	}
+
+	texturesMap.insert(std::pair<std::string, sf::Texture>(_mapIndex, texture));
+	return true;
 }
 
 std::map<std::string, sf::Font>& GraphicsManager::GetFontsMap()
 {
-	// TODO: insert return statement here
+	return fontsMap;
 }
 
 std::map<std::string, sf::Texture>& GraphicsManager::GetTexturesMap()
 {
-	// TODO: insert return statement here
+	return texturesMap;
 }
