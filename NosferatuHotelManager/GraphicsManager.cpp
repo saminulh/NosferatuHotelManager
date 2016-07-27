@@ -7,11 +7,16 @@ GraphicsManager::GraphicsManager()
 
 bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 {
-	sf::Font font;
+	sf::Font		font;
+	std::string		message;
 
 	if (!font.loadFromFile(_fileName))
 	{
 		///TODO: LOG ERROR
+		message = "Couldn't load FONT file '";
+		message += _fileName;
+		message += "'!\n";
+		debug.Log(3, message);
 		return false;
 	}
 
@@ -21,11 +26,16 @@ bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 
 bool GraphicsManager::LoadTexture(std::string _fileName, std::string _mapIndex)
 {
-	sf::Texture texture;
+	sf::Texture		texture;
+	std::string		message;
 
 	if (!texture.loadFromFile(_fileName))
 	{
 		///TODO: LOG ERROR
+		message = "Couldn't load TEXTURE file '";
+		message += _fileName;
+		message += "'!\n";
+		debug.Log(3, message);
 		return false;
 	}
 
