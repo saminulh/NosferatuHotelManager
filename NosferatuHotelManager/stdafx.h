@@ -23,3 +23,6 @@
 
 //Include classes all files need
 #include "DebugLogManager.h"
+
+//Create the debug singleton here
+extern DebugLogManager debug;

@@ -4,13 +4,14 @@
 
 class DebugLogManager
 {
-	std::fstream	file;
+	std::ofstream	file;
 	std::string		fileName;
 public:
 	DebugLogManager();
 	~DebugLogManager();
 
 	bool ClearLogFile();
+	void Start();
 
 	/*
 	0 - Info

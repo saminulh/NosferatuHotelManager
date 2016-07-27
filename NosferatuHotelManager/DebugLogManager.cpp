@@ -3,17 +3,14 @@
 
 DebugLogManager::DebugLogManager()
 {
-	fileName = "debug.log";
-
-	file.open(fileName);
-	file << "[START] - Program started!" << std::endl;
 }
 
 DebugLogManager::~DebugLogManager()
 {
 	if (file.is_open())
 	{
-		file << "[END] - Program terminated successfully!" << std::endl;
+		file << "[END]:\t\t\t
+			Program terminated successfully!" << std::endl;
 		file.close();
 	}
 }
@@ -23,6 +20,14 @@ bool DebugLogManager::ClearLogFile()
 	file.open(fileName);
 	file.clear();
 	return true;
+}
+
+void DebugLogManager::Start()
+{
+	fileName = "debug.log";
+
+	file.open(fileName);
+	file << "[START]:\t\tProgram started!" << std::endl;
 }
 
 bool DebugLogManager::Log(int _priority, std::string _message)
@@ -35,35 +40,41 @@ bool DebugLogManager::Log(int _priority, std::string _message)
 		{
 		case 0:
 		{
-			finalMessage += "[INFO] - ";
+			finalMessage += "[INFO]:\t\t\t";
 			finalMessage += _message;
+			finalMessage += "\n";
 			break;
 		}
 		case 1:
 		{
-			finalMessage += "[NOTE] - ";
+			finalMessage += "[NOTE]:\t\t\t";
 			finalMessage += _message;
+			finalMessage += "\n";
 			break;
 		}
 		case 2:
 		{
-			finalMessage += "[WARNING] - ";
+			finalMessage += "[WARNING]:\t\t";
 			finalMessage += _message;
+			finalMessage += "\n";
 			break;
 		}
 		case 3:
 		{
-			finalMessage += "[ERROR] - ";
+			finalMessage += "[ERROR]:\t\t";
 			finalMessage += _message;
+			finalMessage += "\n";
 			break;
 		}
 		default:
 		{
-			finalMessage += "[UNHANDLED SEVERITY] - ";
+			finalMessage += "[UNHANDLED SEVERITY]:\t";
 			finalMessage += _message;
+			finalMessage += "\n";
 			break;
 		}
 		}
+
 
 		if (file << finalMessage)
 			return true;
