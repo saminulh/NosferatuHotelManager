@@ -2,6 +2,7 @@
 #include "AnimationFrame.h"
 #include "AnimationClass.h"
 #include "AnimationFrame.h"
+#include "GraphicsManager.h"
 
 bool Animation::LoadAnimation(std::string _fileName)
 {
@@ -25,6 +26,14 @@ bool Animation::LoadAnimation(std::string _fileName)
 	soundLoc = root->FirstChildElement("Meta")->FirstChildElement("Sound")->GetText();
 	numFrames = std::stoi(root->FirstChildElement("Meta")->FirstChildElement("NumFrames")->GetText());
 
+
+	//Try to load TEXTURE file
+	graphicsManager.LoadTexture(textureLoc);
+
+	//Try to load SOUND file
+
+
+
 	tinyxml2::XMLElement* frame = root->FirstChildElement("Frame");
 	for (unsigned int cnt = 0; cnt < numFrames; cnt++)
 	{
@@ -43,6 +52,7 @@ bool Animation::LoadAnimation(std::string _fileName)
 		//Set values in curFrame to those that were read from file
 		curFrame.SetTextureBounds(_x, _y, _width, _height);
 		curFrame.SetFrameDuration(_ms);
+		curFrame.m_texture = &graphicsManager.GetTexturesMap()[textureLoc];
 
 
 		//Save curFrame into the animationList

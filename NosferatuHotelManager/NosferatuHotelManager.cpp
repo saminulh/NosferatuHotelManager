@@ -6,6 +6,7 @@
 #include "AnimationClass.h"
 
 DebugLogManager debug;
+GraphicsManager graphicsManager;
 
 void Init()
 {

@@ -10,8 +10,8 @@ public:
 	GraphicsManager();
 
 
-	bool LoadFont(std::string _fileName, std::string _mapIndex);
-	bool LoadTexture(std::string _fileName, std::string _mapIndex);
+	bool LoadFont(std::string _fileName);
+	bool LoadTexture(std::string _fileName);
 
 	std::map<std::string, sf::Font>& GetFontsMap();
 	std::map<std::string, sf::Texture>& GetTexturesMap();

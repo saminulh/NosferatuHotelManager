@@ -5,47 +5,71 @@ GraphicsManager::GraphicsManager()
 {
 }
 
-bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
+bool GraphicsManager::LoadFont(std::string _fileName)
 {
 	sf::Font		font;
 	std::string		message;
 	std::string		fileLoc;
 
-	fileLoc = "Resources/Fonts/";
-	fileLoc += _fileName;
-
-	if (!font.loadFromFile(fileLoc))
+	//Check if font file is already loaded before trying to load
+	if (fontsMap.find(_fileName) == fontsMap.end())
 	{
-		message = "Couldn't load FONT file '";
+		fileLoc = "Resources/Fonts/";
+		fileLoc += _fileName;
+
+		if (!font.loadFromFile(fileLoc))
+		{
+			message = "Couldn't load FONT file '";
+			message += _fileName;
+			message += "'!\n";
+			debug.Log(3, message);
+			return false;
+		}
+
+		fontsMap.insert(std::pair<std::string, sf::Font>(_fileName, font));
+	}
+	else
+	{
+		message = "Attempted to reload FONT file '";
 		message += _fileName;
 		message += "'!\n";
-		debug.Log(3, message);
-		return false;
+		debug.Log(1, message);
 	}
-
-	fontsMap.insert(std::pair<std::string, sf::Font>(_mapIndex, font));
+	
 	return true;	
 }
 
-bool GraphicsManager::LoadTexture(std::string _fileName, std::string _mapIndex)
+bool GraphicsManager::LoadTexture(std::string _fileName)
 {
 	sf::Texture		texture;
 	std::string		message;
 	std::string		fileLoc;
 
-	fileLoc = "Resources/Textures/";
-	fileLoc += _fileName;
-
-	if (!texture.loadFromFile(fileLoc))
+	//Check if texture file is already loaded before trying to laod
+	if (texturesMap.find(_fileName) == texturesMap.end())
 	{
-		message = "Couldn't load TEXTURE file '";
+		fileLoc = "Resources/Textures/";
+		fileLoc += _fileName;
+
+		if (!texture.loadFromFile(fileLoc))
+		{
+			message = "Couldn't load TEXTURE file '";
+			message += _fileName;
+			message += "'!\n";
+			debug.Log(3, message);
+			return false;
+		}
+
+		texturesMap.insert(std::pair<std::string, sf::Texture>(_fileName, texture));
+	}
+	else
+	{
+		message = "Attempted to reload TEXTURE file '";
 		message += _fileName;
 		message += "'!\n";
-		debug.Log(3, message);
-		return false;
+		debug.Log(1, message);
 	}
-
-	texturesMap.insert(std::pair<std::string, sf::Texture>(_mapIndex, texture));
+	
 	return true;
 }
 
