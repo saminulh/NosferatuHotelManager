@@ -18,6 +18,7 @@ bool Animation::LoadAnimation(std::string _fileName)
 	docLoc = "Resources/Animations/";
 	docLoc += _fileName;
 
+	debug.Log(1, "Loading ANIMATION '" + _fileName + "' ...");
 	doc.LoadFile(docLoc.c_str());
 
 	tinyxml2::XMLElement* root = doc.FirstChildElement("Animation");
@@ -30,10 +31,10 @@ bool Animation::LoadAnimation(std::string _fileName)
 	//Try to load TEXTURE file
 	graphicsManager.LoadTexture(textureLoc);
 
-	//Try to load SOUND file
+	///TODO: Try to load SOUND file
 
 
-
+	//Create handle for parsing through all of the frames
 	tinyxml2::XMLElement* frame = root->FirstChildElement("Frame");
 	for (unsigned int cnt = 0; cnt < numFrames; cnt++)
 	{
@@ -65,10 +66,11 @@ bool Animation::LoadAnimation(std::string _fileName)
 
 	//Save the loaded animation to the class
 	m_animations.insert( std::pair<std::string, std::vector<AnimationFrame>>(_fileName, animationList) );
+	debug.Log(1, "Successfully loaded ANIMATION '" + _fileName + "'!");
 	return true;
 }
 
-bool Animation::PlayAnimation(std::string _animationName)
+bool Animation::BeginAnimation(std::string _animationName, sf::Sprite& _target)
 {
 	return false;
 }

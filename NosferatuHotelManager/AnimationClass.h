@@ -8,5 +8,5 @@ class Animation
 	std::map <std::string, std::vector<AnimationFrame>>		m_animations;
 public:
 	bool LoadAnimation(std::string _fileName);
-	bool PlayAnimation(std::string _animationName);
+	bool BeginAnimation(std::string _animationName, sf::Sprite& _target);
 };
