@@ -5,16 +5,32 @@
 
 DebugLogManager debug;
 
+void Init()
+{
+	debug.Start();
+
+	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
+
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear();
+		window.draw(shape);
+		window.display();
+	}
+}
+
 int main()
 {
-	std::cin.get();
-
-	debug.Start();
-	debug.Log(0, "Test!");
-	debug.Log(1, "Hello!");
-	debug.Log(2, "World!");
-	debug.Log(3, "What's Up!");
-	debug.Log(4, "Boo!");
+	Init();
 
     return 0;
 }

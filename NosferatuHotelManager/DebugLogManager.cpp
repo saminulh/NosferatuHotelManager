@@ -9,8 +9,7 @@ DebugLogManager::~DebugLogManager()
 {
 	if (file.is_open())
 	{
-		file << "[END]:\t\t\t
-			Program terminated successfully!" << std::endl;
+		file << "[END]:\t\t\tProgram terminated successfully!" << std::endl;
 		file.close();
 	}
 }
