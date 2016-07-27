@@ -4,6 +4,16 @@
 
 bool Animation::LoadAnimation(std::string _fileName)
 {
+	tinyxml2::XMLDocument	doc;
+	std::string				docLoc;
+
+	docLoc = "Resources/Animations/";
+	docLoc += _fileName;
+
+	doc.LoadFile(docLoc);
+
+	tinyxml2::XMLElement* root = doc.FirstChildElement();
+
 	return false;
 }
 

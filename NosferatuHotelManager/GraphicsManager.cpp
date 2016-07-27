@@ -9,8 +9,12 @@ bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 {
 	sf::Font		font;
 	std::string		message;
+	std::string		fileLoc;
 
-	if (!font.loadFromFile(_fileName))
+	fileLoc = "Resources/Fonts/";
+	fileLoc += _fileName;
+
+	if (!font.loadFromFile(fileLoc))
 	{
 		message = "Couldn't load FONT file '";
 		message += _fileName;
@@ -27,8 +31,12 @@ bool GraphicsManager::LoadTexture(std::string _fileName, std::string _mapIndex)
 {
 	sf::Texture		texture;
 	std::string		message;
+	std::string		fileLoc;
 
-	if (!texture.loadFromFile(_fileName))
+	fileLoc = "Resources/Textures/";
+	fileLoc += _fileName;
+
+	if (!texture.loadFromFile(fileLoc))
 	{
 		message = "Couldn't load TEXTURE file '";
 		message += _fileName;

@@ -20,6 +20,7 @@
 #include <fstream>
 
 #include <SFML\Graphics.hpp>
+#include "tinyxml2.h"
 
 //Include classes all files need
 #include "DebugLogManager.h"
