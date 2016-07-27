@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 
+#include "AnimationClass.h"
+
 DebugLogManager debug;
 
 void Init()
@@ -12,6 +14,17 @@ void Init()
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
+
+
+	Animation anim;
+	anim.LoadAnimation("testAnim.xml");
+
+
+
+
+
+
+
 
 	while (window.isOpen())
 	{

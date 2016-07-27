@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationClass.cpp" />
+    <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AnimationsManager.cpp" />
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
