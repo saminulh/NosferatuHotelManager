@@ -30,6 +30,9 @@
     <ClInclude Include="DebugLogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationsManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DebugLogManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

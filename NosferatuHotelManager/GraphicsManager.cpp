@@ -12,7 +12,6 @@ bool GraphicsManager::LoadFont(std::string _fileName, std::string _mapIndex)
 
 	if (!font.loadFromFile(_fileName))
 	{
-		///TODO: LOG ERROR
 		message = "Couldn't load FONT file '";
 		message += _fileName;
 		message += "'!\n";
@@ -31,7 +30,6 @@ bool GraphicsManager::LoadTexture(std::string _fileName, std::string _mapIndex)
 
 	if (!texture.loadFromFile(_fileName))
 	{
-		///TODO: LOG ERROR
 		message = "Couldn't load TEXTURE file '";
 		message += _fileName;
 		message += "'!\n";
