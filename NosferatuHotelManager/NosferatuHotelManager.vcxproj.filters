@@ -45,10 +45,10 @@
     <ClInclude Include="ScreensManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character\Vampire.h">
+    <ClInclude Include="Character\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character\Character.h">
+    <ClInclude Include="Character\Vampire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character\NPC.h">
@@ -86,10 +86,10 @@
     <ClCompile Include="Character\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character\Vampire.cpp">
+    <ClCompile Include="Character\NPC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character\NPC.cpp">
+    <ClCompile Include="Character\Vampire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
