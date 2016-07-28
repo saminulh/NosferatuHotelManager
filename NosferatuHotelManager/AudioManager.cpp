@@ -11,7 +11,7 @@ bool AudioManager::LoadSound(std::string _fileName)
 	std::string		message;
 	std::string		fileLoc;
 
-	//Check if font file is already loaded before trying to load
+	//Check if sound file is already loaded before trying to load
 	if (soundsMap.find(_fileName) == soundsMap.end())
 	{
 		fileLoc = "Resources/Sounds/";
@@ -52,7 +52,7 @@ bool AudioManager::LoadMusic(std::string _fileName)
 	std::string		message;
 	std::string		fileLoc;
 
-	//Check if font file is already loaded before trying to load
+	//Check if music file is already loaded before trying to load
 	if (musicsMap.find(_fileName) == musicsMap.end())
 	{
 		fileLoc = "Resources/Music/";
