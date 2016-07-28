@@ -45,7 +45,7 @@ bool AudioManager::LoadSound(std::string _fileName)
 
 	return true;
 }
-
+/*
 bool AudioManager::LoadMusic(std::string _fileName)
 {
 	sf::Music		music;
@@ -86,7 +86,7 @@ bool AudioManager::LoadMusic(std::string _fileName)
 
 	return true;
 }
-
+*/
 std::map<std::string, sf::SoundBuffer>& AudioManager::GetSoundsList()
 {
 	return soundsMap;
