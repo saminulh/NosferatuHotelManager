@@ -40,7 +40,7 @@ bool AudioManager::LoadSound(std::string _fileName)
 		message = "Attempted to reload SOUND file '";
 		message += _fileName;
 		message += "'!";
-		debug.Log(1, message);
+		debug.Log(0, message);
 	}
 
 	return true;
