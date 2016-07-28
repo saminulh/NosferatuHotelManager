@@ -11,9 +11,5 @@ int Utilities::randInt(int lowerBound, int upperBound)
 
 Utilities::Utilities()
 {
-}
-
-
-Utilities::~Utilities()
-{
+	return 0;
 }
