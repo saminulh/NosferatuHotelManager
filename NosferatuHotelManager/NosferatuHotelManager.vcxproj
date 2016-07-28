@@ -154,6 +154,7 @@
     <ClInclude Include="AnimationClass.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Characters\UnitBase.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="ScreensManager.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="AnimationClass.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Characters\UnitBase.cpp" />
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="NosferatuHotelManager.cpp" />
