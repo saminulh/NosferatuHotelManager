@@ -3,7 +3,7 @@
 
 ScreensManager::ScreensManager()
 {
-	m_renderWindow.create(sf::VideoMode(400, 400), "SFML works!");
+	m_renderWindow.create(sf::VideoMode(640, 480), "SFML works!");
 }
 
 sf::RenderWindow & ScreensManager::GetWindow()
