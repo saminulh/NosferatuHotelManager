@@ -12,7 +12,7 @@ public:
 	AudioManager();
 
 	bool LoadSound(std::string _fileName);
-	bool LoadMusic(std::string _fileName);
+	//bool LoadMusic(std::string _fileName);
 
 	std::map<std::string, sf::SoundBuffer>& GetSoundsList();
 	std::map<std::string, sf::Music>& GetMusicsList();
