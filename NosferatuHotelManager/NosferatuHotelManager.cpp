@@ -7,6 +7,7 @@
 
 DebugLogManager debug;
 GraphicsManager graphicsManager;
+AudioManager	audioManager;
 
 void Init()
 {
