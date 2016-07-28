@@ -155,6 +155,9 @@
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Characters\UnitBase.h" />
+    <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\NPC.h" />
+    <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="ScreensManager.h" />
@@ -167,6 +170,9 @@
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Characters\UnitBase.cpp" />
+    <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Character\NPC.cpp" />
+    <ClCompile Include="Character\Vampire.cpp" />
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="NosferatuHotelManager.cpp" />
@@ -177,7 +183,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="testeroni.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
