@@ -40,7 +40,7 @@ bool GraphicsManager::LoadFont(std::string _fileName)
 		message = "Attempted to reload FONT file '";
 		message += _fileName;
 		message += "'!";
-		debug.Log(1, message);
+		debug.Log(0, message);
 	}
 	
 	return true;	
@@ -71,7 +71,7 @@ bool GraphicsManager::LoadTexture(std::string _fileName)
 			message = "Successfully loaded TEXTURE file '";
 			message += _fileName;
 			message += "'!";
-			debug.Log(1, message);
+			debug.Log(0, message);
 		}
 
 		texturesMap.insert(std::pair<std::string, sf::Texture>(_fileName, texture));
@@ -81,7 +81,7 @@ bool GraphicsManager::LoadTexture(std::string _fileName)
 		message = "Attempted to reload TEXTURE file '";
 		message += _fileName;
 		message += "'!";
-		debug.Log(1, message);
+		debug.Log(0, message);
 	}
 	
 	return true;

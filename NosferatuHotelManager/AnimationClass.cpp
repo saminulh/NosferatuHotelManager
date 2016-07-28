@@ -18,7 +18,7 @@ bool Animation::LoadAnimation(std::string _fileName)
 	docLoc = "Resources/Animations/";
 	docLoc += _fileName;
 
-	debug.Log(1, "Loading ANIMATION '" + _fileName + "' ...");
+	debug.Log(0, "Loading ANIMATION '" + _fileName + "' ...");
 	doc.LoadFile(docLoc.c_str());
 
 	tinyxml2::XMLElement* root = doc.FirstChildElement("Animation");
@@ -66,7 +66,7 @@ bool Animation::LoadAnimation(std::string _fileName)
 
 	//Save the loaded animation to the class
 	m_animations.insert( std::pair<std::string, std::vector<AnimationFrame>>(_fileName, animationList) );
-	debug.Log(1, "Successfully loaded ANIMATION '" + _fileName + "'!");
+	debug.Log(0, "Successfully loaded ANIMATION '" + _fileName + "'!");
 	return true;
 }
 
