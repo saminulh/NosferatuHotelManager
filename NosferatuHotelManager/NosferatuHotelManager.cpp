@@ -14,7 +14,6 @@ void Init()
 {
 	debug.Start();
 
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
@@ -29,18 +28,18 @@ void Init()
 
 
 
-	while (window.isOpen())
+	while (screensManager.GetWindow().isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (screensManager.GetWindow().pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
+				screensManager.GetWindow().close();
 		}
 
-		window.clear();
-		window.draw(shape);
-		window.display();
+		screensManager.GetWindow().clear();
+		screensManager.GetWindow().draw(shape);
+		screensManager.GetWindow().display();
 	}
 }
 
