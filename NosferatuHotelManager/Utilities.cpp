@@ -1,12 +1,7 @@
 #include "stdafx.h"
 #include "Utilities.h"
 
-
-Utilities::Utilities()
+int Utilities::randInt(int lowerBound, int upperBound)
 {
-}
-
-
-Utilities::~Utilities()
-{
+	return 0;
 }
