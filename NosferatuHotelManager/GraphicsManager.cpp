@@ -30,7 +30,7 @@ bool GraphicsManager::LoadFont(std::string _fileName)
 			message = "Successfully loaded FONT file '";
 			message += _fileName;
 			message += "'!";
-			debug.Log(1, message);
+			debug.Log(0, message);
 		}
 
 		fontsMap.insert(std::pair<std::string, sf::Font>(_fileName, font));
