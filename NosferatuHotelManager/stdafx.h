@@ -27,8 +27,10 @@
 #include "DebugLogManager.h"
 #include "GraphicsManager.h"
 #include "AudioManager.h"
+#include "ScreensManager.h"
 
 //Create the debug singleton here
-extern DebugLogManager debug;
-extern GraphicsManager graphicsManager;
-extern AudioManager	audioManager;
+extern DebugLogManager	debug;
+extern GraphicsManager	graphicsManager;
+extern AudioManager		audioManager;
+extern ScreensManager	screensManager;
