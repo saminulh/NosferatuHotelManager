@@ -26,8 +26,9 @@
 //Include classes all files need
 #include "DebugLogManager.h"
 #include "GraphicsManager.h"
-
+#include "AudioManager.h"
 
 //Create the debug singleton here
 extern DebugLogManager debug;
 extern GraphicsManager graphicsManager;
+extern AudioManager	audioManager;

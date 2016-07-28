@@ -32,7 +32,7 @@ bool Animation::LoadAnimation(std::string _fileName)
 	graphicsManager.LoadTexture(textureLoc);
 
 	///TODO: Try to load SOUND file
-
+	audioManager.LoadSound(soundLoc);
 
 	//Create handle for parsing through all of the frames
 	tinyxml2::XMLElement* frame = root->FirstChildElement("Frame");
