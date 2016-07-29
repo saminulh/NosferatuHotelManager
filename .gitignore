@@ -7,7 +7,6 @@
 *.userosscache
 *.sln.docstates
 *.vcsproj
-*.db
 *.opendb
 *.VC.db
 *.VC.opendb
