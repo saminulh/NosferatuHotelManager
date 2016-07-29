@@ -9,6 +9,7 @@ DebugLogManager debug;
 GraphicsManager graphicsManager;
 AudioManager	audioManager;
 ScreensManager	screensManager;
+ActivityManager activityManager;
 
 void Init()
 {

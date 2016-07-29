@@ -2,7 +2,7 @@
 #include "Character.h"
 
 class NPC : public Character {
-	NPC();
+	
 	static std::vector<NPC> NPCStack;
 
 	static NPC getNPCByID(int ID);
@@ -23,6 +23,8 @@ private:
 	std::map<int, int> friendlinessModifiers;
 
 public:
+	NPC();
+
 	char getPersonType();
 	int getPerceptiveness();
 	int getBaseFriendliness();

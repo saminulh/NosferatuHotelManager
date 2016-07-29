@@ -15,6 +15,7 @@
 // TODO: reference additional headers your program requires here
 #include <string>
 #include <vector>
+#include <queue>
 #include <map>
 #include <iostream>
 #include <fstream>
@@ -28,9 +29,11 @@
 #include "GraphicsManager.h"
 #include "AudioManager.h"
 #include "ScreensManager.h"
+#include "ActivityManager.h"
 
 //Create the debug singleton here
 extern DebugLogManager	debug;
 extern GraphicsManager	graphicsManager;
 extern AudioManager		audioManager;
 extern ScreensManager	screensManager;
+extern ActivityManager	activityManager;
