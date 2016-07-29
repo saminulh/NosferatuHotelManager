@@ -2,14 +2,19 @@
 #include "NPC.h"
 #include "Character.h"
 
+NPC::NPC() {
+	
+}
+
 NPC NPC::getNPCByID(int ID) {
 	return NPCStack[ID];
 }
 
 void NPC::createNPC(std::string type) {
 	NPC newNPC = NPC();
-	//ADD TRAITS
 	NPCStack.push_back(newNPC);
+	//ADD TRAITS
+	newNPC.characterID = NPCStack.size();
 }
 
 char NPC::getPersonType() {
@@ -23,12 +28,12 @@ int NPC::getPerceptiveness()
 
 int NPC::getBaseFriendliness()
 {
-	return 0;
+	return baseFriendliness;
 }
 
-int NPC::getBaseSocialNess()
+int NPC::getBaseSocialness()
 {
-	return baseFriendliness;
+	return baseSocialness;
 }
 
 int NPC::getAggressiveness()
@@ -49,13 +54,16 @@ std::string NPC::getAge() {
 }
 
 bool NPC::isMale() {
-	return isMale;
+	return isCharacterMale;
 }
 
-int NPC::getFriendlinessToCharacter(Character character) {
-	return baseFriendliness+friendlinessModifiers[character];
+int NPC::getFriendlinessTowardsCharacter(int characterID) {
+	if (friendlinessModifiers.find(characterID) == friendlinessModifiers.end()) {
+		return baseFriendliness;
+	}
+	return baseFriendliness + friendlinessModifiers[characterID];
 }
 
-void NPC::setFriendlinessToCharacter(Character character, int newFriendliness) {
-	friendlinessModifiers[character] = newFriendliness - getBaseFriendliness();
+void NPC::setFriendlinessToCharacter(int characterID, int newFriendliness) {
+	friendlinessModifiers[characterID] = newFriendliness - baseFriendliness;
 }

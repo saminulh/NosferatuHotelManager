@@ -2,36 +2,39 @@
 #include "Character.h"
 
 class NPC : public Character {
+	NPC();
 	static std::vector<NPC> NPCStack;
 
 	static NPC getNPCByID(int ID);
 	static void createNPC(std::string type);
 
 private:
+	int characterID;
+
 	char personType;
 	int basePerceptiveness;
 	int baseFriendliness;
-	int baseSocialNess;
+	int baseSocialness;
 	int baseAggressiveness;
 	int suspicion;
 	std::string age;
-	bool isMale;
+	bool isCharacterMale;
 
-	std::map<Character, int> friendlinessModifiers;
+	std::map<int, int> friendlinessModifiers;
 
 public:
 	char getPersonType();
 	int getPerceptiveness();
 	int getBaseFriendliness();
-	int getBaseSocialNess();
+	int getBaseSocialness();
 	int getAggressiveness();
 	int getSuspicion();
 	void setSuspicion(int newSuspicionLevel);
 	std::string getAge();
 	bool isMale();
 
-	int getFriendlinessToCharacter(Character character);
-	void setFriendlinessToCharacter(Character character, int newFriendliness);
+	int getFriendlinessTowardsCharacter(int characterID);
+	void setFriendlinessToCharacter(int characterID, int newFriendliness);
 
 };
 
