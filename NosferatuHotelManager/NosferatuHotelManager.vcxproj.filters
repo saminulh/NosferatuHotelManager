@@ -13,6 +13,9 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
+    <ClCompile Include="TextStruct.cpp" />
+    <ClCompile Include="Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -27,6 +30,9 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="GUIManager.h" />
+    <ClInclude Include="TextStruct.h" />
+    <ClInclude Include="Button.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

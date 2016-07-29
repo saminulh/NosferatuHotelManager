@@ -160,13 +160,16 @@
     <ClInclude Include="AnimationClass.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="GraphicsManager.h" />
+    <ClInclude Include="GUIManager.h" />
     <ClInclude Include="ScreensManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextStruct.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
@@ -174,6 +177,7 @@
     <ClCompile Include="AnimationClass.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character\Character.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../stdafx.h</PrecompiledHeaderFile>
@@ -184,6 +188,7 @@
     </ClCompile>
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="NosferatuHotelManager.cpp" />
     <ClCompile Include="ScreensManager.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -192,6 +197,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TextStruct.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>

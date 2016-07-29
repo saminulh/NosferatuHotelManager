@@ -3,6 +3,7 @@
 
 GraphicsManager::GraphicsManager()
 {
+	LoadFont("arial.ttf");
 }
 
 bool GraphicsManager::LoadFont(std::string _fileName)
