@@ -17,21 +17,17 @@ void Init()
 	srand(time(NULL));
 
 
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
-
 	Animation anim;
-	anim.LoadAnimation("testAnim.xml");
+	anim.LoadAnimation("testAnim.vAnim");
 
 	Animation	vampLoading;
-	vampLoading.LoadAnimation("VampLoadingAnim.xml");
+	vampLoading.LoadAnimation("VampLoadingAnim.vAnim");
 	graphicsManager.LoadTexture("HotelEntrance.png");
 
 	sf::Sprite testBackground;
 	testBackground.setTexture(graphicsManager.GetTexturesMap()["HotelEntrance.png"]);
 
-	vampLoading.BeginAnimation("VampLoadingAnim.xml");
+	vampLoading.BeginAnimation("VampLoadingAnim.vAnim");
 	vampLoading.GetSprite().setPosition(400, 230);
 
 

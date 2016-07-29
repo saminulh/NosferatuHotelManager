@@ -29,11 +29,16 @@ bool Animation::LoadAnimation(std::string _fileName)
 
 
 	//Try to load TEXTURE file
-	graphicsManager.LoadTexture(textureLoc);
+	if (textureLoc != "###")
+		graphicsManager.LoadTexture(textureLoc);
 
 	//Try to load SOUND file
 	if(soundLoc != "###")
 		audioManager.LoadSound(soundLoc);
+
+	//If either field is empty, animation file is broken
+	if (textureLoc == "" || soundLoc == "")
+		return false;
 
 	//Create handle for parsing through all of the frames
 	tinyxml2::XMLElement* frame = root->FirstChildElement("Frame");

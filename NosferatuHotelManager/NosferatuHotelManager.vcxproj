@@ -196,8 +196,8 @@
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Resources\Animations\testAnim.xml" />
-    <Xml Include="Resources\Animations\VampLoadingAnim.xml" />
+    <Xml Include="Resources\Animations\testAnim.vAnim" />
+    <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\HotelEntrance.png" />

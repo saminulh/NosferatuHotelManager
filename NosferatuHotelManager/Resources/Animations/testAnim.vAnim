@@ -3,9 +3,7 @@
 		<Texture>TestTexture.png</Texture>
 
 
-		<Sound>
-		###
-		</Sound>
+		<Sound>###</Sound>
 
 
 		<NumFrames>
