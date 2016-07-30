@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "Utilities.h"
 
+//Master game time
+float		Utilities::m_gameTime = 0;
+bool		Utilities::m_isGamePaused = false;
+
+//This will be multiplied to calculate the passage of time
+float		Utilities::m_currentSpeedFactor = 5;
+
 void Utilities::FormatGameTime()
 {
 	if ((unsigned int)m_gameTime / 100 > 60)
