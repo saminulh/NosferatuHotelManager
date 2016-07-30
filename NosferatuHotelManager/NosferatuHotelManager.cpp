@@ -11,6 +11,8 @@ GraphicsManager graphicsManager;
 AudioManager	audioManager;
 ScreensManager	screensManager;
 
+sf::Vector2i	mousePos;
+
 void Init()
 {
 	debug.Start();
@@ -38,14 +40,16 @@ void Init()
 	tempButtonAnims.push_back("testButtonMouseClickedAnim.vAnim");
 
 	Button button;
-	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50));
+	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50), sf::Vector2f(40,15));
+	button.GetSprite().setScale((float)1.5, (float)1.5);
 
-	sf::Text TESTTEXT;
-	TESTTEXT.setCharacterSize(25);
-	TESTTEXT.setColor(sf::Color::Red);
-	TESTTEXT.setFont(graphicsManager.GetFontsMap()["arial.ttf"]);
-	TESTTEXT.setPosition(sf::Vector2f(50,50));
-	TESTTEXT.setString("Hello!");
+	Button playButton;
+	playButton.CreateButton("Play", tempButtonAnims, sf::Vector2f(50, 150), sf::Vector2f(40, 15));
+	playButton.GetSprite().setScale((float)1.5, (float)1.5);
+
+	Button settingsButton;
+	settingsButton.CreateButton("Settings", tempButtonAnims, sf::Vector2f(50, 250), sf::Vector2f(40, 15));
+	settingsButton.GetSprite().setScale((float)1.5, (float)1.5);
 
 	sf::Clock timer;
 	const float timePerFrame = 1 / 30.f;
@@ -64,24 +68,49 @@ void Init()
 					screensManager.GetWindow().close();
 			}
 
+			mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
+
 			vampLoading.Update(sf::seconds(timePerFrame));
+
+			//Test button
 			button.Update(sf::seconds(timePerFrame));
+			//Play button
+			playButton.Update(sf::seconds(timePerFrame));
+			//Settings button
+			settingsButton.Update(sf::seconds(timePerFrame));
 
 			screensManager.GetWindow().clear();
 			screensManager.GetWindow().draw(testBackground);
 			screensManager.GetWindow().draw(vampLoading.GetSprite());
 
+			//Test button
 			screensManager.GetWindow().draw(button.GetSprite());
 			
-			//screensManager.GetWindow().draw(button.GetButtonText().m_outlineTopRight);
-			/*screensManager.GetWindow().draw(button.GetButtonText().m_outlineTopLeft);
-			screensManager.GetWindow().draw(button.GetButtonText().m_outlineBottomRight);
-			screensManager.GetWindow().draw(button.GetButtonText().m_outlineBottomLeft);
-			screensManager.GetWindow().draw(button.GetButtonText().m_mainText);*/
-			
-			auto test = button.GetButtonText();
+			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineTopRight());
+			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineTopLeft());
+			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineBottomRight());
+			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineBottomLeft());
+			screensManager.GetWindow().draw(button.GetButtonText().GetMainText());
 
-			screensManager.GetWindow().draw(TESTTEXT);
+
+			//Play button
+			screensManager.GetWindow().draw(playButton.GetSprite());
+
+			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineTopRight());
+			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineTopLeft());
+			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineBottomRight());
+			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineBottomLeft());
+			screensManager.GetWindow().draw(playButton.GetButtonText().GetMainText());
+
+
+			//Settings button
+			screensManager.GetWindow().draw(settingsButton.GetSprite());
+
+			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineTopRight());
+			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineTopLeft());
+			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineBottomRight());
+			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineBottomLeft());
+			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetMainText());
 
 			screensManager.GetWindow().display();
 		}

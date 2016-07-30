@@ -13,6 +13,7 @@ class Animation
 public:
 	bool LoadAnimation(std::string _fileName);
 	bool BeginAnimation(std::string _animationName);
+	std::string GetCurrentAnim();
 	sf::Sprite& GetSprite();
 	virtual void Update(sf::Time _deltaTime);
 };

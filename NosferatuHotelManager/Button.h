@@ -9,6 +9,8 @@ class Button : public Animation
 	std::string	m_defaultButtonAnim;
 	std::string	m_mouseOverButtonAnim;
 	std::string	m_mouseClickedButtonAnim;
+	bool		m_isSelected;
+
 public:
 	Button();
 	~Button();

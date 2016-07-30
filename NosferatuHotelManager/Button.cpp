@@ -16,6 +16,8 @@ Button::~Button()
 //2 - Mouse click image/animation
 void Button::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, sf::Vector2f _relativeTextPos)
 {
+	m_isSelected = false;
+
 	LoadAnimation(_animationsList[0]);
 	m_defaultButtonAnim = _animationsList[0];
 	LoadAnimation(_animationsList[1]);
@@ -42,11 +44,38 @@ void Button::OnMouseHover()
 
 void Button::OnMouseClick()
 {
+	debug.Log(1, "BUTTON '" + m_buttonText.GetMainText().getString() + "' was clicked!");
 	BeginAnimation(m_mouseClickedButtonAnim);
 }
 
 void Button::Update(sf::Time _deltaTime)
 {
+	if (GetSprite().getGlobalBounds().contains(sf::Vector2f(mousePos)) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		//Tell the button it has been selected
+		m_isSelected = true;
+
+		//To avoid locking the animation to the first frame,
+		//check it isn't already playing before playing
+		if (GetCurrentAnim() != m_mouseOverButtonAnim)
+			OnMouseOver();
+	}
+	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(mousePos)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		//Same as above
+		if (GetCurrentAnim() != m_mouseClickedButtonAnim)
+			OnMouseClick();
+	}
+	else if (!GetSprite().getGlobalBounds().contains(sf::Vector2f(mousePos)) && m_isSelected)
+	{
+		//Deselect button
+		m_isSelected = false;
+
+		//Handle the mouse leaving
+		OnMouseExit();
+	}
+		
+
 	//This update is Animation's update
 	Animation::Update(_deltaTime);
 }

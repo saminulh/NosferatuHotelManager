@@ -88,6 +88,11 @@ bool Animation::BeginAnimation(std::string _animationName)
 	return true;
 }
 
+std::string Animation::GetCurrentAnim()
+{
+	return m_CurrentAnim;
+}
+
 sf::Sprite & Animation::GetSprite()
 {
 	return m_sprite;
