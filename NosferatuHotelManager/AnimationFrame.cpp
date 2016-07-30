@@ -28,22 +28,22 @@ void AnimationFrame::SetTexture(std::string _texture)
 	m_texture = _texture;
 }
 
-sf::IntRect AnimationFrame::GetTextureBounds()
+sf::IntRect& AnimationFrame::GetTextureBounds()
 {
 	return m_textureBounds;
 }
 
-sf::Time AnimationFrame::GetFrameDuration()
+sf::Time& AnimationFrame::GetFrameDuration()
 {
 	return m_frameDuration;
 }
 
-std::string AnimationFrame::GetSoundEffect()
+std::string& AnimationFrame::GetSoundEffect()
 {
 	return m_soundEffect;
 }
 
-std::string AnimationFrame::GetTexture()
+std::string& AnimationFrame::GetTexture()
 {
 	return m_texture;
 }

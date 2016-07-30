@@ -1,7 +1,7 @@
 #pragma once
 #include "TextStruct.h"
 
-//This singleton class is responsible for managing all Graphical User Interface (GUI) items
+//This manager class is responsible for managing all Graphical User Interface (GUI) items
 //These items include buttons, labels, etc. that are NOT part of the game world itself
 class GUIManager
 {

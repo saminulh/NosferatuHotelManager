@@ -32,9 +32,14 @@ sf::Text& CustomText::GetOutlineBottomRight()
 
 void CustomText::CreateCustomText(std::string _text, sf::Vector2f _pos, sf::Color _mainColour, sf::Color _outlineColour, int _fontSize, int _outlineThickness, std::string _font)
 {
+	//Ensure the requested font file is loaded in memory
 	if (graphicsManager.GetFontsMap().find(_font) == graphicsManager.GetFontsMap().end())
+	{
 		debug.Log(2, "Could not find FONT '" + _font + "' in the loaded fonts map!");
+		return;
+	}
 
+	//Set up the texts
 	m_mainText.setCharacterSize(_fontSize);
 	m_mainText.setColor(_mainColour);
 	m_mainText.setFont(graphicsManager.GetFontsMap()[_font]);

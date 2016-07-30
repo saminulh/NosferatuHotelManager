@@ -11,9 +11,11 @@ class Animation
 	unsigned int											m_currentAnimFrame;
 
 public:
-	bool LoadAnimation(std::string _fileName);
-	bool BeginAnimation(std::string _animationName);
-	std::string GetCurrentAnim();
-	sf::Sprite& GetSprite();
-	virtual void Update(sf::Time _deltaTime);
+	bool													LoadAnimation(std::string _fileName);
+	bool													BeginAnimation(std::string _animationName);
+	std::string&											GetCurrentAnim();
+	sf::Sprite&												GetSprite();
+
+	//Update may not need to be virtual ...
+	virtual void											Update(sf::Time _deltaTime);
 };

@@ -11,11 +11,11 @@ class CustomText
 
 public:
 	CustomText();
-	sf::Text& GetMainText();
-	sf::Text& GetOutlineTopLeft();
-	sf::Text& GetOutlineTopRight();
-	sf::Text& GetOutlineBottomLeft();
-	sf::Text& GetOutlineBottomRight();
+	sf::Text&	GetMainText();
+	sf::Text&	GetOutlineTopLeft();
+	sf::Text&	GetOutlineTopRight();
+	sf::Text&	GetOutlineBottomLeft();
+	sf::Text&	GetOutlineBottomRight();
 
-	void CreateCustomText(std::string _text, sf::Vector2f _pos, sf::Color _mainColour = sf::Color::White, sf::Color _outlineColour = sf::Color::Black, int _fontSize = 30, int _outlineThickness = 3, std::string _font = "arial.ttf");
+	void		CreateCustomText(std::string _text, sf::Vector2f _pos, sf::Color _mainColour = sf::Color::White, sf::Color _outlineColour = sf::Color::Black, int _fontSize = 30, int _outlineThickness = 3, std::string _font = "arial.ttf");
 };
