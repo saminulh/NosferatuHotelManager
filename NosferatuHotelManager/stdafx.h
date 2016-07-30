@@ -28,10 +28,11 @@
 #include "GraphicsManager.h"
 #include "AudioManager.h"
 #include "ScreensManager.h"
+#include "GUIManager.h"
 
 //Create the debug singleton here
 extern DebugLogManager	debug;
 extern GraphicsManager	graphicsManager;
 extern AudioManager		audioManager;
 extern ScreensManager	screensManager;
-extern sf::Vector2i		mousePos;
+extern GUIManager		guiManager;

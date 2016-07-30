@@ -66,7 +66,7 @@ void Button::OnMouseClick()
 void Button::Update(sf::Time _deltaTime)
 {
 	//If the mouse is over the button and not clicked
-	if (GetSprite().getGlobalBounds().contains(sf::Vector2f(mousePos)) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		//Tell the button it has been selected
 		m_isSelected = true;
@@ -77,14 +77,14 @@ void Button::Update(sf::Time _deltaTime)
 			OnMouseOver();
 	}
 	//If the mouse is over the button, but clicked
-	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(mousePos)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		//Same as above
 		if (GetCurrentAnim() != m_mouseClickedButtonAnim)
 			OnMouseClick();
 	}
 	//If the mouse was previously hovered over by the mouse, but is no longer
-	else if (!GetSprite().getGlobalBounds().contains(sf::Vector2f(mousePos)) && m_isSelected)
+	else if (!GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && m_isSelected)
 	{
 		//Deselect button
 		m_isSelected = false;
