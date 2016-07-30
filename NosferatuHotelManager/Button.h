@@ -1,5 +1,5 @@
 #pragma once
-
+#include "AnimationClass.h"
 //This will be the basic button class that will be managed by the GUI manager
 
 class Button : public Animation

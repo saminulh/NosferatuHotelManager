@@ -14,7 +14,7 @@ void Init()
 {
 	debug.Start();
 
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 
 	Animation anim;
