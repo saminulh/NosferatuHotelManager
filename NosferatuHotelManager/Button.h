@@ -10,12 +10,13 @@ class Button : public Animation
 	std::string	m_mouseOverButtonAnim;
 	std::string	m_mouseClickedButtonAnim;
 	bool		m_isSelected;
+	void		(*m_onClickFunction)(void);
 
 public:
 	Button();
 	~Button();
 
-	void CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
+	void CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void (*_onClickFunction)(void), sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
 
 
 	void OnMouseOver();

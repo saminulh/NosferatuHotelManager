@@ -14,9 +14,11 @@ Button::~Button()
 //0 - Default button image/animation
 //1 - Mouse over image/animation
 //2 - Mouse click image/animation
-void Button::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, sf::Vector2f _relativeTextPos)
+void Button::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos)
 {
 	m_isSelected = false;
+	m_onClickFunction = _onClickFunction;
+
 
 	LoadAnimation(_animationsList[0]);
 	m_defaultButtonAnim = _animationsList[0];
@@ -45,6 +47,9 @@ void Button::OnMouseHover()
 void Button::OnMouseClick()
 {
 	debug.Log(1, "BUTTON '" + m_buttonText.GetMainText().getString() + "' was clicked!");
+
+	m_onClickFunction();
+
 	BeginAnimation(m_mouseClickedButtonAnim);
 }
 

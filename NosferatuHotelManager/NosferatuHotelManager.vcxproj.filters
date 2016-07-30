@@ -16,6 +16,7 @@
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="TextStruct.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonActions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="GUIManager.h" />
     <ClInclude Include="TextStruct.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonActions.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

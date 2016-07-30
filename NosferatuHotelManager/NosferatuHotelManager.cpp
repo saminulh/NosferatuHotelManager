@@ -5,6 +5,7 @@
 #include "AnimationClass.h"
 
 #include "Button.h"
+#include "ButtonActions.h"
 
 DebugLogManager debug;
 GraphicsManager graphicsManager;
@@ -39,16 +40,20 @@ void Init()
 	tempButtonAnims.push_back("testButtonMouseOverAnim.vAnim");
 	tempButtonAnims.push_back("testButtonMouseClickedAnim.vAnim");
 
+
+	void(*testOnClick)(void);
+	testOnClick = &ButtonActions::TestButtonAction;
+
 	Button button;
-	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50), sf::Vector2f(40,15));
+	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50), testOnClick, sf::Vector2f(40,15));
 	button.GetSprite().setScale((float)1.5, (float)1.5);
 
 	Button playButton;
-	playButton.CreateButton("Play", tempButtonAnims, sf::Vector2f(50, 150), sf::Vector2f(40, 15));
+	playButton.CreateButton("Play", tempButtonAnims, sf::Vector2f(50, 150), testOnClick, sf::Vector2f(40, 15));
 	playButton.GetSprite().setScale((float)1.5, (float)1.5);
 
 	Button settingsButton;
-	settingsButton.CreateButton("Settings", tempButtonAnims, sf::Vector2f(50, 250), sf::Vector2f(40, 15));
+	settingsButton.CreateButton("Settings", tempButtonAnims, sf::Vector2f(50, 250), testOnClick, sf::Vector2f(40, 15));
 	settingsButton.GetSprite().setScale((float)1.5, (float)1.5);
 
 	sf::Clock timer;
