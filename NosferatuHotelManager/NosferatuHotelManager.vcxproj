@@ -88,12 +88,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Admin\Documents\GitHubVisualStudio\NosferatuHotelManager\SFML\include;C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Admin\Documents\GitHubVisualStudio\NosferatuHotelManager\SFML\lib;C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -122,14 +122,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Admin\Documents\GitHubVisualStudio\NosferatuHotelManager\SFML\include;C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Admin\Documents\GitHubVisualStudio\NosferatuHotelManager\SFML\lib;C:\Users\Alienwarepc\Source\Repos\NosferatuHotelManager\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -163,15 +163,19 @@
     <ClInclude Include="AnimationClass.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonActions.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\NPC.h" />
     <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="DecisionMaker.h" />
     <ClInclude Include="GraphicsManager.h" />
+    <ClInclude Include="GUIManager.h" />
     <ClInclude Include="ScreensManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextStruct.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
@@ -182,6 +186,8 @@
     <ClCompile Include="AnimationClass.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonActions.cpp" />
     <ClCompile Include="Character\Character.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../stdafx.h</PrecompiledHeaderFile>
@@ -200,6 +206,7 @@
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="DecisionMaker.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="NosferatuHotelManager.cpp" />
     <ClCompile Include="ScreensManager.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -208,8 +215,24 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TextStruct.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\Animations\testAnim.vAnim" />
+    <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\HotelEntrance.png" />
+    <Image Include="Resources\Textures\ShittyButton.png" />
+    <Image Include="Resources\Textures\TestTexture.png" />
+    <Image Include="Resources\Textures\VampLoadingAnim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

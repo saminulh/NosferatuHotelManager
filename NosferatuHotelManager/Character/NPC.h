@@ -1,47 +1,48 @@
+#pragma once
 #include "../stdafx.h"
 #include "Character.h"
 #include "../DecisionMaker.h"
 
 class NPC : public Character {
 	
-	static std::vector<NPC> NPCStack;
+	static std::vector<NPC>			NPCStack;
 
-	static NPC getNPCByID(int ID);
-	static void createNPC(std::string type);
+	static NPC						getNPCByID(int ID);
+	static void						createNPC(std::string type);
 
 private:
-	int characterID;
+	int								characterID;
 
-	char personType;
-	int basePerceptiveness;
-	int baseFriendliness;
-	int baseSocialness;
-	int baseAggressiveness;
-	int suspicion;
-	std::string age;
-	bool isCharacterMale;
+	char							personType;
+	int								basePerceptiveness;
+	int								baseFriendliness;
+	int								baseSocialness;
+	int								baseAggressiveness;
+	int								suspicion;
+	std::string						age;
+	bool							isCharacterMale;
 
-	std::map<int, int> friendlinessModifiers;
+	std::map<int, int>				friendlinessModifiers;
 
-	std::vector<Activity> activitiesByPhaseOfDay[6];
+	std::vector<Activity>			activitiesByPhaseOfDay[6];
 
-	DecisionMaker decisionMaker;
+	DecisionMaker					decisionMaker;
 
 public:
 	NPC();
 
-	char getPersonType();
-	int getPerceptiveness();
-	int getBaseFriendliness();
-	int getBaseSocialness();
-	int getAggressiveness();
-	int getSuspicion();
-	void setSuspicion(int newSuspicionLevel);
-	std::string getAge();
-	bool isMale();
+	char							getPersonType();
+	int								getPerceptiveness();
+	int								getBaseFriendliness();
+	int								getBaseSocialness();
+	int								getAggressiveness();
+	int								getSuspicion();
+	void							setSuspicion(int newSuspicionLevel);
+	std::string						getAge();
+	bool							isMale();
 
-	int getFriendlinessTowardsCharacter(int characterID);
-	void setFriendlinessToCharacter(int characterID, int newFriendliness);
+	int								getFriendlinessTowardsCharacter(int characterID);
+	void							setFriendlinessToCharacter(int characterID, int newFriendliness);
 
 };
 

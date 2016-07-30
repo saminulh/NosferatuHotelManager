@@ -5,18 +5,22 @@
 //for a single animation frame
 class AnimationFrame
 {
+
+	sf::IntRect			m_textureBounds;
+	sf::Time			m_frameDuration;
+	std::string			m_soundEffect;
+	std::string			m_texture;
+
 public:
-	sf::IntRect		m_textureBounds;
-	sf::Time		m_frameDuration;
-	std::string		m_soundEffect;
-
-	//Pointer to the texture the frame references; careful about usage
-	sf::Texture*	m_texture;
-
 	AnimationFrame();
 
-	void SetTextureBounds(sf::IntRect _newBounds);
-	void SetTextureBounds(unsigned int _x, unsigned int _y, unsigned int _width, unsigned int _height);
+	void				SetTextureBounds(sf::IntRect _newBounds);
+	void				SetTextureBounds(unsigned int _x, unsigned int _y, unsigned int _width, unsigned int _height);
+	void				SetFrameDuration(unsigned int _ms);
+	void				SetTexture(std::string _texture);
 
-	void SetFrameDuration(unsigned int _ms);
+	sf::IntRect&		GetTextureBounds();
+	sf::Time&			GetFrameDuration();
+	std::string&		GetSoundEffect();
+	std::string&		GetTexture();
 };
