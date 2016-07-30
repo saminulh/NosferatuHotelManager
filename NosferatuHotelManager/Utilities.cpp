@@ -10,7 +10,6 @@ void Utilities::FormatGameTime()
 
 		//Set the timer back to 0
 		m_gameTime -= (unsigned int)m_gameTime % 100;
-		debug.Log(0, "Hour incremented!");
 	}
 
 	if ((unsigned int)m_gameTime / 10000 > 24000)
@@ -20,7 +19,6 @@ void Utilities::FormatGameTime()
 
 		//Set the hours back to 0
 		m_gameTime -= (unsigned int)m_gameTime % 10000;
-		debug.Log(0, "Day incremented!");
 	}
 
 	//Add years? Who knows, who cares?
