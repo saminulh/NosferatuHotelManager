@@ -12,8 +12,6 @@ GraphicsManager graphicsManager;
 AudioManager	audioManager;
 ScreensManager	screensManager;
 
-sf::Vector2i	mousePos;
-
 void Init()
 {
 	debug.Start();
@@ -57,14 +55,14 @@ void Init()
 	settingsButton.GetSprite().setScale((float)1.5, (float)1.5);
 
 	sf::Clock timer;
-	const float timePerFrame = 1 / 30.f;
+	
 	float elapsedTime = 0;
 	while (screensManager.GetWindow().isOpen())
 	{
 		elapsedTime += timer.restart().asSeconds();
-		if (elapsedTime >= timePerFrame)
+		if (elapsedTime >= screensManager.m_timePerFrame)
 		{
-			elapsedTime -= timePerFrame;
+			elapsedTime -= screensManager.m_timePerFrame;
 
 			sf::Event event;
 			while (screensManager.GetWindow().pollEvent(event))
@@ -73,16 +71,16 @@ void Init()
 					screensManager.GetWindow().close();
 			}
 
-			mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
+			screensManager.m_mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
 
-			vampLoading.Update(sf::seconds(timePerFrame));
+			vampLoading.Update(sf::seconds(screensManager.m_timePerFrame));
 
 			//Test button
-			button.Update(sf::seconds(timePerFrame));
+			button.Update(sf::seconds(screensManager.m_timePerFrame));
 			//Play button
-			playButton.Update(sf::seconds(timePerFrame));
+			playButton.Update(sf::seconds(screensManager.m_timePerFrame));
 			//Settings button
-			settingsButton.Update(sf::seconds(timePerFrame));
+			settingsButton.Update(sf::seconds(screensManager.m_timePerFrame));
 
 			screensManager.GetWindow().clear();
 			screensManager.GetWindow().draw(testBackground);

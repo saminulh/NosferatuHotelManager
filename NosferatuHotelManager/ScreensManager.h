@@ -6,6 +6,9 @@ class ScreensManager
 {
 	sf::RenderWindow	m_renderWindow;
 public:
+	const float			m_timePerFrame = 1 / 30.f;
+	sf::Vector2i		m_mousePos;
+
 	ScreensManager();
 
 	sf::RenderWindow&	GetWindow();
