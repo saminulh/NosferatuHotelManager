@@ -24,17 +24,22 @@ bool DebugLogManager::ClearLogFile()
 void DebugLogManager::Start()
 {
 	fileName = "debug.log";
+	minPriority = 0;
+
 
 	file.open(fileName);
 	file << "[START]:\t\tProgram started!" << std::endl;
+	file << "[PRIORITY]:\t\tMinimum priority set to 0!" << std::endl;
 }
 
 bool DebugLogManager::Log(int _priority, std::string _message)
 {
-	std::string finalMessage = "";
+	std::string		finalMessage = "";
 
+	//Ensure file is open
 	if (file.is_open())
 	{
+		//Format log message
 		switch (_priority)
 		{
 		case 0:
@@ -74,9 +79,26 @@ bool DebugLogManager::Log(int _priority, std::string _message)
 		}
 		}
 
-
-		if (file << finalMessage)
-			return true;
+		//Check if the message's priority is high enough to be logged
+		if (_priority >= minPriority)
+		{
+			if (file << finalMessage)
+				return true;
+		}		
 	}
 	return false;
+}
+
+void DebugLogManager::SetPriority(int _newPriority)
+{
+	minPriority = _newPriority;
+	if (file.is_open())
+	{
+		file << "[PRIORITY]:\t\tMinimum priority has been updated to " << _newPriority << "!" << std::endl;
+	}
+}
+
+int DebugLogManager::GetPriority()
+{
+	return minPriority;
 }

@@ -30,6 +30,7 @@
 #include "AudioManager.h"
 #include "ScreensManager.h"
 #include "ActivityManager.h"
+#include "GUIManager.h"
 
 //Create the debug singleton here
 extern DebugLogManager	debug;
@@ -37,3 +38,4 @@ extern GraphicsManager	graphicsManager;
 extern AudioManager		audioManager;
 extern ScreensManager	screensManager;
 extern ActivityManager	activityManager;
+extern GUIManager		guiManager;

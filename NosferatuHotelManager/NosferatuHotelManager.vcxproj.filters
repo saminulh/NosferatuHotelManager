@@ -5,7 +5,6 @@
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Character\Character.cpp" />
-    <ClCompile Include="Character\NPC.cpp" />
     <ClCompile Include="Character\Vampire.cpp" />
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
@@ -18,13 +17,16 @@
     <ClCompile Include="ActivityManager.cpp" />
     <ClCompile Include="ActivityRequest.cpp" />
     <ClCompile Include="DecisionMaker.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
+    <ClCompile Include="TextStruct.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonActions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Character\Character.h" />
-    <ClInclude Include="Character\NPC.h" />
     <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="GraphicsManager.h" />
@@ -37,6 +39,10 @@
     <ClInclude Include="ActivityManager.h" />
     <ClInclude Include="ActivityRequest.h" />
     <ClInclude Include="DecisionMaker.h" />
+    <ClInclude Include="GUIManager.h" />
+    <ClInclude Include="TextStruct.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonActions.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
