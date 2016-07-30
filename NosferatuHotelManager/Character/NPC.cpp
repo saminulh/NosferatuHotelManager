@@ -2,12 +2,14 @@
 #include "NPC.h"
 #include "Character.h"
 
+std::vector<NPC> NPC::NPCStack;
+
 NPC::NPC() {
 	
 }
 
 NPC NPC::getNPCByID(int ID) {
-	return NPCStack[ID];
+	return NPC::NPCStack[ID];
 }
 
 void NPC::createNPC(std::string type) {
