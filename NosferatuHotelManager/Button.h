@@ -8,6 +8,9 @@ public:
 	Button();
 	~Button();
 
+	void CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
+
+
 	void OnMouseOver();
 
 	//Used for tooltips, etc.
