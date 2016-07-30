@@ -160,14 +160,17 @@
     <ClInclude Include="AnimationClass.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonActions.h" />
     <ClInclude Include="Character\Character.h" />
-    <ClInclude Include="Character\NPC.h" />
     <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="GraphicsManager.h" />
+    <ClInclude Include="GUIManager.h" />
     <ClInclude Include="ScreensManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextStruct.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
@@ -175,17 +178,19 @@
     <ClCompile Include="AnimationClass.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonActions.cpp" />
     <ClCompile Include="Character\Character.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../stdafx.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="Character\NPC.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Character\Vampire.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="NosferatuHotelManager.cpp" />
     <ClCompile Include="ScreensManager.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -194,8 +199,24 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TextStruct.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\Animations\testAnim.vAnim" />
+    <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\HotelEntrance.png" />
+    <Image Include="Resources\Textures\ShittyButton.png" />
+    <Image Include="Resources\Textures\TestTexture.png" />
+    <Image Include="Resources\Textures\VampLoadingAnim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

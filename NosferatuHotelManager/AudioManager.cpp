@@ -14,9 +14,11 @@ bool AudioManager::LoadSound(std::string _fileName)
 	//Check if sound file is already loaded before trying to load
 	if (soundsMap.find(_fileName) == soundsMap.end())
 	{
+		//Set file location prefix
 		fileLoc = "Resources/Sounds/";
 		fileLoc += _fileName;
 
+		//Try loading the file, return success/fail
 		if (!buffer.loadFromFile(fileLoc))
 		{
 			message = "Couldn't load SOUND file '";
@@ -33,10 +35,12 @@ bool AudioManager::LoadSound(std::string _fileName)
 			debug.Log(1, message);
 		}
 
+		//Save the loaded sound file if successful
 		soundsMap.insert(std::pair<std::string, sf::SoundBuffer>(_fileName, buffer));
 	}
 	else
 	{
+		//Log double-loading of sound file - may or may not be intended
 		message = "Attempted to reload SOUND file '";
 		message += _fileName;
 		message += "'!";

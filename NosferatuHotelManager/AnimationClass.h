@@ -6,7 +6,16 @@ class Animation
 {
 	sf::Sprite												m_sprite;
 	std::map <std::string, std::vector<AnimationFrame>>		m_animations;
+	sf::Time												m_timeSinceLastUpdate;
+	std::string												m_CurrentAnim;
+	unsigned int											m_currentAnimFrame;
+
 public:
-	bool LoadAnimation(std::string _fileName);
-	bool BeginAnimation(std::string _animationName, sf::Sprite& _target);
+	bool													LoadAnimation(std::string _fileName);
+	bool													BeginAnimation(std::string _animationName);
+	std::string&											GetCurrentAnim();
+	sf::Sprite&												GetSprite();
+
+	//Update may not need to be virtual ...
+	virtual void											Update(sf::Time _deltaTime);
 };

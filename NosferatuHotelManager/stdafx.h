@@ -34,3 +34,4 @@ extern DebugLogManager	debug;
 extern GraphicsManager	graphicsManager;
 extern AudioManager		audioManager;
 extern ScreensManager	screensManager;
+extern sf::Vector2i		mousePos;

@@ -3,6 +3,8 @@
 
 GraphicsManager::GraphicsManager()
 {
+	//Load arial by default so that there is always at least one font
+	LoadFont("arial.ttf");
 }
 
 bool GraphicsManager::LoadFont(std::string _fileName)
@@ -17,6 +19,7 @@ bool GraphicsManager::LoadFont(std::string _fileName)
 		fileLoc = "Resources/Fonts/";
 		fileLoc += _fileName;
 
+		//Try to load font file, log success/fail
 		if (!font.loadFromFile(fileLoc))
 		{
 			message = "Couldn't load FONT file '";
@@ -33,10 +36,12 @@ bool GraphicsManager::LoadFont(std::string _fileName)
 			debug.Log(0, message);
 		}
 
+		//Save loaded font file
 		fontsMap.insert(std::pair<std::string, sf::Font>(_fileName, font));
 	}
 	else
 	{
+		//Inform logger that the font file was requested to be loaded again
 		message = "Attempted to reload FONT file '";
 		message += _fileName;
 		message += "'!";
@@ -58,6 +63,7 @@ bool GraphicsManager::LoadTexture(std::string _fileName)
 		fileLoc = "Resources/Textures/";
 		fileLoc += _fileName;
 
+		//Try to load texture file, log success/fail
 		if (!texture.loadFromFile(fileLoc))
 		{
 			message = "Couldn't load TEXTURE file '";
@@ -74,10 +80,13 @@ bool GraphicsManager::LoadTexture(std::string _fileName)
 			debug.Log(0, message);
 		}
 
+		//Save loaded texture
 		texturesMap.insert(std::pair<std::string, sf::Texture>(_fileName, texture));
 	}
 	else
 	{
+		//Inform logger that the font file was requested to be loaded again
+		//Multiple animations may require the same texture file - this one should be fairly common
 		message = "Attempted to reload TEXTURE file '";
 		message += _fileName;
 		message += "'!";
