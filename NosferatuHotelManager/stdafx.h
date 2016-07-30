@@ -31,6 +31,7 @@
 #include "ScreensManager.h"
 #include "ActivityManager.h"
 #include "GUIManager.h"
+#include "Utilities.h"
 
 //Create the debug singleton here
 extern DebugLogManager	debug;

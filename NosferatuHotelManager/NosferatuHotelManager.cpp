@@ -79,6 +79,8 @@ void Init()
 
 			vampLoading.Update(sf::seconds(screensManager.m_timePerFrame));
 
+			Utilities::Update();
+
 			guiManager.Update();
 
 			/*********** Clear the screen ******************/

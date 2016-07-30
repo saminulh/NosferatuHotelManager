@@ -166,6 +166,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonActions.h" />
     <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\NPC.h" />
     <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="DecisionMaker.h" />

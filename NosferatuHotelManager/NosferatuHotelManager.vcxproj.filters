@@ -21,6 +21,7 @@
     <ClCompile Include="TextStruct.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonActions.cpp" />
+    <ClCompile Include="Character\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -43,8 +44,24 @@
     <ClInclude Include="TextStruct.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonActions.h" />
+    <ClInclude Include="Character\NPC.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\Animations\testAnim.vAnim" />
+    <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\HotelEntrance.png" />
+    <Image Include="Resources\Textures\ShittyButton.png" />
+    <Image Include="Resources\Textures\TestTexture.png" />
+    <Image Include="Resources\Textures\VampLoadingAnim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
   </ItemGroup>
 </Project>
