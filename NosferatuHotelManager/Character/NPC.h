@@ -1,3 +1,4 @@
+#pragma once
 #include "../stdafx.h"
 #include "Character.h"
 #include "../DecisionMaker.h"
