@@ -30,7 +30,7 @@ void Utilities::Update()
 	if (!m_isGamePaused)
 	{
 		//Make change to game time
-		m_gameTime = screensManager.m_timePerFrame * m_currentSpeedFactor;
+		m_gameTime += screensManager.m_timePerFrame * m_currentSpeedFactor;
 		//Format the number
 		FormatGameTime();
 	}

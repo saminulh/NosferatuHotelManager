@@ -62,6 +62,10 @@ void Init()
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("Play", playButton));
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("Settings", settingsButton));
 
+	Utilities::m_isGamePaused = false;
+	Utilities::m_currentSpeedFactor = 5;
+	Utilities::m_gameTime = 0;
+
 	screensManager.m_timer.restart();
 	while (screensManager.GetWindow().isOpen())
 	{
