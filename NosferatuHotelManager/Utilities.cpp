@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Utilities.h"
 
-unsigned int Utilities::FormatGameTime()
+void Utilities::FormatGameTime()
 {
 	if ((unsigned int)m_gameTime / 100 > 60)
 	{

@@ -7,6 +7,8 @@
 #include "Button.h"
 #include "ButtonActions.h"
 
+#include "Utilities.h"
+
 DebugLogManager debug;
 GraphicsManager graphicsManager;
 AudioManager	audioManager;

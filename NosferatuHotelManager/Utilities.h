@@ -1,7 +1,8 @@
+#pragma once
 #include "stdafx.h"
 
 class Utilities {
-	static unsigned int			FormatGameTime();
+	static void					FormatGameTime();
 
 public:
 	//Master game time
