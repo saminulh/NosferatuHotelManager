@@ -1,6 +1,43 @@
 #include "stdafx.h"
 #include "Utilities.h"
 
+unsigned int Utilities::FormatGameTime()
+{
+	if ((unsigned int)m_gameTime / 100 > 60)
+	{
+		//Increment to next hour
+		m_gameTime += 100;
+
+		//Set the timer back to 0
+		m_gameTime -= (unsigned int)m_gameTime % 100;
+		debug.Log(0, "Hour incremented!");
+	}
+
+	if ((unsigned int)m_gameTime / 10000 > 24000)
+	{
+		//Increment to next day
+		m_gameTime += 100000;
+
+		//Set the hours back to 0
+		m_gameTime -= (unsigned int)m_gameTime % 10000;
+		debug.Log(0, "Day incremented!");
+	}
+
+	//Add years? Who knows, who cares?
+}
+
+void Utilities::Update()
+{
+	//Don't calculate passage of time if game is paused ... maybe make it go real-time(?)
+	if (!m_isGamePaused)
+	{
+		//Make change to game time
+		m_gameTime = screensManager.m_timePerFrame * m_currentSpeedFactor;
+		//Format the number
+		FormatGameTime();
+	}
+}
+
 int Utilities::randInt(int lowerBound, int upperBound) {
 	return 0;
 }

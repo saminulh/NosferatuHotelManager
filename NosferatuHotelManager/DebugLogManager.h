@@ -4,14 +4,15 @@
 
 class DebugLogManager
 {
-	std::ofstream	file;
-	std::string		fileName;
+	std::ofstream		file;
+	std::string			fileName;
+	int					minPriority;
 public:
 	DebugLogManager();
 	~DebugLogManager();
 
-	bool ClearLogFile();
-	void Start();
+	bool				ClearLogFile();
+	void				Start();
 
 	/*
 	0 - Info
@@ -19,5 +20,8 @@ public:
 	2 - Warning
 	3 - Error
 	*/
-	bool Log(int _priority, std::string _message);
+	bool				Log(int _priority, std::string _message);
+
+	void				SetPriority(int _newPriority);
+	int					GetPriority();
 };

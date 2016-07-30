@@ -1,0 +1,45 @@
+<Animation>
+	<Meta>
+		<Texture>TestTexture.png</Texture>
+
+
+		<Sound>###</Sound>
+
+
+		<NumFrames>
+		2		
+		</NumFrames>
+	</Meta>
+
+	<Frame>
+		<b1>0</b1>
+		<b2>0</b2>
+		<b3>32</b3>
+		<b4>32</b4>
+		<ms>100</ms>
+	</Frame>
+
+	<Frame>
+		<b1>32</b1>
+		<b2>0</b2>
+		<b3>32</b3>
+		<b4>32</b4>
+		<ms>100</ms>
+	</Frame>
+
+	<Frame>
+		<b1>64</b1>
+		<b2>0</b2>
+		<b3>32</b3>
+		<b4>32</b4>
+		<ms>100</ms>
+	</Frame>
+
+	<Frame>
+		<b1>96</b1>
+		<b2>0</b2>
+		<b3>32</b3>
+		<b4>32</b4>
+		<ms>100</ms>
+	</Frame>
+</Animation>
