@@ -1,7 +1,14 @@
 #include "stdafx.h"
 #include "Utilities.h"
 
-unsigned int Utilities::FormatGameTime()
+//Master game time
+float		Utilities::m_gameTime = 0;
+bool		Utilities::m_isGamePaused = false;
+
+//This will be multiplied to calculate the passage of time
+float		Utilities::m_currentSpeedFactor = 5;
+
+void Utilities::FormatGameTime()
 {
 	if ((unsigned int)m_gameTime / 100 > 60)
 	{
@@ -10,7 +17,6 @@ unsigned int Utilities::FormatGameTime()
 
 		//Set the timer back to 0
 		m_gameTime -= (unsigned int)m_gameTime % 100;
-		debug.Log(0, "Hour incremented!");
 	}
 
 	if ((unsigned int)m_gameTime / 10000 > 24000)
@@ -20,7 +26,6 @@ unsigned int Utilities::FormatGameTime()
 
 		//Set the hours back to 0
 		m_gameTime -= (unsigned int)m_gameTime % 10000;
-		debug.Log(0, "Day incremented!");
 	}
 
 	//Add years? Who knows, who cares?
@@ -32,7 +37,7 @@ void Utilities::Update()
 	if (!m_isGamePaused)
 	{
 		//Make change to game time
-		m_gameTime = screensManager.m_timePerFrame * m_currentSpeedFactor;
+		m_gameTime += screensManager.m_timePerFrame * m_currentSpeedFactor;
 		//Format the number
 		FormatGameTime();
 	}
@@ -43,7 +48,7 @@ int Utilities::randInt(int lowerBound, int upperBound) {
 }
 
 int Utilities::getTime() {
-	return (int) m_gameTime;
+	return 0;
 }
 
 int Utilities::getDay() {

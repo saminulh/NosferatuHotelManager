@@ -7,6 +7,8 @@
 #include "Button.h"
 #include "ButtonActions.h"
 
+#include "Utilities.h"
+
 DebugLogManager debug;
 GraphicsManager graphicsManager;
 AudioManager	audioManager;
@@ -60,11 +62,7 @@ void Init()
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("Play", playButton));
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("Settings", settingsButton));
 
-
-	//Initialize starting stuff
-	Utilities::m_gameTime = 0;
-	Utilities::m_currentSpeedFactor = 1;
-	Utilities::m_isGamePaused = false;
+	//Restart timer so that it's zero when the window actually starts
 	screensManager.m_timer.restart();
 	while (screensManager.GetWindow().isOpen())
 	{
@@ -85,10 +83,6 @@ void Init()
 			vampLoading.Update(sf::seconds(screensManager.m_timePerFrame));
 
 			Utilities::Update();
-
-
-			auto TEMPDEBUG = Utilities::m_gameTime;
-
 
 			guiManager.Update();
 
