@@ -2,6 +2,7 @@
 #include "../stdafx.h"
 #include "Character.h"
 #include "../DecisionMaker.h"
+#include "../Activity.h"
 
 class NPC : public Character {
 private:

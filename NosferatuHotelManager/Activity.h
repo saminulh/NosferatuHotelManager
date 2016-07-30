@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include "Character/NPC.h"
 
 class Activity {
 public:

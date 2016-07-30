@@ -14,6 +14,8 @@ private:
 
 
 public:
+	ActivityManager();
+
 	void pushNewActivity(Activity activity);
 	void pushNewRequest(ActivityRequest activityRequest);
 

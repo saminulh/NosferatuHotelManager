@@ -2,6 +2,10 @@
 #include "Activity.h"
 #include "Character/NPC.h"
 
+Activity::Activity(){
+
+}
+
 Activity::Activity(std::string _name, int _npcID, std::vector<int> _IDsOfPeopleInvolved, int _baseOdds, int _executionLowerBound, int _executionUpperBound, bool _useDuration, int _duration, int _endTime){
 	activityManager.pushNewActivity(*this);
 	activityID = activityManager.getActivityStackSize();

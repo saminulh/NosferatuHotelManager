@@ -2,6 +2,7 @@
 #include "NPC.h"
 #include "Character.h"
 #include "../DecisionMaker.h"
+#include "../Activity.h"
 
 NPC::NPC(std::string type) {
 	characterManager.pushNewCharacter(*this);
