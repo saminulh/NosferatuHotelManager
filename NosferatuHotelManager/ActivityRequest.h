@@ -6,6 +6,6 @@ class ActivityRequest {
 	int requesterCharacterID;
 
 public:
-	ActivityRequest(int actID, int charID);
+	ActivityRequest(int actID, int charID, int requestType);
 };
 

@@ -1,5 +1,6 @@
 #include "../stdafx.h"
 #include "Character.h"
+#include "../DecisionMaker.h"
 
 class NPC : public Character {
 	
@@ -21,6 +22,10 @@ private:
 	bool isCharacterMale;
 
 	std::map<int, int> friendlinessModifiers;
+
+	std::vector<Activity> activitiesByPhaseOfDay[6];
+
+	DecisionMaker decisionMaker;
 
 public:
 	NPC();

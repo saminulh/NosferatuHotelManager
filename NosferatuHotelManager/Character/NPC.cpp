@@ -1,6 +1,7 @@
 #include "../stdafx.h"
 #include "NPC.h"
 #include "Character.h"
+#include "../DecisionMaker.h"
 
 std::vector<NPC> NPC::NPCStack;
 

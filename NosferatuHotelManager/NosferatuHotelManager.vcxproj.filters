@@ -17,6 +17,7 @@
     <ClCompile Include="Activity.cpp" />
     <ClCompile Include="ActivityManager.cpp" />
     <ClCompile Include="ActivityRequest.cpp" />
+    <ClCompile Include="DecisionMaker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -35,6 +36,7 @@
     <ClInclude Include="Activity.h" />
     <ClInclude Include="ActivityManager.h" />
     <ClInclude Include="ActivityRequest.h" />
+    <ClInclude Include="DecisionMaker.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
