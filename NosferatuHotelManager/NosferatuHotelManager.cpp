@@ -9,12 +9,13 @@
 
 #include "Utilities.h"
 
-DebugLogManager debug;
-GraphicsManager graphicsManager;
-AudioManager	audioManager;
-ScreensManager	screensManager;
-GUIManager		guiManager;
-ActivityManager activityManager;
+DebugLogManager		debug;
+GraphicsManager		graphicsManager;
+AudioManager		audioManager;
+ScreensManager		screensManager;
+GUIManager			guiManager;
+ActivityManager		activityManager;
+CharacterManager	characterManager;
 
 void Init()
 {

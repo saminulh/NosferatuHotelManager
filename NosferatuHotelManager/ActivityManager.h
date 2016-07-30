@@ -9,12 +9,14 @@ private:
 	std::vector<Activity> activityStack;
 	std::queue<ActivityRequest> activityRequestStack;
 
-	void pushNewRequest(ActivityRequest activityRequest);
 	void requestResolutionManager();
 	void resolveRequest(ActivityRequest activityRequest);
 
 
 public:
-	ActivityManager();
+	void pushNewActivity(Activity activity);
+	void pushNewRequest(ActivityRequest activityRequest);
+
+	int getActivityStackSize();
 };
 

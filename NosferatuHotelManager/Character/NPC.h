@@ -4,12 +4,6 @@
 #include "../DecisionMaker.h"
 
 class NPC : public Character {
-	
-	static std::vector<NPC>			NPCStack;
-
-	static NPC						getNPCByID(int ID);
-	static void						createNPC(std::string type);
-
 private:
 	int								characterID;
 
@@ -29,7 +23,7 @@ private:
 	DecisionMaker					decisionMaker;
 
 public:
-	NPC();
+	NPC(std::string type);
 
 	char							getPersonType();
 	int								getPerceptiveness();

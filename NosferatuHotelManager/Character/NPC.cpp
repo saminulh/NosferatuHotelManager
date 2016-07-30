@@ -3,21 +3,10 @@
 #include "Character.h"
 #include "../DecisionMaker.h"
 
-std::vector<NPC> NPC::NPCStack;
-
-NPC::NPC() {
-	
-}
-
-NPC NPC::getNPCByID(int ID) {
-	return NPC::NPCStack[ID];
-}
-
-void NPC::createNPC(std::string type) {
-	NPC newNPC = NPC();
-	NPCStack.push_back(newNPC);
+NPC::NPC(std::string type) {
+	characterManager.pushNewCharacter(*this);
+	characterID = characterManager.getCharacterStackSize();
 	//ADD TRAITS
-	newNPC.characterID = NPCStack.size();
 }
 
 char NPC::getPersonType() {

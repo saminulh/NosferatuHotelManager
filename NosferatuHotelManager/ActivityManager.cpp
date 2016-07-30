@@ -3,12 +3,20 @@
 #include "Activity.h"
 #include "ActivityRequest.h"
 
-void ActivityManager::pushNewRequest(ActivityRequest activityRequest){
+void ActivityManager::pushNewActivity(Activity activity) {
+	activityStack.push_back(activity);
+}
+
+void ActivityManager::pushNewRequest(ActivityRequest activityRequest) {
 	activityRequestStack.push(activityRequest);
 
 	if (!runningStatus) {
 		requestResolutionManager();
 	}
+}
+
+int ActivityManager::getActivityStackSize() {
+	return activityStack.size();
 }
 
 void ActivityManager::requestResolutionManager() {

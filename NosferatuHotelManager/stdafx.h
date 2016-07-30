@@ -31,6 +31,7 @@
 #include "ScreensManager.h"
 #include "ActivityManager.h"
 #include "GUIManager.h"
+#include "CharacterManager.h"
 #include "Utilities.h"
 
 //Create the debug singleton here
@@ -40,3 +41,4 @@ extern AudioManager		audioManager;
 extern ScreensManager	screensManager;
 extern ActivityManager	activityManager;
 extern GUIManager		guiManager;
+extern CharacterManager	characterManager;

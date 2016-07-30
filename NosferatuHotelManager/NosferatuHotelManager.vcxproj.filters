@@ -22,6 +22,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonActions.cpp" />
     <ClCompile Include="Character\NPC.cpp" />
+    <ClCompile Include="CharacterManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -45,6 +46,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonActions.h" />
     <ClInclude Include="Character\NPC.h" />
+    <ClInclude Include="CharacterManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

@@ -47,36 +47,75 @@ int Utilities::randInt(int lowerBound, int upperBound) {
 	return 0;
 }
 
-int Utilities::getTime() {
+int Utilities::getCurrentTime() {
 	return 0;
 }
 
-int Utilities::getDay() {
-	return getTime()/10000;
+int Utilities::getCurrentDay() {
+	return getCurrentTime()/10000;
 }
 
-int Utilities::getHour() {
-	return (getTime() % 10000)/100;
+int Utilities::getCurrentHour() {
+	return (getCurrentTime() % 10000)/100;
 }
 
-int Utilities::getMinute() {
-	return getTime()%100;
+int Utilities::getCurrentMinute() {
+	return getCurrentTime()%100;
 }
 
-int Utilities::getPhaseOfDay() {
+int Utilities::getCurrentPhaseOfDay() {
 	int phase = 0;
 
-	if (getDay() % 7 > 4) {
+	if (getCurrentDay() % 7 > 4) {
 		phase += 3;
 	}
 
-	if (getHour() >= 16) {
+	if (getCurrentHour() >= 16) {
 		phase += 1;
 	}
 
-	if (getHour() >= 21) {
+	if (getCurrentHour() >= 21) {
 		phase += 1;
 	}
+
 	return phase;
+}
+
+int Utilities::getDay(int time) {
+	return time / 10000;
+}
+
+int Utilities::getHour(int time) {
+	return (time % 10000) / 100;
+}
+
+int Utilities::getMinute(int time) {
+	return time % 100;
+}
+
+int Utilities::getPhaseOfDay(int time) {
+	int phase = 0;
+
+	if (getDay(time) % 7 > 4) {
+		phase += 3;
+	}
+
+	if (getHour(time) >= 16) {
+		phase += 1;
+	}
+
+	if (getHour(time) >= 21) {
+		phase += 1;
+	}
+
+	return phase;
+}
+
+int Utilities::getAddedTimes(int startTime, int duration) {
+	return 0;
+}
+
+int Utilities::getTimeDifference(int startTime, int endTime) {
+	return 0;
 }
 
