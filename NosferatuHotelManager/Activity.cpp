@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Activity.h"
-#include "Character/NPC.h"
 
 Activity::Activity(){
 
