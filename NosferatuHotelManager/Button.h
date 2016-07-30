@@ -6,6 +6,9 @@
 class Button : public Animation
 {
 	CustomText	m_buttonText;
+	std::string	m_defaultButtonAnim;
+	std::string	m_mouseOverButtonAnim;
+	std::string	m_mouseClickedButtonAnim;
 public:
 	Button();
 	~Button();
@@ -23,4 +26,6 @@ public:
 
 	//Might be unnecessary
 	void OnMouseExit();
+
+	CustomText& GetButtonText();
 };

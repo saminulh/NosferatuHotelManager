@@ -1,14 +1,8 @@
 <Animation>
 	<Meta>
 		<Texture>VampLoadingAnim.png</Texture>
-
-
 		<Sound>###</Sound>
-
-
-		<NumFrames>
-		4	
-		</NumFrames>
+		<NumFrames>4</NumFrames>
 	</Meta>
 
 	<Frame>

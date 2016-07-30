@@ -207,8 +207,14 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\HotelEntrance.png" />
+    <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
+    <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "AnimationClass.h"
 
+#include "Button.h"
+
 DebugLogManager debug;
 GraphicsManager graphicsManager;
 AudioManager	audioManager;
@@ -30,6 +32,21 @@ void Init()
 	vampLoading.GetSprite().setPosition(400, 230);
 
 
+	std::vector<std::string> tempButtonAnims;
+	tempButtonAnims.push_back("testButtonDefaultAnim.vAnim");
+	tempButtonAnims.push_back("testButtonMouseOverAnim.vAnim");
+	tempButtonAnims.push_back("testButtonMouseClickedAnim.vAnim");
+
+	Button button;
+	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50));
+
+	sf::Text TESTTEXT;
+	TESTTEXT.setCharacterSize(25);
+	TESTTEXT.setColor(sf::Color::Red);
+	TESTTEXT.setFont(graphicsManager.GetFontsMap()["arial.ttf"]);
+	TESTTEXT.setPosition(sf::Vector2f(50,50));
+	TESTTEXT.setString("Hello!");
+
 	sf::Clock timer;
 	const float timePerFrame = 1 / 30.f;
 	float elapsedTime = 0;
@@ -48,10 +65,24 @@ void Init()
 			}
 
 			vampLoading.Update(sf::seconds(timePerFrame));
+			button.Update(sf::seconds(timePerFrame));
 
 			screensManager.GetWindow().clear();
 			screensManager.GetWindow().draw(testBackground);
 			screensManager.GetWindow().draw(vampLoading.GetSprite());
+
+			screensManager.GetWindow().draw(button.GetSprite());
+			
+			//screensManager.GetWindow().draw(button.GetButtonText().m_outlineTopRight);
+			/*screensManager.GetWindow().draw(button.GetButtonText().m_outlineTopLeft);
+			screensManager.GetWindow().draw(button.GetButtonText().m_outlineBottomRight);
+			screensManager.GetWindow().draw(button.GetButtonText().m_outlineBottomLeft);
+			screensManager.GetWindow().draw(button.GetButtonText().m_mainText);*/
+			
+			auto test = button.GetButtonText();
+
+			screensManager.GetWindow().draw(TESTTEXT);
+
 			screensManager.GetWindow().display();
 		}
 	}
