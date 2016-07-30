@@ -58,12 +58,11 @@ void Init()
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("TEST!", button));
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("Play", playButton));
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button>("Settings", settingsButton));
-
-	sf::Clock timer;
 	
+	screensManager.m_timer.restart();
 	while (screensManager.GetWindow().isOpen())
 	{
-		screensManager.m_elapsedTime += timer.restart().asSeconds();
+		screensManager.m_elapsedTime += screensManager.m_timer.restart().asSeconds();
 		if (screensManager.m_elapsedTime >= screensManager.m_timePerFrame)
 		{
 			screensManager.m_elapsedTime -= screensManager.m_timePerFrame;
@@ -79,12 +78,6 @@ void Init()
 
 			vampLoading.Update(sf::seconds(screensManager.m_timePerFrame));
 
-			//Test button
-			//button.Update(sf::seconds(screensManager.m_timePerFrame));
-			//Play button
-			//playButton.Update(sf::seconds(screensManager.m_timePerFrame));
-			//Settings button
-			//settingsButton.Update(sf::seconds(screensManager.m_timePerFrame));
 			guiManager.Update();
 
 			/*********** Clear the screen ******************/
@@ -93,36 +86,6 @@ void Init()
 
 			screensManager.GetWindow().draw(testBackground);
 			screensManager.GetWindow().draw(vampLoading.GetSprite());
-
-			//Test button
-			/*screensManager.GetWindow().draw(button.GetSprite());
-			
-			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineTopRight());
-			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineTopLeft());
-			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineBottomRight());
-			screensManager.GetWindow().draw(button.GetButtonText().GetOutlineBottomLeft());
-			screensManager.GetWindow().draw(button.GetButtonText().GetMainText());*/
-
-
-			//Play button
-			/*screensManager.GetWindow().draw(playButton.GetSprite());
-
-			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineTopRight());
-			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineTopLeft());
-			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineBottomRight());
-			screensManager.GetWindow().draw(playButton.GetButtonText().GetOutlineBottomLeft());
-			screensManager.GetWindow().draw(playButton.GetButtonText().GetMainText());*/
-
-
-			//Settings button
-			/*screensManager.GetWindow().draw(settingsButton.GetSprite());
-
-			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineTopRight());
-			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineTopLeft());
-			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineBottomRight());
-			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetOutlineBottomLeft());
-			screensManager.GetWindow().draw(settingsButton.GetButtonText().GetMainText());*/
-
 
 			/*********** Draw the GUI to the screen ******************/
 			guiManager.DrawToWindow();

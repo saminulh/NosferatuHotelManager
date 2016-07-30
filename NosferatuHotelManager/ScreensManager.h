@@ -9,6 +9,7 @@ public:
 	const float			m_timePerFrame = 1 / 30.f;
 	float				m_elapsedTime;
 	sf::Vector2i		m_mousePos;
+	sf::Clock			m_timer;
 
 	ScreensManager();
 
