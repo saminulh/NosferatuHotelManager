@@ -1,7 +1,8 @@
 #pragma once
 #include "AnimationFrame.h"
 
-//This class will represent a single animation
+//This class will represent a single drawn entity - ie. a single character
+//It will contain all animations for that character
 class Animation
 {
 	sf::Sprite												m_sprite;
