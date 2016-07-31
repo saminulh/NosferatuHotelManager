@@ -15,6 +15,7 @@ public:
 
 	static void					Update();
 
+	static bool					isHourInRange(int lowerHourBound, int upperHourBound, int hour);
 
 	static int					getCurrentTime();
 	static int					getCurrentDay();
