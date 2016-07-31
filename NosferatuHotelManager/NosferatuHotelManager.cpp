@@ -29,6 +29,16 @@ void Init()
 
 	Animation	vampLoading;
 	vampLoading.LoadAnimation("VampLoadingAnim.vAnim");
+
+	Animation	batChar;
+	batChar.LoadAnimation("batCharacterIdleDown.vAnim");
+	batChar.LoadAnimation("batCharacterIdleLeft.vAnim");
+	batChar.LoadAnimation("batCharacterIdleRight.vAnim");
+	batChar.LoadAnimation("batCharacterIdleUp.vAnim");
+	batChar.BeginAnimation("batCharacterIdleUp.vAnim");
+	batChar.GetSprite().setPosition(200.f, 200.f);
+	batChar.GetSprite().setScale(2.f, 2.f);
+
 	graphicsManager.LoadTexture("HotelEntrance.png");
 
 	sf::Sprite testBackground;
@@ -48,7 +58,7 @@ void Init()
 	testOnClick = &ButtonActions::TestButtonAction;
 
 	Button button;
-	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50), testOnClick, sf::Vector2f(40,15));
+	button.CreateButton("TEST!", tempButtonAnims, sf::Vector2f(50, 50), testOnClick, sf::Vector2f(40, 15));
 	button.GetSprite().setScale((float)1.5, (float)1.5);
 
 	Button playButton;
@@ -72,41 +82,43 @@ void Init()
 		{
 			screensManager.m_elapsedTime -= screensManager.m_timePerFrame;
 
-		sf::Event event;
-		while (screensManager.GetWindow().pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				screensManager.GetWindow().close();
-		}
+			sf::Event event;
+			while (screensManager.GetWindow().pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					screensManager.GetWindow().close();
+			}
 
 			screensManager.m_mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
 
 			vampLoading.Update(sf::seconds(screensManager.m_timePerFrame));
+			batChar.Update(sf::seconds(screensManager.m_timePerFrame));
 
 			Utilities::Update();
 
 			guiManager.Update();
 
 			/*********** Clear the screen ******************/
-		screensManager.GetWindow().clear();
+			screensManager.GetWindow().clear();
 
 
 			screensManager.GetWindow().draw(testBackground);
 			screensManager.GetWindow().draw(vampLoading.GetSprite());
+			screensManager.GetWindow().draw(batChar.GetSprite());
 
 			/*********** Draw the GUI to the screen ******************/
 			guiManager.DrawToWindow();
 
 			/*********** Display the screen ******************/
-		screensManager.GetWindow().display();
+			screensManager.GetWindow().display();
+		}
 	}
-}
 }
 
 int main()
 {
 	Init();
 
-    return 0;
+	return 0;
 }
 

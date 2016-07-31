@@ -60,10 +60,15 @@
     <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
+    <Image Include="Resources\Textures\BatCharacter.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleUp.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleDown.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleLeft.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleRight.vAnim" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animation>
+  <Meta>
+    <Texture>BatCharacter.png</Texture>
+    <Sound>###</Sound>
+
+    <NumFrames>4</NumFrames>
+  </Meta>
+
+  <Frame>
+    <b1>32</b1>
+    <b2>48</b2>
+    <b3>-32</b3>
+    <b4>48</b4>
+    <ms>100</ms>
+  </Frame>
+
+  <Frame>
+    <b1>64</b1>
+    <b2>48</b2>
+    <b3>-32</b3>
+    <b4>48</b4>
+    <ms>100</ms>
+  </Frame>
+
+  <Frame>
+    <b1>96</b1>
+    <b2>48</b2>
+    <b3>-32</b3>
+    <b4>48</b4>
+    <ms>100</ms>
+  </Frame>
+
+  <Frame>
+    <b1>64</b1>
+    <b2>48</b2>
+    <b3>-32</b3>
+    <b4>48</b4>
+    <ms>100</ms>
+  </Frame>
+</Animation>

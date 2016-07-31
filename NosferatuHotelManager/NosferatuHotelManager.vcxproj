@@ -226,15 +226,20 @@
     <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Textures\BatCharacter.png" />
     <Image Include="Resources\Textures\HotelEntrance.png" />
     <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Animations\batCharacterIdleDown.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleRight.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleUp.vAnim" />
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
+    <None Include="Resources\Animations\batCharacterIdleLeft.vAnim" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
