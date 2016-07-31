@@ -23,6 +23,7 @@ ScreensManager		screensManager;
 GUIManager			guiManager;
 ActivityManager		activityManager;
 CharacterManager	characterManager;
+Editor				editor;
 
 const int MORNINGSTARTHOUR = 6;
 const int MORNINGENDHOUR = 15;
@@ -81,7 +82,7 @@ void Init()
 
 int main()
 {
-	std::cout << "Enter the map's file location: ";
+	/*std::cout << "Enter the map's file location: ";
 	std::cin >> mapLoc;
 	
 	tinyxml2::XMLNode* root = doc.NewElement("MapTemplate");
@@ -105,8 +106,9 @@ int main()
 
 	}
 
-	system("pause");
+	system("pause");*/
 
+	editor.Init();
 
 	Init();
 

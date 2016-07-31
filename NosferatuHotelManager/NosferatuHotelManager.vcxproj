@@ -171,6 +171,7 @@
     <ClInclude Include="Character\Vampire.h" />
     <ClInclude Include="DebugLogManager.h" />
     <ClInclude Include="DecisionMaker.h" />
+    <ClInclude Include="EDITOR.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="GUIManager.h" />
     <ClInclude Include="MapGenerator.h" />
@@ -211,6 +212,7 @@
     </ClCompile>
     <ClCompile Include="DebugLogManager.cpp" />
     <ClCompile Include="DecisionMaker.cpp" />
+    <ClCompile Include="EDITOR.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="NosferatuHotelManager.cpp" />

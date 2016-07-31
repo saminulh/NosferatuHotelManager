@@ -35,6 +35,8 @@
 #include "CharacterManager.h"
 #include "Utilities.h"
 
+#include "EDITOR.h"
+
 //Create the debug singleton here
 extern DebugLogManager	debug;
 extern GraphicsManager	graphicsManager;
@@ -43,6 +45,7 @@ extern ScreensManager	screensManager;
 extern ActivityManager	activityManager;
 extern GUIManager		guiManager;
 extern CharacterManager	characterManager;
+extern Editor			editor;
 
 //Standard list of key day times
 extern const int MORNINGSTARTHOUR;

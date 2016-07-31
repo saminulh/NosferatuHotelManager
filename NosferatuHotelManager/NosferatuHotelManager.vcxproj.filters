@@ -23,6 +23,7 @@
     <ClCompile Include="ButtonActions.cpp" />
     <ClCompile Include="Character\NPC.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
+    <ClCompile Include="EDITOR.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="EDITOR.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
