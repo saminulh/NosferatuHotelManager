@@ -3,9 +3,11 @@
 
 class Editor
 {
+public:
 	std::vector<Animation>					m_tilesList;
 	std::vector<std::vector<MapTile>>		m_roomMap;
-public:
+	MapTile									m_currentTileProperties;
+
 	static tinyxml2::XMLDocument			m_xml;
 
 	Editor();
@@ -16,4 +18,6 @@ public:
 	void									LoadResources();
 	void									CreateMap(std::string _fileName);
 	void									SaveMap(std::string _FileName);
+
+	MapTile&								GetCurrentTileProperties();
 };

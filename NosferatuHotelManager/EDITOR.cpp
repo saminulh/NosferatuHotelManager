@@ -1,7 +1,7 @@
-#include "EDITOR.h"
 #include "stdafx.h"
 #include "EDITOR.h"
 #include "MapTile.h"
+#include "ButtonActions.h"
 
 Editor::Editor()
 {
@@ -40,7 +40,14 @@ void Editor::LoadMap(std::string _fileName)
 
 void Editor::LoadEditorResources()
 {
+	Button buttonIsDoor;
+	std::vector<std::string> ticksAnims;
+	ticksAnims.push_back("editor-tickNo.vAnim");
+	ticksAnims.push_back("editor-tickYes.vAnim");
+	void (*isDoor)(void);
+	isDoor = & ButtonActions::buttonIsDoor();
 
+	buttonIsDoor.CreateButton("Is Room Exit", ticksAnims, sf::Vector2f(400.f,200.f), isDoor, sf::Vector2f(-100.f, 20.f));
 }
 
 void Editor::LoadResources()
@@ -53,4 +60,9 @@ void Editor::CreateMap(std::string _fileName)
 
 void Editor::SaveMap(std::string _FileName)
 {
+}
+
+MapTile & Editor::GetCurrentTileProperties()
+{
+	return m_currentTileProperties;
 }

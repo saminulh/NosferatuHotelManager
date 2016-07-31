@@ -4,6 +4,7 @@
 
 class MapTile : public Animation
 {
+public:
 	//Universal tile id - assigned as the tile is loaded - regardless of floor
 	unsigned int		m_tileID;
 	//Sub-space to which this tile belongs
@@ -23,5 +24,4 @@ class MapTile : public Animation
 	bool				m_isRoomExit;
 	//Used for sometimes wall/sometimes walkable tiles
 	bool				m_isDoor;
-public:
 };

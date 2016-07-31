@@ -71,5 +71,7 @@
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
+    <None Include="Resources\Editor\editor-tickYes.vAnim" />
+    <None Include="Resources\Editor\editor-tickNo.vAnim" />
   </ItemGroup>
 </Project>
