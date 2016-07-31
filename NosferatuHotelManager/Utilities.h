@@ -2,10 +2,11 @@
 #include "stdafx.h"
 
 class Utilities {
-	static float				FormatGameTime(float _time);
-
 public:
 	//Master game time
+	//Formatted as [Day][Hour][Minute]
+	//Hour and minute both occupy exactly two digits each
+	//Day occupies all other leading digits
 	static float				m_gameTime;
 	static bool					m_isGamePaused;
 
@@ -26,7 +27,11 @@ public:
 	static int					getMinute(int time);
 	static int					getPhaseOfDay(int time);
 
-	static float				getAddedTimes(float _startTime, float _duration);
+	static float				FormatGameTime(float _time);
+
+	//Takes in two formatted game time floats and returns their sum in game time
+	static float				getTimeSum(float _startTime, float _duration);
+	//Takes in two formatted game time floats and returns their difference in game time
 	static float				getTimeDifference(float _startTime, float _endTime);
 
 	static int					randInt(int lowerBound, int upperBound);

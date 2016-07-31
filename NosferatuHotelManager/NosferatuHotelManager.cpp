@@ -105,20 +105,6 @@ void Init()
 
 int main()
 {
-	float testA = 11515;
-	float testB = 21050;
-
-	//11301
-	//21805
-	//40205
-	std::cout << std::setprecision(10) << Utilities::getAddedTimes(testA, testB) << std::endl;
-	system("pause");
-
-
-
-
-
-
 	Init();
 
     return 0;

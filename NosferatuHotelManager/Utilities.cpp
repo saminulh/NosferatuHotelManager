@@ -44,7 +44,7 @@ void Utilities::Update()
 	}
 }
 
-float Utilities::getAddedTimes(float _startTime, float _duration)
+float Utilities::getTimeSum(float _startTime, float _duration)
 {
 	float finalTime = 0;
 
@@ -52,19 +52,44 @@ float Utilities::getAddedTimes(float _startTime, float _duration)
 	finalTime += (unsigned int)_startTime % 100;
 	finalTime += (unsigned int)_duration % 100;
 
-	//Get the proper format
-	//finalTime = FormatGameTime(finalTime);
-
 	//Handle hours next
 	finalTime += ((unsigned int)std::floor(_startTime / 100) % 10000) * 100;
 	finalTime += ((unsigned int)std::floor(_duration / 100) % 10000) * 100;
 
+	//Return as a formatted string
 	return FormatGameTime(finalTime);
 }
 
 float Utilities::getTimeDifference(float _startTime, float _endTime)
 {
-	return 0.0f;
+	float finalTime = 0;
+	bool newHour = false;
+
+	//Handle minutes first
+	finalTime += (unsigned int)_startTime % 100;
+	finalTime -= (unsigned int)_endTime % 100;
+
+	//If it cuts into a new hour, make note
+	if (finalTime < 0)
+	{
+		newHour = true;
+		finalTime += 60;
+	}
+
+	//Handle hours next
+	finalTime += ((unsigned int)std::floor(_startTime / 100) % 10000) * 100;
+	finalTime -= ((unsigned int)std::floor(_endTime / 100) % 10000) * 100;
+
+	//If it cut into a new hour, subtract to account for that
+	if (newHour)
+		finalTime -= 100;
+
+	//Make dev note if difference is negative - that probably shouldn't happen!
+	if (finalTime < 0)
+		debug.Log(2, "The difference between game time " + std::to_string(_startTime) + " and " + std::to_string(_endTime) + " is negative!");
+
+	//Return as a formatted string
+	return FormatGameTime(finalTime);
 }
 
 int Utilities::randInt(int lowerBound, int upperBound) {
