@@ -66,16 +66,16 @@ int Utilities::getCurrentMinute() {
 int Utilities::getCurrentPhaseOfDay() {
 	int phase = 0;
 
-	if (getCurrentDay() % 7 > 4) {
+	if (getCurrentDay() % 7 >= 5) {
 		phase += 3;
 	}
 
-	if (getCurrentHour() >= 16) {
+	if (getCurrentHour() >= EVENINGSTARTHOUR && getCurrentHour() <= EVENINGENDHOUR) {
 		phase += 1;
 	}
 
-	if (getCurrentHour() >= 21) {
-		phase += 1;
+	if (getCurrentHour() >= NIGHTSTARTHOUR || getCurrentHour() <= NIGHTENDHOUR) {
+		phase += 2;
 	}
 
 	return phase;

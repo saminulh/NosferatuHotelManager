@@ -14,23 +14,19 @@ char NPC::getPersonType() {
 	return personType;
 }
 
-int NPC::getPerceptiveness()
-{
+int NPC::getPerceptiveness() {
 	return basePerceptiveness;
 }
 
-int NPC::getBaseFriendliness()
-{
+int NPC::getBaseFriendliness() {
 	return baseFriendliness;
 }
 
-int NPC::getBaseSocialness()
-{
+int NPC::getBaseSocialness() {
 	return baseSocialness;
 }
 
-int NPC::getAggressiveness()
-{
+int NPC::getAggressiveness() {
 	return baseAggressiveness;
 }
 

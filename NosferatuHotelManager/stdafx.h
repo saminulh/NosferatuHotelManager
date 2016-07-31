@@ -42,3 +42,11 @@ extern ScreensManager	screensManager;
 extern ActivityManager	activityManager;
 extern GUIManager		guiManager;
 extern CharacterManager	characterManager;
+
+//Standard list of key day times
+extern const int MORNINGSTARTHOUR;
+extern const int MORNINGSENDHOUR;
+extern const int EVENINGSTARTHOUR;
+extern const int EVENINGENDHOUR;
+extern const int NIGHTSTARTHOUR;
+extern const int NIGHTENDHOUR;
