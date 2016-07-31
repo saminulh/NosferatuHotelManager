@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 class Utilities {
-	static void					FormatGameTime();
+	static float				FormatGameTime(float _time);
 
 public:
 	//Master game time
@@ -26,8 +26,8 @@ public:
 	static int					getMinute(int time);
 	static int					getPhaseOfDay(int time);
 
-	static int					getAddedTimes(int startTime, int duration);
-	static int					getTimeDifference(int startTime, int endTime);
+	static float				getAddedTimes(float _startTime, float _duration);
+	static float				getTimeDifference(float _startTime, float _endTime);
 
 	static int					randInt(int lowerBound, int upperBound);
 

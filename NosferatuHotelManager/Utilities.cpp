@@ -8,27 +8,28 @@ bool		Utilities::m_isGamePaused = false;
 //This will be multiplied to calculate the passage of time
 float		Utilities::m_currentSpeedFactor = 5;
 
-void Utilities::FormatGameTime()
+float Utilities::FormatGameTime(float _time)
 {
-	if ((unsigned int)m_gameTime / 100 > 60)
+	if ((unsigned int)_time % 100 > 60)
 	{
 		//Increment to next hour
-		m_gameTime += 100;
+		_time += 100;
 
-		//Set the timer back to 0
-		m_gameTime -= (unsigned int)m_gameTime % 100;
+		//Set the timer back to 0 - CARRY OVER EXTRA TIME!
+		_time -= 60;
 	}
 
-	if ((unsigned int)m_gameTime / 10000 > 24000)
+	if ((unsigned int)_time % 10000 > 2400)
 	{
 		//Increment to next day
-		m_gameTime += 100000;
+		_time += 10000;
 
-		//Set the hours back to 0
-		m_gameTime -= (unsigned int)m_gameTime % 10000;
+		//Set the hours back to 0 - CARRY OVER EXTRA TIME
+		_time -= 2400;
 	}
 
 	//Add years? Who knows, who cares?
+	return _time;
 }
 
 void Utilities::Update()
@@ -39,8 +40,31 @@ void Utilities::Update()
 		//Make change to game time
 		m_gameTime += screensManager.m_timePerFrame * m_currentSpeedFactor;
 		//Format the number
-		FormatGameTime();
+		FormatGameTime(m_gameTime);
 	}
+}
+
+float Utilities::getAddedTimes(float _startTime, float _duration)
+{
+	float finalTime = 0;
+
+	//Handle minutes first
+	finalTime += (unsigned int)_startTime % 100;
+	finalTime += (unsigned int)_duration % 100;
+
+	//Get the proper format
+	//finalTime = FormatGameTime(finalTime);
+
+	//Handle hours next
+	finalTime += ((unsigned int)std::floor(_startTime / 100) % 10000) * 100;
+	finalTime += ((unsigned int)std::floor(_duration / 100) % 10000) * 100;
+
+	return FormatGameTime(finalTime);
+}
+
+float Utilities::getTimeDifference(float _startTime, float _endTime)
+{
+	return 0.0f;
 }
 
 int Utilities::randInt(int lowerBound, int upperBound) {
@@ -110,12 +134,3 @@ int Utilities::getPhaseOfDay(int time) {
 
 	return phase;
 }
-
-int Utilities::getAddedTimes(int startTime, int duration) {
-	return 0;
-}
-
-int Utilities::getTimeDifference(int startTime, int endTime) {
-	return 0;
-}
-

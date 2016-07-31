@@ -19,6 +19,7 @@
 #include <map>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
