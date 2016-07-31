@@ -9,6 +9,7 @@ class Animation
 	sf::Time												m_timeSinceLastUpdate;
 	std::string												m_CurrentAnim;
 	unsigned int											m_currentAnimFrame;
+	ScreensManager::ScreenTag								m_screenTag;
 
 public:
 	bool													LoadAnimation(std::string _fileName);
@@ -18,4 +19,6 @@ public:
 
 	//Update may not need to be virtual ...
 	virtual void											Update(sf::Time _deltaTime);
+	virtual void											ChangeScreenTag(ScreensManager::ScreenTag _newTag);
+	ScreensManager::ScreenTag								GetScreenTag();
 };

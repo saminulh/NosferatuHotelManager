@@ -75,3 +75,13 @@ void CustomText::CreateCustomText(std::string _text, sf::Vector2f _pos, sf::Colo
 	m_outlineBottomRight.setString(_text);
 	m_outlineBottomRight.setStyle(sf::Text::Bold);
 }
+
+void CustomText::ChangeScreenTag(ScreensManager::ScreenTag _newTag)
+{
+	m_screenTag = _newTag;
+}
+
+ScreensManager::ScreenTag CustomText::GetScreenTag()
+{
+	return m_screenTag;
+}

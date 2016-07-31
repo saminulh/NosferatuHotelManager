@@ -135,3 +135,13 @@ void Animation::Update(sf::Time _deltaTime)
 		m_sprite.setTextureRect(m_animations[m_CurrentAnim][m_currentAnimFrame].GetTextureBounds());
 	}
 }
+
+void Animation::ChangeScreenTag(ScreensManager::ScreenTag _newTag)
+{
+	m_screenTag = _newTag;
+}
+
+ScreensManager::ScreenTag Animation::GetScreenTag()
+{
+	return m_screenTag;
+}
