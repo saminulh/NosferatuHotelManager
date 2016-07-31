@@ -48,6 +48,9 @@
     <ClInclude Include="Character\NPC.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="MapTile.h" />
+    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="MapGenerator.h" />
+    <ClInclude Include="MapLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

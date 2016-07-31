@@ -173,6 +173,9 @@
     <ClInclude Include="DecisionMaker.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="GUIManager.h" />
+    <ClInclude Include="MapGenerator.h" />
+    <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="ScreensManager.h" />
     <ClInclude Include="stdafx.h" />
