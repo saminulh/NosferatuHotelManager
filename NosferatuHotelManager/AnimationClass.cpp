@@ -97,6 +97,7 @@ bool Animation::BeginAnimation(std::string _animationName)
 
 	//Set the current animation to this one ... obviously
 	m_CurrentAnim = _animationName;
+
 	//Start at the first frame (to make sure that jumping from a longer animation to a shorter one
 	//doesn't result in vector out of range errors)
 	///TODO: Perhaps choose a random animation frame rather than the first one (?)
