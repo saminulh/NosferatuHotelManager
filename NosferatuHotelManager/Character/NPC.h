@@ -19,7 +19,7 @@ private:
 
 	std::map<int, int>				friendlinessModifiers;
 
-	std::vector<Activity>			activitiesByPhaseOfDay[6];
+	std::vector<Activity>			activitiesByPhaseOfDay;
 
 	DecisionMaker					decisionMaker;
 

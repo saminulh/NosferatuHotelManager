@@ -44,8 +44,14 @@ void Utilities::Update()
 	}
 }
 
-float Utilities::getTimeSum(float _startTime, float _duration)
-{
+bool Utilities::isHourInRange(int lowerHourBound, int upperHourBound, int hour) {
+	if (lowerHourBound <= upperHourBound) {
+		return (hour >= lowerHourBound && hour <= upperHourBound);
+	}
+	return (hour >= lowerHourBound || hour <= upperHourBound);
+}
+
+float Utilities::getTimeSum(float _startTime, float _duration) {
 	float finalTime = 0;
 
 	//Handle minutes first
@@ -115,16 +121,16 @@ int Utilities::getCurrentMinute() {
 int Utilities::getCurrentPhaseOfDay() {
 	int phase = 0;
 
-	if (getCurrentDay() % 7 > 4) {
+	if (getCurrentDay() % 7 >= 5) {
 		phase += 3;
 	}
 
-	if (getCurrentHour() >= 16) {
+	if (isHourInRange(EVENINGSTARTHOUR, EVENINGENDHOUR, getCurrentHour())) {
 		phase += 1;
 	}
 
-	if (getCurrentHour() >= 21) {
-		phase += 1;
+	if (isHourInRange(NIGHTSTARTHOUR, NIGHTENDHOUR, getCurrentHour())) {
+		phase += 2;
 	}
 
 	return phase;
@@ -149,12 +155,12 @@ int Utilities::getPhaseOfDay(int time) {
 		phase += 3;
 	}
 
-	if (getHour(time) >= 16) {
+	if (isHourInRange(EVENINGSTARTHOUR, EVENINGENDHOUR, getHour(time))) {
 		phase += 1;
 	}
 
-	if (getHour(time) >= 21) {
-		phase += 1;
+	if (isHourInRange(NIGHTSTARTHOUR, NIGHTENDHOUR, getHour(time))) {
+		phase += 2;
 	}
 
 	return phase;
