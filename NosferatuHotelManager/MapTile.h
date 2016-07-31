@@ -4,5 +4,24 @@
 
 class MapTile : public Animation
 {
+	//Universal tile id - assigned as the tile is loaded - regardless of floor
+	unsigned int		m_tileID;
+	//Sub-space to which this tile belongs
+	unsigned int		m_roomID;
+	//Map/floor to which this tile belongs
+	unsigned int		m_floorNumber;
+	//Code for the activity/activities that can be performed here
+	unsigned int		m_tileActivityCode;
+
+	//Tile ABSOLUTE position (relative to top left of the MAP)
+	//Not to be confused with the position in the map files - 
+	//	those are relative to the top left of the ROOM
+	float				m_xPos;
+	float				m_yPos;
+	
+	//Must this tile connect to another room exit tile
+	bool				m_isRoomExit;
+	//Used for sometimes wall/sometimes walkable tiles
+	bool				m_isDoor;
 public:
 };
