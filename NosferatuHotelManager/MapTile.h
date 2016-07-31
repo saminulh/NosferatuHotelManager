@@ -1,7 +1,8 @@
 #pragma once
 #include "stdafx.h"
+#include "AnimationClass.h"
 
-class MapTile
+class MapTile : public Animation
 {
 public:
 };

@@ -47,6 +47,7 @@
     <ClInclude Include="ButtonActions.h" />
     <ClInclude Include="Character\NPC.h" />
     <ClInclude Include="CharacterManager.h" />
+    <ClInclude Include="MapTile.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
