@@ -3,7 +3,7 @@
   <Meta>
     <Texture>ShittyButton.png</Texture>
     <Sound>###</Sound>
-    <NumFrames>5</NumFrames>
+    <NumFrames>1</NumFrames>
   </Meta>
 
   <Frame>
