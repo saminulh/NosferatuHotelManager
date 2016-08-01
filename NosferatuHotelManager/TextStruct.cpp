@@ -81,6 +81,15 @@ void CustomText::ChangeScreenTag(ScreensManager::ScreenTag _newTag)
 	m_screenTag = _newTag;
 }
 
+void CustomText::ChangeText(std::string _newText)
+{
+	m_mainText.setString(_newText);
+	m_outlineTopLeft.setString(_newText);
+	m_outlineTopRight.setString(_newText);
+	m_outlineBottomLeft.setString(_newText);
+	m_outlineBottomRight.setString(_newText);
+}
+
 ScreensManager::ScreenTag CustomText::GetScreenTag()
 {
 	return m_screenTag;

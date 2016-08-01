@@ -55,6 +55,16 @@ void Editor::LoadEditorResources()
 	textFieldAnims.push_back("editor-textFieldMouseOver.vAnim");
 	textFieldAnims.push_back("editor-textFieldClicked.vAnim");
 
+	//Load animations for increment buttons
+	std::vector<std::string>	sliderUpButtonAnims;
+	sliderUpButtonAnims.push_back("editor-upMouseDefaultButton.vAnim");
+	sliderUpButtonAnims.push_back("editor-upMouseOverButton.vAnim");
+	sliderUpButtonAnims.push_back("editor-upMouseClickButton.vAnim");
+	std::vector<std::string>	sliderDownButtonAnims;
+	sliderDownButtonAnims.push_back("editor-downMouseDefaultButton.vAnim");
+	sliderDownButtonAnims.push_back("editor-downMouseOverButton.vAnim");
+	sliderDownButtonAnims.push_back("editor-downMouseClickButton.vAnim");
+
 	//Radio button for if the tile is a door
 	ButtonRadio*				buttonIsDoor = new ButtonRadio();
 	void						(*isDoor)(void);
@@ -84,9 +94,31 @@ void Editor::LoadEditorResources()
 
 	//Text field for searching for tiles
 	ButtonTextField*			buttonSearchField = new ButtonTextField();
-	buttonSearchField->CreateButton("Search", textFieldAnims, sf::Vector2f(1100.f, 440.f), NULL, sf::Vector2f(0.f, -40.f), sf::Vector2f(10.f, 10.f));
+	void(*searchForMatch)(void);
+	searchForMatch = &ButtonActions::buttonSearchForAnims;
+	buttonSearchField->CreateButton("Search", textFieldAnims, sf::Vector2f(1100.f, 440.f), searchForMatch, sf::Vector2f(0.f, -40.f), sf::Vector2f(10.f, 10.f));
 	buttonSearchField->GetSprite().setScale((float)1.3, (float)1);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonTextField*>("buttonSearchField", buttonSearchField));
+	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("buttonSearchForAnims_label", buttonSearchField->GetButtonLabel()));
+
+	//Increment anims up
+	Button*						buttonUpInList = new Button();;
+	void(*incrementAnims)();
+	incrementAnims = &ButtonActions::buttonUpInAnims;
+	buttonUpInList->CreateButton("", sliderUpButtonAnims, sf::Vector2f(1125.f, 350.f), incrementAnims);
+	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("buttonUpInList", buttonUpInList));
+
+	//Decrement anims
+	Button*						buttonDownInList = new Button();
+	void(*decrementAnims)();
+	decrementAnims = &ButtonActions::buttonDownInAnims;
+	buttonDownInList->CreateButton("", sliderDownButtonAnims, sf::Vector2f(1300.f, 350.f), decrementAnims);
+	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("buttonDownInList", buttonDownInList));
+
+	//Counter
+	CustomText					counter;
+	counter.CreateCustomText("0 / 0", sf::Vector2f(1185.f, 350.f));
+	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("counter", counter));
 
 	//Background panel
 	Animation					panelAnim;
@@ -95,6 +127,15 @@ void Editor::LoadEditorResources()
 	panelAnim.GetSprite().setPosition(1075.f, 0.f);
 	panelAnim.GetSprite().setScale((float)3.5, (float)6.98);
 	guiManager.GetAnimationsMap().insert(std::pair<std::string, Animation>("panelAnim", panelAnim));
+
+	//Preview animation
+	Animation					previewAnim;
+	//previewAnim.LoadAnimation(m_allTilesList[0].GetCurrentAnim());
+	//previewAnim.BeginAnimation(m_allTilesList[0].GetCurrentAnim());
+	//previewAnim.GetSprite().setPosition(1185.f, 150.f);
+	//guiManager.GetAnimationsMap().insert(std::pair<std::string, Animation>("previewAnim", previewAnim));
+
+	m_currentTileInShortList = 0;
 
 }
 
@@ -107,6 +148,10 @@ void Editor::CreateMap(std::string _fileName)
 }
 
 void Editor::SaveMap(std::string _FileName)
+{
+}
+
+void Editor::LoadListOfPossibleAnims(std::string _fileName)
 {
 }
 

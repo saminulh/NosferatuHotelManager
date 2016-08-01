@@ -23,5 +23,8 @@ public:
 														sf::Color _outlineColour = sf::Color::Black, int _fontSize = 30, int _outlineThickness = 3, 
 															std::string _font = "arial.ttf");
 	void						ChangeScreenTag(ScreensManager::ScreenTag _newTag);
+	void						ChangeText(std::string _newText);
+
+
 	ScreensManager::ScreenTag	GetScreenTag();
 };

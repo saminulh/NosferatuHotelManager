@@ -241,18 +241,26 @@
     <Image Include="Resources\Textures\HotelEntrance.png" />
     <Image Include="Resources\Textures\Panel.png" />
     <Image Include="Resources\Textures\ShittyButton.png" />
+    <Image Include="Resources\Textures\SlidersButtons.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\TextFieldButtons.png" />
     <Image Include="Resources\Textures\TickButtons.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Animations\editor-DownDefaultButton.vAnim" />
+    <None Include="Resources\Animations\editor-downMouseClickButton.vAnim" />
+    <None Include="Resources\Animations\editor-downMouseDefaultButton.vAnim" />
+    <None Include="Resources\Animations\editor-downMouseOverButton.vAnim" />
     <None Include="Resources\Animations\editor-sidePanel.vAnim" />
     <None Include="Resources\Animations\editor-textFieldClicked.vAnim" />
     <None Include="Resources\Animations\editor-textFieldDefault.vAnim" />
     <None Include="Resources\Animations\editor-textFieldMouseOver.vAnim" />
     <None Include="Resources\Animations\editor-tickNoHover.vAnim" />
     <None Include="Resources\Animations\editor-tickYesHover.vAnim" />
+    <None Include="Resources\Animations\editor-upMouseClickButton.vAnim" />
+    <None Include="Resources\Animations\editor-upMouseDefaultButton.vAnim" />
+    <None Include="Resources\Animations\editor-upMouseOverButton.vAnim" />
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />

@@ -23,6 +23,10 @@ void Button::CreateButton(std::string _text, std::vector<std::string> _animation
 	//Set the button's on-click function to the one passed in as a parameter
 	m_onClickFunction = _onClickFunction;
 
+	//Set a minimum time between on and off
+	m_timeBetweenToggles = sf::seconds(float(0.15));
+	m_timeSinceToggle = sf::Time::Zero;
+
 	//Set the button's animations
 	LoadAnimation(_animationsList[0]);
 	m_defaultButtonAnim = _animationsList[0];
@@ -77,8 +81,10 @@ void Button::Update(sf::Time _deltaTime)
 			OnMouseOver();
 	}
 	//If the mouse is over the button, but clicked
-	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+		m_timeSinceToggle >= m_timeBetweenToggles)
 	{
+		m_timeSinceToggle = sf::Time::Zero;
 		//Same as above
 		if (GetCurrentAnim() != m_mouseClickedButtonAnim)
 			OnMouseClick();
@@ -96,6 +102,7 @@ void Button::Update(sf::Time _deltaTime)
 
 	//This update is Animation's update
 	Animation::Update(_deltaTime);
+	m_timeSinceToggle += _deltaTime;
 }
 
 void Button::OnMouseExit()

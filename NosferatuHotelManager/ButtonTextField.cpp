@@ -9,7 +9,7 @@ ButtonTextField::~ButtonTextField()
 {
 }
 
-//Pass a NULL pointer for the onClickFunction as this button does not run any code - it interacts through the m_isBeingEdited property
+//Pass the function that should be executed if/when the user hits enter or releases the textbox - it will be treated as the OnMouseExit event
 void ButtonTextField::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos, sf::Vector2f _relativeUserTextPos)
 {
 	//Set button to deselected by default
@@ -58,7 +58,7 @@ void ButtonTextField::OnMouseClick()
 	//User clicked the text field, therefore wants to edit it
 	m_isBeingEdited = true;
 
-	//Activate the button's on-click function - text fields have no on-click; they interact through m_isBeingEdited
+	//Activate the button's on-click function - text fields have no on-click; they interact through m_isBeingEdited or through the OnMouseExit event
 	//m_onClickFunction();
 
 	//Set the button's animation to the clicked animation
@@ -113,9 +113,22 @@ void ButtonTextField::OnMouseExit()
 	//User left the text field
 	m_isBeingEdited = false;
 	BeginAnimation(m_defaultButtonAnim);
+
+	if (m_onClickFunction != NULL)
+		m_onClickFunction();
 }
 
 bool ButtonTextField::IsBeingEdited()
 {
 	return m_isBeingEdited;
+}
+
+CustomText & ButtonTextField::GetButtonLabel()
+{
+	return m_buttonText;
+}
+
+CustomText & ButtonTextField::GetButtonText()
+{
+	return m_text;
 }

@@ -8,4 +8,8 @@ public:
 	static void	buttonIsDoor();
 	static void	buttonIsRoomExit();
 	static void	buttonIsSolid();
+	static void	buttonSearchForAnims();
+
+	static void	buttonUpInAnims();
+	static void	buttonDownInAnims();
 };

@@ -9,8 +9,7 @@ class ButtonRadio : public Button
 	std::string		m_falseAnim;
 	std::string		m_mouseOverTrueAnim;
 	std::string		m_mouseOverFalseAnim;
-	sf::Time		m_timeSinceToggle;
-	sf::Time		m_timeBetweenToggles;
+
 public:
 	ButtonRadio();
 

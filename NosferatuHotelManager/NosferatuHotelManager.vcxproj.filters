@@ -75,6 +75,7 @@
     <Image Include="Resources\Textures\TickButtons.png" />
     <Image Include="Resources\Textures\Panel.png" />
     <Image Include="Resources\Textures\TextFieldButtons.png" />
+    <Image Include="Resources\Textures\SlidersButtons.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
@@ -88,5 +89,12 @@
     <None Include="Resources\Animations\editor-textFieldDefault.vAnim" />
     <None Include="Resources\Animations\editor-textFieldMouseOver.vAnim" />
     <None Include="Resources\Animations\editor-textFieldClicked.vAnim" />
+    <None Include="Resources\Animations\editor-DownDefaultButton.vAnim" />
+    <None Include="Resources\Animations\editor-downMouseOverButton.vAnim" />
+    <None Include="Resources\Animations\editor-downMouseClickButton.vAnim" />
+    <None Include="Resources\Animations\editor-downMouseDefaultButton.vAnim" />
+    <None Include="Resources\Animations\editor-upMouseDefaultButton.vAnim" />
+    <None Include="Resources\Animations\editor-upMouseClickButton.vAnim" />
+    <None Include="Resources\Animations\editor-upMouseOverButton.vAnim" />
   </ItemGroup>
 </Project>

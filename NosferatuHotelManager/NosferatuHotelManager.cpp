@@ -116,8 +116,9 @@ int main()
 	system("pause");*/
 	debug.Start();
 	editor.Init();
+	editor.LoadListOfPossibleAnims(editor.m_tilesList);
 	editor.LoadEditorResources();
-
+	
 
 	Init();
 

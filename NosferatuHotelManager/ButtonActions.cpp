@@ -32,3 +32,41 @@ void ButtonActions::buttonIsSolid()
 	else
 		debug.Log(1, "Tile is solid set to false");
 }
+
+void ButtonActions::buttonSearchForAnims()
+{
+	std::string temp = guiManager.GetButtonsMap()["buttonSearchField"]->GetButtonText().GetMainText().getString();
+
+	//Clear the last search
+	editor.m_shortTilesList.clear();
+
+	//Find all tiles that match the phrase
+	for (unsigned int cnt = 0; cnt < editor.m_allTilesList.size(); cnt++)
+	{
+		//If the searched string is found in this tile's animation (ie. name) add it to the short list
+		if (editor.m_allTilesList[cnt].GetCurrentAnim().find(temp) != std::string::npos)
+		{
+			editor.m_shortTilesList.push_back(editor.m_allTilesList[cnt]);
+		}
+	}
+}
+
+void ButtonActions::buttonUpInAnims()
+{
+	editor.m_currentTileInShortList++;
+	if (editor.m_currentTileInShortList >= editor.m_shortTilesList.size())
+	{
+		editor.m_currentTileInShortList = 0;
+	}
+	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList) + " / " + std::to_string(editor.m_shortTilesList.size()));
+}
+
+void ButtonActions::buttonDownInAnims()
+{
+	editor.m_currentTileInShortList--;
+	if (editor.m_currentTileInShortList < 0)
+	{
+		editor.m_currentTileInShortList = editor.m_shortTilesList.size() - 1;
+	}
+	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList) + " / " + std::to_string(editor.m_shortTilesList.size()));
+}
