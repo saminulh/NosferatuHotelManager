@@ -68,8 +68,8 @@
     <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
-    <Image Include="..\WIP IMAGES\redSheet.png" />
     <Image Include="Resources\Textures\TickButtons.png" />
+    <Image Include="Resources\Textures\Panel.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
@@ -79,5 +79,6 @@
     <None Include="Resources\Animations\editor-tickYes.vAnim" />
     <None Include="Resources\Animations\editor-tickNoHover.vAnim" />
     <None Include="Resources\Animations\editor-tickYesHover.vAnim" />
+    <None Include="Resources\Animations\editor-sidePanel.vAnim" />
   </ItemGroup>
 </Project>

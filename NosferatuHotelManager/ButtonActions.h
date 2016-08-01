@@ -7,4 +7,5 @@ public:
 	static void TestButtonAction();
 	static void	buttonIsDoor();
 	static void	buttonIsRoomExit();
+	static void	buttonIsSolid();
 };

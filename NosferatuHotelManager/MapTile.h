@@ -7,9 +7,9 @@ class MapTile : public Animation
 public:
 	//Universal tile id - assigned as the tile is loaded - regardless of floor
 	unsigned int		m_tileID;
-	//Sub-space to which this tile belongs
+	//Sub-space to which this tile belongs - basically the file name plus tme it was loaded
 	unsigned int		m_roomID;
-	//Map/floor to which this tile belongs
+	//Map/floor to which this tile belongs - generated on load
 	unsigned int		m_floorNumber;
 	//Code for the activity/activities that can be performed here
 	unsigned int		m_tileActivityCode;
@@ -24,4 +24,6 @@ public:
 	bool				m_isRoomExit;
 	//Used for sometimes wall/sometimes walkable tiles
 	bool				m_isDoor;
+	//Can this tile be walked upon
+	bool				m_isSolid;
 };

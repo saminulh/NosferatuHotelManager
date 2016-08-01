@@ -7,6 +7,7 @@
 ButtonRadio::ButtonRadio()
 {
 	m_isTicked = false;
+	m_timeBetweenToggles = sf::seconds((float)0.15);
 }
 
 //Animations list should contain 3 animations in the following order:
@@ -39,6 +40,7 @@ void ButtonRadio::CreateButton(std::string _text, std::vector<std::string> _anim
 
 	//Set button to false by default
 	m_isTicked = false;
+	m_timeSinceToggle = sf::Time::Zero;
 	//Select corresponding animation
 	BeginAnimation(m_falseAnim);
 }
@@ -82,9 +84,12 @@ void ButtonRadio::Update(sf::Time _deltaTime)
 			OnMouseOver();
 	}
 	//If the mouse is over the button, but clicked
-	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && 
+		sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+		m_timeSinceToggle >= m_timeBetweenToggles)
 	{
 		OnMouseClick();
+		m_timeSinceToggle = sf::Time::Zero;
 	}
 	//If the mouse was previously hovered over by the mouse, but is no longer
 	else if (!GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && m_isSelected)
@@ -99,6 +104,8 @@ void ButtonRadio::Update(sf::Time _deltaTime)
 
 	//This update is Animation's update
 	Animation::Update(_deltaTime);
+
+	m_timeSinceToggle += _deltaTime;
 }
 
 void ButtonRadio::OnMouseExit()

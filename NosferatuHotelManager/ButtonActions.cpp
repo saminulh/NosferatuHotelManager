@@ -23,3 +23,12 @@ void ButtonActions::buttonIsRoomExit()
 	else
 		debug.Log(1, "Room exit set to false");
 }
+
+void ButtonActions::buttonIsSolid()
+{
+	editor.GetCurrentTileProperties().m_isSolid = !editor.GetCurrentTileProperties().m_isSolid;
+	if (editor.GetCurrentTileProperties().m_isSolid)
+		debug.Log(1, "Tile is solid set to true");
+	else
+		debug.Log(1, "Tile is solid set to false");
+}

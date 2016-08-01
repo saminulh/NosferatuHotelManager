@@ -3,7 +3,7 @@
 
 ScreensManager::ScreensManager()
 {
-	m_renderWindow.create(sf::VideoMode(640, 480), "Nosferatu Hotel Manager");
+	m_renderWindow.create(sf::VideoMode(1366, 768), "Map Editor");
 	m_elapsedTime = 0;
 }
 
