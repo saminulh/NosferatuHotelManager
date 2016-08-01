@@ -38,7 +38,7 @@ void ButtonTextField::CreateButton(std::string _text, std::vector<std::string> _
 	m_buttonText.CreateCustomText(_text, sf::Vector2f(_pos.x + _relativeTextPos.x, _pos.y + _relativeTextPos.y));
 
 	//Create the text that the user will edit
-	m_text.CreateCustomText("Test", sf::Vector2f(_pos.x + _relativeUserTextPos.x, _pos.y + _relativeUserTextPos.y), sf::Color::White, sf::Color::Black, 20);
+	m_text.CreateCustomText("", sf::Vector2f(_pos.x + _relativeUserTextPos.x, _pos.y + _relativeUserTextPos.y), sf::Color::White, sf::Color::Black, 20);
 	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>(_text + "Label", m_text));
 
 	//Start the default animation
@@ -93,13 +93,13 @@ void ButtonTextField::Update(sf::Time _deltaTime)
 	//If the button was previously hovered over by the mouse, but is no longer - user must press outside the text field to stop editing
 	else if (!GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && 
 		//Deselect if mouse is off and it isn't being edited, or if the mouse clicks away while it is being edited
-		((!m_isBeingEdited) || (m_isBeingEdited && sf::Mouse::isButtonPressed(sf::Mouse::Left))))
+		((!m_isBeingEdited && m_isSelected) || (m_isBeingEdited && sf::Mouse::isButtonPressed(sf::Mouse::Left))))
 	{
-		//Deselect button
-		m_isSelected = false;
-
 		//Handle the mouse leaving
 		OnMouseExit();
+
+		//Deselect button
+		m_isSelected = false;	
 	}
 
 
@@ -114,8 +114,14 @@ void ButtonTextField::OnMouseExit()
 	m_isBeingEdited = false;
 	BeginAnimation(m_defaultButtonAnim);
 
-	if (m_onClickFunction != NULL)
+	//By being clever and moving the call to this function before isSelected is reset,
+	//We can make sure we only run the on click function is the user previously selected the text field
+	if (m_onClickFunction != NULL && m_isSelected)
+	{
 		m_onClickFunction();
+		m_isSelected = false;
+	}
+		
 }
 
 bool ButtonTextField::IsBeingEdited()

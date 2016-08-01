@@ -72,7 +72,7 @@ void Init()
 			Utilities::Update();
 			guiManager.Update();
 
-
+			auto TestDebug = editor.m_currentTileInShortList;
 
 			/*********** Clear the screen ******************/
 			screensManager.GetWindow().clear();

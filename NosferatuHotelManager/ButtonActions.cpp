@@ -49,6 +49,16 @@ void ButtonActions::buttonSearchForAnims()
 			editor.m_shortTilesList.push_back(editor.m_allTilesList[cnt]);
 		}
 	}
+	//If there were no matches, go back to the full list
+	if (editor.m_shortTilesList.size() == 0)
+	{
+		editor.m_shortTilesList = editor.m_allTilesList;
+	}
+
+
+	//Update status of cursor
+	editor.m_currentTileInShortList = 0;
+	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList + 1) + " / " + std::to_string(editor.m_shortTilesList.size()));
 }
 
 void ButtonActions::buttonUpInAnims()
@@ -58,15 +68,20 @@ void ButtonActions::buttonUpInAnims()
 	{
 		editor.m_currentTileInShortList = 0;
 	}
-	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList) + " / " + std::to_string(editor.m_shortTilesList.size()));
+	guiManager.GetAnimationsMap()["previewAnim"].BeginAnimation(editor.m_shortTilesList[editor.m_currentTileInShortList].GetCurrentAnim());
+	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList + 1) + " / " + std::to_string(editor.m_shortTilesList.size()));
 }
 
 void ButtonActions::buttonDownInAnims()
 {
-	editor.m_currentTileInShortList--;
-	if (editor.m_currentTileInShortList < 0)
+	if (editor.m_currentTileInShortList == 0)
 	{
 		editor.m_currentTileInShortList = editor.m_shortTilesList.size() - 1;
 	}
-	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList) + " / " + std::to_string(editor.m_shortTilesList.size()));
+	else
+	{
+		editor.m_currentTileInShortList--;
+	}
+	guiManager.GetAnimationsMap()["previewAnim"].BeginAnimation(editor.m_shortTilesList[editor.m_currentTileInShortList].GetCurrentAnim());
+	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList + 1) + " / " + std::to_string(editor.m_shortTilesList.size()));
 }

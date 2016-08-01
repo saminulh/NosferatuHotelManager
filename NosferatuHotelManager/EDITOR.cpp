@@ -7,6 +7,7 @@
 
 Editor::Editor()
 {
+	m_tilesList = "Resources/Editor/rezList1.txt";
 }
 
 void Editor::Init()
@@ -130,10 +131,18 @@ void Editor::LoadEditorResources()
 
 	//Preview animation
 	Animation					previewAnim;
-	//previewAnim.LoadAnimation(m_allTilesList[0].GetCurrentAnim());
-	//previewAnim.BeginAnimation(m_allTilesList[0].GetCurrentAnim());
-	//previewAnim.GetSprite().setPosition(1185.f, 150.f);
-	//guiManager.GetAnimationsMap().insert(std::pair<std::string, Animation>("previewAnim", previewAnim));
+	previewAnim.LoadAnimation(m_allTilesList[0].GetCurrentAnim());
+	previewAnim.BeginAnimation(m_allTilesList[0].GetCurrentAnim());
+	previewAnim.GetSprite().setPosition(1185.f, 150.f);
+	previewAnim.GetSprite().setScale(4.f, 4.f);
+	//Load all possible anims to the preview
+	for (unsigned int cnt = 0; cnt < m_allTilesList.size(); cnt++)
+	{
+		previewAnim.LoadAnimation(m_allTilesList[cnt].GetCurrentAnim());
+	}
+	guiManager.GetAnimationsMap().insert(std::pair<std::string, Animation>("previewAnim", previewAnim));
+	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList + 1) + " / " + std::to_string(editor.m_shortTilesList.size()));
+
 
 	m_currentTileInShortList = 0;
 
@@ -153,6 +162,27 @@ void Editor::SaveMap(std::string _FileName)
 
 void Editor::LoadListOfPossibleAnims(std::string _fileName)
 {
+	std::ifstream	list;
+	unsigned int	size;
+	std::string		temp;
+
+	list.open(_fileName);
+	if (list.is_open())
+	{
+		list >> size;
+		for (unsigned int cnt = 0; cnt < size; cnt++)
+		{
+			list >> temp;
+
+			Animation anim;
+			anim.LoadAnimation(temp);
+			anim.BeginAnimation(temp);
+			
+			//Save into both lists because copying is wonky
+			m_allTilesList.push_back(anim);
+			m_shortTilesList.push_back(anim);
+		}
+	}
 }
 
 MapTile & Editor::GetCurrentTileProperties()
