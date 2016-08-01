@@ -13,6 +13,10 @@ class Animation
 	ScreensManager::ScreenTag								m_screenTag;
 
 public:
+	Animation();
+	Animation(const Animation &_obj);
+	~Animation();
+
 	bool													LoadAnimation(std::string _fileName);
 	bool													BeginAnimation(std::string _animationName);
 	std::string&											GetCurrentAnim();
@@ -22,4 +26,6 @@ public:
 	virtual void											Update(sf::Time _deltaTime);
 	virtual void											ChangeScreenTag(ScreensManager::ScreenTag _newTag);
 	ScreensManager::ScreenTag								GetScreenTag();
+
+	void													AssignAnimation(std::string _anim, Animation &_ref);
 };

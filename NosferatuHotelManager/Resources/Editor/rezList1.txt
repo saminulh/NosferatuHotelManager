@@ -1,4 +1,4 @@
 3
-dirtPatch1.vAnim
-grassPatch1.vAnim
-grassPatch2.vAnim
+tile-dirtPatch1.vAnim
+tile-grassPatch1.vAnim
+tile-grassPatch2.vAnim

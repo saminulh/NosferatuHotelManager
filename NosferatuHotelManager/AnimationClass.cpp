@@ -4,6 +4,24 @@
 #include "AnimationFrame.h"
 #include "GraphicsManager.h"
 
+Animation::Animation()
+{
+}
+
+Animation::Animation(const Animation & _obj)
+{
+	m_sprite					= _obj.m_sprite;
+	m_animations				= _obj.m_animations;
+	m_timeSinceLastUpdate		= _obj.m_timeSinceLastUpdate;
+	m_CurrentAnim				= _obj.m_CurrentAnim;
+	m_currentAnimFrame			= _obj.m_currentAnimFrame;
+	m_screenTag					= _obj.m_screenTag;
+}
+
+Animation::~Animation()
+{
+}
+
 bool Animation::LoadAnimation(std::string _fileName)
 {
 	tinyxml2::XMLDocument		doc;
@@ -144,4 +162,10 @@ void Animation::ChangeScreenTag(ScreensManager::ScreenTag _newTag)
 ScreensManager::ScreenTag Animation::GetScreenTag()
 {
 	return m_screenTag;
+}
+
+void Animation::AssignAnimation(std::string _anim, Animation & _ref)
+{
+	m_animations.clear();
+	m_animations.insert(std::pair < std::string, std::vector<AnimationFrame>>(_anim, _ref.m_animations[_anim]));
 }
