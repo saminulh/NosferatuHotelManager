@@ -18,7 +18,7 @@ void Editor::Init()
 		//User wants to create a new file
 		std::cout << "Please enter the desired file name: " << std::endl;
 		std::cin >> fileName;
-		//CreateMap(fileName);
+		CreateMap(fileName);
 	}
 	else if (std::getchar() == 'o' || std::getchar() == 'O')
 	{
