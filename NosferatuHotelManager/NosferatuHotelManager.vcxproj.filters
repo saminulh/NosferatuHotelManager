@@ -25,6 +25,8 @@
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="EDITOR.cpp" />
     <ClCompile Include="ButtonRadio.cpp" />
+    <ClCompile Include="ButtonTextField.cpp" />
+    <ClCompile Include="UserInputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -55,6 +57,8 @@
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="EDITOR.h" />
     <ClInclude Include="ButtonRadio.h" />
+    <ClInclude Include="ButtonTextField.h" />
+    <ClInclude Include="UserInputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -70,6 +74,7 @@
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
     <Image Include="Resources\Textures\TickButtons.png" />
     <Image Include="Resources\Textures\Panel.png" />
+    <Image Include="Resources\Textures\TextFieldButtons.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
@@ -80,5 +85,8 @@
     <None Include="Resources\Animations\editor-tickNoHover.vAnim" />
     <None Include="Resources\Animations\editor-tickYesHover.vAnim" />
     <None Include="Resources\Animations\editor-sidePanel.vAnim" />
+    <None Include="Resources\Animations\editor-textFieldDefault.vAnim" />
+    <None Include="Resources\Animations\editor-textFieldMouseOver.vAnim" />
+    <None Include="Resources\Animations\editor-textFieldClicked.vAnim" />
   </ItemGroup>
 </Project>

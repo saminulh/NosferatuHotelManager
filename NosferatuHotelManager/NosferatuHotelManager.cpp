@@ -24,6 +24,7 @@ GUIManager			guiManager;
 ActivityManager		activityManager;
 CharacterManager	characterManager;
 Editor				editor;
+UserInputManager	userInputManager;
 
 const int MORNINGSTARTHOUR = 6;
 const int MORNINGENDHOUR = 15;
@@ -56,6 +57,14 @@ void Init()
 			{
 				if (event.type == sf::Event::Closed)
 					screensManager.GetWindow().close();
+				if (event.type == sf::Event::TextEntered)
+				{
+					if (event.text.unicode < 128)
+					{
+						//Pass to userinputmanager to handle all necessary steps
+						userInputManager.TextEnteredEvent(event);
+					}
+				}
 			}
 
 			//Frame Updates

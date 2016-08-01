@@ -3,6 +3,7 @@
 #include "MapTile.h"
 #include "ButtonActions.h"
 #include "ButtonRadio.h"
+#include "ButtonTextField.h"
 
 Editor::Editor()
 {
@@ -41,18 +42,24 @@ void Editor::LoadMap(std::string _fileName)
 
 void Editor::LoadEditorResources()
 {
-	//Load animations for button states
+	//Load animations for radio button states
 	std::vector<std::string>	ticksAnims;
 	ticksAnims.push_back("editor-tickNo.vAnim");
 	ticksAnims.push_back("editor-tickYes.vAnim");
 	ticksAnims.push_back("editor-tickNoHover.vAnim");
 	ticksAnims.push_back("editor-tickYesHover.vAnim");
 
+	//Load animations for text field button
+	std::vector<std::string>	textFieldAnims;
+	textFieldAnims.push_back("editor-textFieldDefault.vAnim");
+	textFieldAnims.push_back("editor-textFieldMouseOver.vAnim");
+	textFieldAnims.push_back("editor-textFieldClicked.vAnim");
+
 	//Radio button for if the tile is a door
 	ButtonRadio*				buttonIsDoor = new ButtonRadio();
 	void						(*isDoor)(void);
 	isDoor = &ButtonActions::buttonIsDoor;
-	buttonIsDoor->CreateButton("Door", ticksAnims, sf::Vector2f(1300.f,200.f), isDoor, sf::Vector2f(-200.f, 0.f));
+	buttonIsDoor->CreateButton("Door", ticksAnims, sf::Vector2f(1300.f,500.f), isDoor, sf::Vector2f(-200.f, 0.f));
 	buttonIsDoor->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isDoor = false;
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsDoor", buttonIsDoor));
@@ -61,7 +68,7 @@ void Editor::LoadEditorResources()
 	ButtonRadio*				buttonIsRoomExit = new ButtonRadio();
 	void						(*isRoomExit)(void);
 	isRoomExit = &ButtonActions::buttonIsRoomExit;
-	buttonIsRoomExit->CreateButton("Room Exit", ticksAnims, sf::Vector2f(1300.f, 250.f), isRoomExit, sf::Vector2f(-200.f, 0.f));
+	buttonIsRoomExit->CreateButton("Room Exit", ticksAnims, sf::Vector2f(1300.f, 550.f), isRoomExit, sf::Vector2f(-200.f, 0.f));
 	buttonIsRoomExit->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isRoomExit = false;
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsRoomExit", buttonIsRoomExit));
@@ -70,10 +77,16 @@ void Editor::LoadEditorResources()
 	ButtonRadio*				buttonisSolid = new ButtonRadio();
 	void(*isTileSolid)(void);
 	isTileSolid = &ButtonActions::buttonIsSolid;
-	buttonisSolid->CreateButton("Tile Solid", ticksAnims, sf::Vector2f(1300.f, 300.f), isTileSolid, sf::Vector2f(-200.f, 0.f));
+	buttonisSolid->CreateButton("Tile Solid", ticksAnims, sf::Vector2f(1300.f, 600.f), isTileSolid, sf::Vector2f(-200.f, 0.f));
 	buttonisSolid->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isSolid = false;
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonisSolid", buttonisSolid));
+
+	//Text field for searching for tiles
+	ButtonTextField*			buttonSearchField = new ButtonTextField();
+	buttonSearchField->CreateButton("Search", textFieldAnims, sf::Vector2f(1100.f, 440.f), NULL, sf::Vector2f(0.f, -40.f), sf::Vector2f(10.f, 10.f));
+	buttonSearchField->GetSprite().setScale((float)1.3, (float)1);
+	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonTextField*>("buttonSearchField", buttonSearchField));
 
 	//Background panel
 	Animation					panelAnim;

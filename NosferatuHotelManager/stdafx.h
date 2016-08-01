@@ -35,6 +35,7 @@
 #include "GUIManager.h"
 #include "CharacterManager.h"
 #include "Utilities.h"
+#include "UserInputManager.h"
 
 #include "EDITOR.h"
 
@@ -47,6 +48,7 @@ extern ActivityManager	activityManager;
 extern GUIManager		guiManager;
 extern CharacterManager	characterManager;
 extern Editor			editor;
+extern UserInputManager	userInputManager;
 
 //Standard list of key day times
 extern const int MORNINGSTARTHOUR;

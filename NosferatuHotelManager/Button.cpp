@@ -107,3 +107,8 @@ CustomText & Button::GetButtonText()
 {
 	return m_buttonText;
 }
+
+bool Button::IsBeingEdited()
+{
+	return false;
+}

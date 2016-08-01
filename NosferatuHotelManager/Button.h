@@ -17,7 +17,8 @@ public:
 	Button();
 	~Button();
 
-	virtual void		CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void (*_onClickFunction)(void), sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
+	virtual void		CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void (*_onClickFunction)(void), 
+										sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
 
 	virtual void		OnMouseOver();
 	virtual void		OnMouseClick();
@@ -29,5 +30,7 @@ public:
 	//Might be unnecessary
 	virtual void		OnMouseExit();
 
+	//Virtual function stub for text fields - don't remove
+	virtual bool		IsBeingEdited();
 	CustomText&			GetButtonText();
 };
