@@ -7,10 +7,10 @@
 class GUIManager
 {
 	///Possible unnecessary duplication (?)
-	std::map<std::string, CustomText>	customTextsMap;
-	std::map<std::string, sf::Text>		textsMap;
-	std::map<std::string, Animation>	animationsMap;
-	std::map<std::string, Button>		buttonsMap;
+	std::map<std::string, CustomText>					customTextsMap;
+	std::map<std::string, sf::Text>						textsMap;
+	std::map<std::string, Animation>					animationsMap;
+	std::map<std::string, Button*>						buttonsMap;
 
 public:
 	GUIManager();
@@ -19,8 +19,8 @@ public:
 	void Update();
 	void DrawToWindow();
 
-	std::map<std::string, CustomText>&	GetCustomTextsMap();
-	std::map<std::string, sf::Text>&	GetSFTextsMap();
-	std::map<std::string, Animation>&	GetAnimationsMap();
-	std::map<std::string, Button>&		GetButtonsMap();
+	std::map<std::string, CustomText>&					GetCustomTextsMap();
+	std::map<std::string, sf::Text>&					GetSFTextsMap();
+	std::map<std::string, Animation>&					GetAnimationsMap();
+	std::map<std::string, Button*>&						GetButtonsMap();
 };

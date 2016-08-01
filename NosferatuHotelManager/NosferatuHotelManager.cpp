@@ -40,8 +40,6 @@ std::ofstream			file;
 tinyxml2::XMLDocument	doc;
 void Init()
 {
-	debug.Start();
-
 	srand((unsigned int)time(NULL));
 
 	//Restart timer so that it's zero when the window actually starts
@@ -107,8 +105,10 @@ int main()
 	}
 
 	system("pause");*/
-
+	debug.Start();
 	editor.Init();
+	editor.LoadEditorResources();
+
 
 	Init();
 

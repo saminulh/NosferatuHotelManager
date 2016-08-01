@@ -24,6 +24,7 @@
     <ClCompile Include="Character\NPC.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="EDITOR.cpp" />
+    <ClCompile Include="ButtonRadio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClass.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="EDITOR.h" />
+    <ClInclude Include="ButtonRadio.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -66,12 +68,16 @@
     <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
+    <Image Include="..\WIP IMAGES\redSheet.png" />
+    <Image Include="Resources\Textures\TickButtons.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
-    <None Include="Resources\Editor\editor-tickYes.vAnim" />
-    <None Include="Resources\Editor\editor-tickNo.vAnim" />
+    <None Include="Resources\Animations\editor-tickNo.vAnim" />
+    <None Include="Resources\Animations\editor-tickYes.vAnim" />
+    <None Include="Resources\Animations\editor-tickNoHover.vAnim" />
+    <None Include="Resources\Animations\editor-tickYesHover.vAnim" />
   </ItemGroup>
 </Project>

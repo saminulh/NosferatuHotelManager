@@ -2,6 +2,7 @@
 #include "EDITOR.h"
 #include "MapTile.h"
 #include "ButtonActions.h"
+#include "ButtonRadio.h"
 
 Editor::Editor()
 {
@@ -17,7 +18,7 @@ void Editor::Init()
 		//User wants to create a new file
 		std::cout << "Please enter the desired file name: " << std::endl;
 		std::cin >> fileName;
-		CreateMap(fileName);
+		//CreateMap(fileName);
 	}
 	else if (std::getchar() == 'o' || std::getchar() == 'O')
 	{
@@ -40,14 +41,28 @@ void Editor::LoadMap(std::string _fileName)
 
 void Editor::LoadEditorResources()
 {
-	Button buttonIsDoor;
-	std::vector<std::string> ticksAnims;
+	ButtonRadio*				buttonIsDoor = new ButtonRadio();
+	std::vector<std::string>	ticksAnims;
 	ticksAnims.push_back("editor-tickNo.vAnim");
 	ticksAnims.push_back("editor-tickYes.vAnim");
-	void (*isDoor)(void);
-	isDoor = & ButtonActions::buttonIsDoor();
+	ticksAnims.push_back("editor-tickNoHover.vAnim");
+	ticksAnims.push_back("editor-tickYesHover.vAnim");
+	void						(*isDoor)(void);
+	isDoor = &ButtonActions::buttonIsDoor;
+	buttonIsDoor->CreateButton("Is Door", ticksAnims, sf::Vector2f(400.f,200.f), isDoor, sf::Vector2f(-200.f, 0.f));
+	buttonIsDoor->BeginAnimation("editor-tickNo.vAnim");
+	editor.GetCurrentTileProperties().m_isDoor = false;
+	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsDoor", buttonIsDoor));
 
-	buttonIsDoor.CreateButton("Is Room Exit", ticksAnims, sf::Vector2f(400.f,200.f), isDoor, sf::Vector2f(-100.f, 20.f));
+
+	ButtonRadio*				buttonIsRoomExit = new ButtonRadio();
+	void						(*isRoomExit)(void);
+	isRoomExit = &ButtonActions::buttonIsRoomExit;
+	buttonIsRoomExit->CreateButton("Is Room Exit", ticksAnims, sf::Vector2f(400.f, 250.f), isRoomExit, sf::Vector2f(-200.f, 0.f));
+	buttonIsRoomExit->BeginAnimation("editor-tickNo.vAnim");
+	editor.GetCurrentTileProperties().m_isRoomExit = false;
+	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsRoomExit", buttonIsRoomExit));
+
 }
 
 void Editor::LoadResources()

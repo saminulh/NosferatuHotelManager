@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animation>
+  <Meta>
+    <Texture>TickButtons.png</Texture>
+    <Sound>###</Sound>
+    <NumFrames>1</NumFrames>
+  </Meta>
+
+  <Frame>
+    <b1>0</b1>
+    <b2>0</b2>
+    <b3>38</b3>
+    <b4>36</b4>
+    <ms>1000</ms>
+  </Frame>
+</Animation>

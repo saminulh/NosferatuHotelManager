@@ -24,7 +24,7 @@ void GUIManager::Update()
 	//Iterate through the buttons map and update everything
 	for (auto& cnt : buttonsMap)
 	{
-		cnt.second.Update(sf::seconds(screensManager.m_timePerFrame));
+		cnt.second->Update(sf::seconds(screensManager.m_timePerFrame));
 	}
 
 	///TODO: Add any other GUI elements that need updating here
@@ -43,12 +43,12 @@ void GUIManager::DrawToWindow()
 	//Then buttons
 	for (auto& cnt : buttonsMap)
 	{
-		screensManager.GetWindow().draw(cnt.second.GetSprite());
-		screensManager.GetWindow().draw(cnt.second.GetButtonText().GetOutlineTopLeft());
-		screensManager.GetWindow().draw(cnt.second.GetButtonText().GetOutlineTopRight());
-		screensManager.GetWindow().draw(cnt.second.GetButtonText().GetOutlineBottomLeft());
-		screensManager.GetWindow().draw(cnt.second.GetButtonText().GetOutlineBottomRight());
-		screensManager.GetWindow().draw(cnt.second.GetButtonText().GetMainText());
+		screensManager.GetWindow().draw(cnt.second->GetSprite());
+		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineTopLeft());
+		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineTopRight());
+		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineBottomLeft());
+		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineBottomRight());
+		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetMainText());
 	}
 
 	//Then custom texts
@@ -84,7 +84,7 @@ std::map<std::string, Animation>& GUIManager::GetAnimationsMap()
 	return animationsMap;
 }
 
-std::map<std::string, Button>& GUIManager::GetButtonsMap()
+std::map<std::string, Button*>& GUIManager::GetButtonsMap()
 {
 	return buttonsMap;
 }

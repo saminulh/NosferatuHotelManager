@@ -6,4 +6,5 @@ class ButtonActions
 public:
 	static void TestButtonAction();
 	static void	buttonIsDoor();
+	static void	buttonIsRoomExit();
 };

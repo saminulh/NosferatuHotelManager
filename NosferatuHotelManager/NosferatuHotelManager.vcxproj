@@ -165,6 +165,7 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonActions.h" />
+    <ClInclude Include="ButtonRadio.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\NPC.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonActions.cpp" />
+    <ClCompile Include="ButtonRadio.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Character\Character.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../stdafx.h</PrecompiledHeaderFile>
@@ -232,17 +234,21 @@
     <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\WIP IMAGES\redSheet.png" />
     <Image Include="Resources\Textures\HotelEntrance.png" />
     <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
+    <Image Include="Resources\Textures\TickButtons.png" />
     <Image Include="Resources\Textures\VampLoadingAnim.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Animations\editor-tickNoHover.vAnim" />
+    <None Include="Resources\Animations\editor-tickYesHover.vAnim" />
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseClickedAnim.vAnim" />
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
-    <None Include="Resources\Editor\editor-tickNo.vAnim" />
-    <None Include="Resources\Editor\editor-tickYes.vAnim" />
+    <None Include="Resources\Animations\editor-tickNo.vAnim" />
+    <None Include="Resources\Animations\editor-tickYes.vAnim" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
