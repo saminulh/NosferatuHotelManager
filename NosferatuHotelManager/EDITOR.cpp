@@ -52,7 +52,7 @@ void Editor::LoadEditorResources()
 	ButtonRadio*				buttonIsDoor = new ButtonRadio();
 	void						(*isDoor)(void);
 	isDoor = &ButtonActions::buttonIsDoor;
-	buttonIsDoor->CreateButton("Is Door", ticksAnims, sf::Vector2f(1300.f,200.f), isDoor, sf::Vector2f(-200.f, 0.f));
+	buttonIsDoor->CreateButton("Door", ticksAnims, sf::Vector2f(1300.f,200.f), isDoor, sf::Vector2f(-200.f, 0.f));
 	buttonIsDoor->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isDoor = false;
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsDoor", buttonIsDoor));
@@ -61,7 +61,7 @@ void Editor::LoadEditorResources()
 	ButtonRadio*				buttonIsRoomExit = new ButtonRadio();
 	void						(*isRoomExit)(void);
 	isRoomExit = &ButtonActions::buttonIsRoomExit;
-	buttonIsRoomExit->CreateButton("Is Room Exit", ticksAnims, sf::Vector2f(1300.f, 250.f), isRoomExit, sf::Vector2f(-200.f, 0.f));
+	buttonIsRoomExit->CreateButton("Room Exit", ticksAnims, sf::Vector2f(1300.f, 250.f), isRoomExit, sf::Vector2f(-200.f, 0.f));
 	buttonIsRoomExit->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isRoomExit = false;
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsRoomExit", buttonIsRoomExit));
@@ -70,7 +70,7 @@ void Editor::LoadEditorResources()
 	ButtonRadio*				buttonisSolid = new ButtonRadio();
 	void(*isTileSolid)(void);
 	isTileSolid = &ButtonActions::buttonIsSolid;
-	buttonisSolid->CreateButton("Is Tile Solid", ticksAnims, sf::Vector2f(1300.f, 300.f), isTileSolid, sf::Vector2f(-200.f, 0.f));
+	buttonisSolid->CreateButton("Tile Solid", ticksAnims, sf::Vector2f(1300.f, 300.f), isTileSolid, sf::Vector2f(-200.f, 0.f));
 	buttonisSolid->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isSolid = false;
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonisSolid", buttonisSolid));
