@@ -8,6 +8,7 @@ NPC::NPC(std::string type) {
 	characterManager.pushNewCharacter(*this);
 	characterID = characterManager.getCharacterStackSize();
 	//ADD TRAITS
+	decisionMaker.setHostCharacterID(characterID);
 }
 
 char NPC::getPersonType() {

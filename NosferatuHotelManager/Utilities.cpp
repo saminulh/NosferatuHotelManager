@@ -1,46 +1,31 @@
 #include "stdafx.h"
 #include "Utilities.h"
 
+const int Utilities::MORNINGSTARTHOUR = 6;
+const int Utilities::MORNINGENDHOUR = 15;
+const int Utilities::EVENINGSTARTHOUR = 16;
+const int Utilities::EVENINGENDHOUR = 20;
+const int Utilities::NIGHTSTARTHOUR = 21;
+const int Utilities::NIGHTENDHOUR = 5;
+
 //Master game time
 float		Utilities::m_gameTime = 0;
 bool		Utilities::m_isGamePaused = false;
 
 //This will be multiplied to calculate the passage of time
-float		Utilities::m_currentSpeedFactor = 5;
+float		Utilities::m_currentSpeedFactor = 250*60;
 
-float Utilities::FormatGameTime(float _time)
-{
-	if ((unsigned int)_time % 100 > 60)
-	{
-		//Increment to next hour
-		_time += 100;
-
-		//Set the timer back to 0 - CARRY OVER EXTRA TIME!
-		_time -= 60;
-	}
-
-	if ((unsigned int)_time % 10000 > 2400)
-	{
-		//Increment to next day
-		_time += 10000;
-
-		//Set the hours back to 0 - CARRY OVER EXTRA TIME
-		_time -= 2400;
-	}
-
-	//Add years? Who knows, who cares?
-	return _time;
-}
-
-void Utilities::Update()
-{
+void Utilities::Update() {
 	//Don't calculate passage of time if game is paused ... maybe make it go real-time(?)
-	if (!m_isGamePaused)
-	{
+	if (!m_isGamePaused) {
 		//Make change to game time
-		m_gameTime += screensManager.m_timePerFrame * m_currentSpeedFactor;
-		//Format the number
-		FormatGameTime(m_gameTime);
+		float minutesIncreased = screensManager.m_timePerFrame * m_currentSpeedFactor;
+		unsigned int hoursIncreased = (int) minutesIncreased / 60;
+		minutesIncreased -= 60 * hoursIncreased;
+		unsigned int daysIncreased = hoursIncreased / 24;
+		hoursIncreased -= 24 * daysIncreased;
+		
+		m_gameTime = getTimeSum(m_gameTime, daysIncreased * 10000 + hoursIncreased * 100 + minutesIncreased);
 	}
 }
 
@@ -53,57 +38,71 @@ bool Utilities::isHourInRange(int lowerHourBound, int upperHourBound, int hour) 
 
 float Utilities::getTimeSum(float _startTime, float _duration) {
 	float finalTime = 0;
+	float minutesSum = 0;
+	unsigned int hoursSum = 0;
+	unsigned int daysSum = 0;
 
 	//Handle minutes first
-	finalTime += (unsigned int)_startTime % 100;
-	finalTime += (unsigned int)_duration % 100;
+	minutesSum += (unsigned int)_startTime % 100;
+	minutesSum += (unsigned int)_duration % 100;
+
+	hoursSum += (unsigned int)minutesSum / 60;
+	minutesSum -= 60 * hoursSum;
 
 	//Handle hours next
-	finalTime += ((unsigned int)std::floor(_startTime / 100) % 10000) * 100;
-	finalTime += ((unsigned int)std::floor(_duration / 100) % 10000) * 100;
+	hoursSum += (((unsigned int)_startTime / 100) % 100);
+	hoursSum += (((unsigned int)_duration / 100) % 100);
 
+	daysSum += hoursSum / 24;
+	hoursSum -= 24 * daysSum;
+
+	daysSum += (unsigned int)_startTime / 10000;
+	daysSum += (unsigned int)_duration / 10000;
 	//Return as a formatted string
-	return FormatGameTime(finalTime);
+	return daysSum*10000 + hoursSum*100 + minutesSum;
 }
 
-float Utilities::getTimeDifference(float _startTime, float _endTime)
-{
-	float finalTime = 0;
-	bool newHour = false;
-
-	//Handle minutes first
-	finalTime += (unsigned int)_startTime % 100;
-	finalTime -= (unsigned int)_endTime % 100;
-
-	//If it cuts into a new hour, make note
-	if (finalTime < 0)
-	{
-		newHour = true;
-		finalTime += 60;
+float Utilities::getTimeDifference(float _startTime, float _endTime) {
+	if (_endTime < _startTime) {
+		return -1;
 	}
 
-	//Handle hours next
-	finalTime += ((unsigned int)std::floor(_startTime / 100) % 10000) * 100;
-	finalTime -= ((unsigned int)std::floor(_endTime / 100) % 10000) * 100;
+	int startDays = (int)_startTime / 10000;
+	int endDays = (int)_endTime / 10000;
+	int daysElapsed = endDays - startDays;
 
-	//If it cut into a new hour, subtract to account for that
-	if (newHour)
-		finalTime -= 100;
+	int startHours = ((int)_startTime / 100) % 100;
+	int endHours = ((int)_endTime / 100) % 100;
+	int hoursElapsed = endHours - startHours;
 
-	//Make dev note if difference is negative - that probably shouldn't happen!
-	if (finalTime < 0)
-		debug.Log(2, "The difference between game time " + std::to_string(_startTime) + " and " + std::to_string(_endTime) + " is negative!");
+	float startMinutes = (int)_startTime % 100 + (_startTime - (int)_startTime);
+	float endMinutes = (int)_endTime % 100 + (_endTime - (int)_endTime);
+	float minutesElapsed = endMinutes - startMinutes;
 
-	//Return as a formatted string
-	return FormatGameTime(finalTime);
+	std::cout << minutesElapsed << std::endl;
+	std::cout << hoursElapsed << std::endl;
+	std::cout << daysElapsed << std::endl;
+
+	while (minutesElapsed < 0) {
+		hoursElapsed -= 1;
+		minutesElapsed += 60;
+	}
+
+	while (hoursElapsed < 0) {
+		daysElapsed -= 1;
+		hoursElapsed += 24;
+	}
+
+	return daysElapsed * 10000 + hoursElapsed * 100 + minutesElapsed;
 }
 
 int Utilities::randInt(int lowerBound, int upperBound) {
-	return 0;
+	int range = upperBound - lowerBound + 1;
+	return lowerBound + (rand() % range);
 }
 
 int Utilities::getCurrentTime() {
-	return 0;
+	return (int) m_gameTime;
 }
 
 int Utilities::getCurrentDay() {

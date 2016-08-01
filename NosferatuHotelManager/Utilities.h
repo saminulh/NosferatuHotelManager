@@ -3,6 +3,14 @@
 
 class Utilities {
 public:
+
+	static const int MORNINGSTARTHOUR;
+	static const int MORNINGENDHOUR;
+	static const int EVENINGSTARTHOUR;
+	static const int EVENINGENDHOUR;
+	static const int NIGHTSTARTHOUR;
+	static const int NIGHTENDHOUR;
+
 	//Master game time
 	//Formatted as [Day][Hour][Minute]
 	//Hour and minute both occupy exactly two digits each

@@ -17,13 +17,6 @@ GUIManager			guiManager;
 ActivityManager		activityManager;
 CharacterManager	characterManager;
 
-const int MORNINGSTARTHOUR	= 6;
-const int MORNINGENDHOUR	= 15;
-const int EVENINGSTARTHOUR	= 16;
-const int EVENINGENDHOUR	= 20;
-const int NIGHTSTARTHOUR	= 21;
-const int NIGHTENDHOUR		= 5;
-
 void Init()
 {
 	debug.Start();

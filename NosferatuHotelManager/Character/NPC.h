@@ -6,8 +6,6 @@
 
 class NPC : public Character {
 private:
-	int								characterID;
-
 	char							personType;
 	int								basePerceptiveness;
 	int								baseFriendliness;
