@@ -238,9 +238,12 @@
     <Xml Include="Resources\Animations\VampLoadingAnim.vAnim" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Textures\BlankTile16x16.png" />
     <Image Include="Resources\Textures\HotelEntrance.png" />
     <Image Include="Resources\Textures\Panel.png" />
+    <Image Include="Resources\Textures\roguelikeSheet_transparent.png" />
     <Image Include="Resources\Textures\ShittyButton.png" />
+    <Image Include="Resources\Textures\ShittyTiles.png" />
     <Image Include="Resources\Textures\SlidersButtons.png" />
     <Image Include="Resources\Textures\TestTexture.png" />
     <Image Include="Resources\Textures\TextFieldButtons.png" />
@@ -266,6 +269,10 @@
     <None Include="Resources\Animations\testButtonMouseOverAnim.vAnim" />
     <None Include="Resources\Animations\editor-tickNo.vAnim" />
     <None Include="Resources\Animations\editor-tickYes.vAnim" />
+    <None Include="Resources\Animations\tile-blankTile.vAnim" />
+    <None Include="Resources\Animations\tile-dirtPatch1.vAnim" />
+    <None Include="Resources\Animations\tile-grassPatch1.vAnim" />
+    <None Include="Resources\Animations\tile-grassPatch2.vAnim" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

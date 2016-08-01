@@ -76,6 +76,9 @@
     <Image Include="Resources\Textures\Panel.png" />
     <Image Include="Resources\Textures\TextFieldButtons.png" />
     <Image Include="Resources\Textures\SlidersButtons.png" />
+    <Image Include="Resources\Textures\BlankTile16x16.png" />
+    <Image Include="Resources\Textures\roguelikeSheet_transparent.png" />
+    <Image Include="Resources\Textures\ShittyTiles.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
@@ -96,5 +99,9 @@
     <None Include="Resources\Animations\editor-upMouseDefaultButton.vAnim" />
     <None Include="Resources\Animations\editor-upMouseClickButton.vAnim" />
     <None Include="Resources\Animations\editor-upMouseOverButton.vAnim" />
+    <None Include="Resources\Animations\tile-blankTile.vAnim" />
+    <None Include="Resources\Animations\tile-grassPatch2.vAnim" />
+    <None Include="Resources\Animations\tile-grassPatch1.vAnim" />
+    <None Include="Resources\Animations\tile-dirtPatch1.vAnim" />
   </ItemGroup>
 </Project>

@@ -77,6 +77,14 @@ void Init()
 			/*********** Clear the screen ******************/
 			screensManager.GetWindow().clear();
 
+			for (unsigned int cx = 0; cx < editor.m_roomMap.size(); cx++)
+			{
+				for (unsigned int cy = 0; cy < editor.m_roomMap[cx].size(); cy++)
+				{
+					screensManager.GetWindow().draw(editor.m_roomMap[cx][cy].GetSprite());
+				}
+			}
+
 			/*********** Draw the GUI to the screen ******************/
 			guiManager.DrawToWindow();
 
@@ -115,10 +123,10 @@ int main()
 
 	system("pause");*/
 	debug.Start();
+
 	editor.Init();
 	editor.LoadListOfPossibleAnims(editor.m_tilesList);
 	editor.LoadEditorResources();
-	
 
 	Init();
 

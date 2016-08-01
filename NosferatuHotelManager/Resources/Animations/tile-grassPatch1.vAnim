@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Animation>
   <Meta>
-    <Texture>roguelikeSheet_transparent.png</Texture>
+    <Texture>ShittyTiles.png</Texture>
     <Sound>###</Sound>
     <NumFrames>1</NumFrames>
   </Meta>
 
   <Frame>
-    <b1>85</b1>
+    <b1>0</b1>
     <b2>0</b2>
-    <b3>16</b3>
-    <b4>16</b4>
+    <b3>32</b3>
+    <b4>32</b4>
     <ms>1000</ms>
   </Frame>
 </Animation>

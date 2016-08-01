@@ -42,7 +42,12 @@ bool Animation::LoadAnimation(std::string _fileName)
 	//Log to debug - maybe this could be removed
 	debug.Log(0, "Loading ANIMATION '" + _fileName + "' ...");
 	//Load the actual file (string must be passed as a c-string)
-	doc.LoadFile(docLoc.c_str());
+	tinyxml2::XMLError err = doc.LoadFile(docLoc.c_str());
+	
+	if (err != tinyxml2::XML_SUCCESS)
+	{
+		debug.Log(3, "Error reading XML file!");
+	}
 
 	//Get access to root element
 	tinyxml2::XMLElement* root = doc.FirstChildElement("Animation");

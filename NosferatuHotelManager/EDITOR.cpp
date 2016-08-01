@@ -154,6 +154,38 @@ void Editor::LoadResources()
 
 void Editor::CreateMap(std::string _fileName)
 {
+	unsigned int mapSizeX, mapSizeY;
+	unsigned int tileSize = 32;
+
+	std::cout << "Enter map size x: ";
+	std::cin >> mapSizeX;
+	std::cout << "Enter map size y: ";
+	std::cin >> mapSizeY;
+
+
+
+	for (unsigned int cntY = 0; cntY < mapSizeY; cntY++)
+	{
+		std::vector<MapTile>	buffer;
+		for (unsigned int cntX = 0; cntX < mapSizeX; cntX++)
+		{
+			MapTile	tile;
+			tile.LoadAnimation("tile-grassPatch1.vAnim");
+			tile.BeginAnimation("tile-grassPatch1.vAnim");
+			tile.GetSprite().setPosition((float)(cntX * tileSize), (float)(cntY * tileSize));
+			tile.m_xPos = (float)cntX;
+			tile.m_yPos = (float)cntY;
+			tile.m_floorNumber = 0;
+			tile.m_isDoor = false;
+			tile.m_isRoomExit = false;
+			tile.m_isSolid = false;
+			tile.m_tileActivityCode = 0;
+			tile.m_tileID = 0;
+
+			buffer.push_back(tile);
+		}
+		m_roomMap.push_back(buffer);
+	}
 }
 
 void Editor::SaveMap(std::string _FileName)
@@ -166,10 +198,14 @@ void Editor::LoadListOfPossibleAnims(std::string _fileName)
 	unsigned int	size;
 	std::string		temp;
 
+	//Try to open the file
 	list.open(_fileName);
 	if (list.is_open())
 	{
+		//Read number of elements (as integer in the header)
 		list >> size;
+
+		//For all elements in the list, load them up!
 		for (unsigned int cnt = 0; cnt < size; cnt++)
 		{
 			list >> temp;
