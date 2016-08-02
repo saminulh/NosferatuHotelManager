@@ -33,3 +33,32 @@ void ScreensManager::ScrollView(float _x, float _y)
 	guiManager.ScrollGUI(_x, _y);
 	m_mainView.move(_x, _y);
 }
+
+std::vector<unsigned int> ScreensManager::GetViewCullingBounds()
+{
+	std::vector<unsigned int>	bounds;
+	unsigned int				centerX, centerY;
+
+	centerX = ((unsigned int)m_mainView.getCenter().x / 32);
+	centerY = ((unsigned int)m_mainView.getCenter().y / 32);
+
+	//Divide by 32 because tile size, and 2 because you only care about one half - add two at the end so theres never unrendered area being viewed
+	bounds.push_back(centerX - ((unsigned int)(m_mainView.getSize().x / (32 * 2)) + 2));
+	bounds.push_back(centerX + ((unsigned int)(m_mainView.getSize().x / (32 * 2)) + 2));
+
+	bounds.push_back(centerY - ((unsigned int)(m_mainView.getSize().y / (32 * 2)) + 2));
+	bounds.push_back(centerY + ((unsigned int)(m_mainView.getSize().y / (32 * 2)) + 2));
+
+	//Still have to figure out why the map load sideways and how to fix it .........
+
+	if (bounds[0] > 100000)
+		bounds[0] = 0;
+	if (bounds[1] > editor.m_roomMap.size())
+		bounds[1] = editor.m_roomMap.size() - 1;
+	if (bounds[2] > 100000)
+		bounds[2] = 0;
+	if (bounds[3] > editor.m_roomMap[0].size())
+		bounds[3] = editor.m_roomMap[0].size() - 1;
+
+	return			bounds;
+}

@@ -76,21 +76,20 @@ void Init()
 			Utilities::Update();
 			userInputManager.Update(sf::seconds(screensManager.m_timePerFrame));
 			guiManager.Update();
-
-			auto TestDebug = editor.m_currentTileInShortList;
 		}
 
 		//Begin render loop here
 		{
 			guiManager.GetCustomTextsMap()["fpsText"].ChangeText("FPS: " + std::to_string((unsigned int)Utilities::getFPS(sf::seconds(screensManager.m_elapsedTime))));
+			screensManager.m_bounds = screensManager.GetViewCullingBounds();
 
 			screensManager.GetWindow().setView(screensManager.GetView());
 			/*********** Clear the screen ******************/
 			screensManager.GetWindow().clear();
 
-			for (unsigned int cx = 0; cx < editor.m_roomMap.size(); cx++)
+			for (unsigned int cx = screensManager.m_bounds[0]; cx < screensManager.m_bounds[1]; cx++)
 			{
-				for (unsigned int cy = 0; cy < editor.m_roomMap[cx].size(); cy++)
+				for (unsigned int cy = screensManager.m_bounds[2]; cy < screensManager.m_bounds[3]; cy++)
 				{
 					screensManager.GetWindow().draw(editor.m_roomMap[cx][cy].GetSprite());
 				}
