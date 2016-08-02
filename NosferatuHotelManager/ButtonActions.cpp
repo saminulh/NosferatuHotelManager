@@ -59,6 +59,7 @@ void ButtonActions::buttonSearchForAnims()
 	//Update status of cursor
 	editor.m_currentTileInShortList = 0;
 	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList + 1) + " / " + std::to_string(editor.m_shortTilesList.size()));
+	guiManager.GetAnimationsMap()["previewAnim"].BeginAnimation(editor.m_shortTilesList[editor.m_currentTileInShortList].GetCurrentAnim());
 }
 
 void ButtonActions::buttonUpInAnims()

@@ -177,15 +177,18 @@ void Editor::CreateMap(std::string _fileName)
 			MapTile	tile;
 			tile.LoadAnimation("tile-grassPatch1.vAnim");
 			tile.BeginAnimation("tile-grassPatch1.vAnim");
+
 			tile.GetSprite().setPosition((float)(cntX * tileSize), (float)(cntY * tileSize));
-			tile.m_xPos = (float)cntX;
-			tile.m_yPos = (float)cntY;
-			tile.m_floorNumber = 0;
-			tile.m_isDoor = false;
-			tile.m_isRoomExit = false;
-			tile.m_isSolid = false;
-			tile.m_tileActivityCode = 0;
-			tile.m_tileID = 0;
+			
+			//Set default values
+			tile.m_xPos					= (float)cntX;
+			tile.m_yPos					= (float)cntY;
+			tile.m_floorNumber			= 0;
+			tile.m_isDoor				= false;
+			tile.m_isRoomExit			= false;
+			tile.m_isSolid				= false;
+			tile.m_tileActivityCode		= 0;
+			tile.m_tileID				= 0;
 
 			buffer.push_back(tile);
 		}
