@@ -165,3 +165,8 @@ int Utilities::getPhaseOfDay(int time) {
 
 	return phase;
 }
+
+float Utilities::getFPS(const sf::Time & _time)
+{
+	return (1000000.0f / _time.asMicroseconds());
+}

@@ -3,10 +3,82 @@
 
 UserInputManager::UserInputManager()
 {
+	m_minTimeToScroll = sf::seconds((float)0.15);
+	m_timeMouseInScrollArea = sf::Time::Zero;
+	m_scrollSpeed = 5;
 }
 
 void UserInputManager::Update(sf::Time _deltaTime)
 {
+	m_addedTime = false;
+
+	//Mouse on far left of screen
+	if ((unsigned int)sf::Mouse::getPosition(screensManager.GetWindow()).x < screensManager.GetWindow().getSize().x / 12)
+	{
+		if (!m_addedTime)
+		{
+			m_timeMouseInScrollArea += _deltaTime;
+			m_addedTime = true;
+		}
+		
+		if (m_timeMouseInScrollArea >= m_minTimeToScroll)
+		{
+			//Scroll left
+			screensManager.ScrollView(-m_scrollSpeed, 0.f);
+		}
+	}
+	//Mouse on far right of screen
+	if ((unsigned int)sf::Mouse::getPosition(screensManager.GetWindow()).x > screensManager.GetWindow().getSize().x * 11 / 12)
+	{
+		if (!m_addedTime)
+		{
+			m_timeMouseInScrollArea += _deltaTime;
+			m_addedTime = true;
+		}
+
+		if (m_timeMouseInScrollArea >= m_minTimeToScroll)
+		{
+			//Scroll right
+			screensManager.ScrollView(m_scrollSpeed, 0.f);
+		}
+	}
+	//Mouse on far top of screen
+	if ((unsigned int)sf::Mouse::getPosition(screensManager.GetWindow()).y < screensManager.GetWindow().getSize().y / 7)
+	{
+		if (!m_addedTime)
+		{
+			m_timeMouseInScrollArea += _deltaTime;
+			m_addedTime = true;
+		}
+
+		if (m_timeMouseInScrollArea >= m_minTimeToScroll)
+		{
+			//Scroll up
+			screensManager.ScrollView(0.f, -m_scrollSpeed);
+		}
+	}
+	//Mouse on far left of screen
+	//if (screensManager.m_mousePos.y > screensManager.GetWindow().getSize().y * 6 / 7)
+	if ((unsigned int)sf::Mouse::getPosition(screensManager.GetWindow()).y > screensManager.GetWindow().getSize().y * 6 / 7)
+	{
+		if (!m_addedTime)
+		{
+			m_timeMouseInScrollArea += _deltaTime;
+			m_addedTime = true;
+		}
+
+		if (m_timeMouseInScrollArea >= m_minTimeToScroll)
+		{
+			//Scroll down
+			screensManager.ScrollView(0.f, m_scrollSpeed);
+		}
+	}
+
+	if (!m_addedTime)
+	{
+		//Mouse isn't in scroll area
+		m_timeMouseInScrollArea = sf::Time::Zero;
+	}
 }
 
 void UserInputManager::TextEnteredEvent(sf::Event & _event)

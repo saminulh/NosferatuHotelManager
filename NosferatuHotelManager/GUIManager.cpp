@@ -88,3 +88,40 @@ std::map<std::string, Button*>& GUIManager::GetButtonsMap()
 {
 	return buttonsMap;
 }
+
+void GUIManager::ScrollGUI(float _x, float _y)
+{
+	//Start with images
+	for (auto& cnt : animationsMap)
+	{
+		cnt.second.GetSprite().move(_x, _y);
+	}
+
+	//Then buttons
+	for (auto& cnt : buttonsMap)
+	{
+		cnt.second->GetSprite().move(_x, _y);
+		cnt.second->GetButtonText().GetOutlineTopLeft().move(_x, _y);
+		cnt.second->GetButtonText().GetOutlineTopRight().move(_x, _y);
+		cnt.second->GetButtonText().GetOutlineBottomLeft().move(_x, _y);
+		cnt.second->GetButtonText().GetOutlineBottomRight().move(_x, _y);
+		cnt.second->GetButtonText().GetMainText().move(_x, _y);
+	}
+
+	//Then custom texts
+	for (auto& cnt : customTextsMap)
+	{
+		cnt.second.GetOutlineTopLeft().move(_x, _y);
+		cnt.second.GetOutlineTopRight().move(_x, _y);
+		cnt.second.GetOutlineBottomLeft().move(_x, _y);
+		cnt.second.GetOutlineBottomRight().move(_x, _y);
+		cnt.second.GetMainText().move(_x, _y);
+	}
+
+	//Finally, texts
+	//Please use custom texts for GUIs and save sf::Texts for debug uses only
+	for (auto& cnt : textsMap)
+	{
+		cnt.second.move(_x, _y);
+	}
+}

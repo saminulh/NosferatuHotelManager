@@ -4,6 +4,10 @@ class UserInputManager
 {
 public:
 	std::string		m_enteredText;
+	sf::Time		m_minTimeToScroll;
+	sf::Time		m_timeMouseInScrollArea;
+	bool			m_addedTime;
+	float			m_scrollSpeed;
 
 	UserInputManager();
 

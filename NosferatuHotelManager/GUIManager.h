@@ -16,8 +16,9 @@ public:
 	GUIManager();
 	~GUIManager();
 
-	void Update();
-	void DrawToWindow();
+	void												Update();
+	void												DrawToWindow();
+	void												ScrollGUI(float _x, float _y);
 
 	std::map<std::string, CustomText>&					GetCustomTextsMap();
 	std::map<std::string, sf::Text>&					GetSFTextsMap();

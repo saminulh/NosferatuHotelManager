@@ -37,5 +37,6 @@ public:
 
 	static int					randInt(int lowerBound, int upperBound);
 
+	static float				getFPS(const sf::Time& _time);
 };
 

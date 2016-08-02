@@ -23,3 +23,13 @@ void ScreensManager::ChangeScreenTag(ScreenTag _newTag)
 
 	///TODO: Add event and event listeners here to tell other graphics elements that the screen has changed!
 }
+sf::View & ScreensManager::GetView()
+{
+	return m_mainView;
+}
+
+void ScreensManager::ScrollView(float _x, float _y)
+{
+	guiManager.ScrollGUI(_x, _y);
+	m_mainView.move(_x, _y);
+}

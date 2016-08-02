@@ -121,6 +121,11 @@ void Editor::LoadEditorResources()
 	counter.CreateCustomText("0 / 0", sf::Vector2f(1185.f, 350.f));
 	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("counter", counter));
 
+	//Fps text
+	CustomText					fpsText;
+	fpsText.CreateCustomText("FPS: 000", sf::Vector2f(1150.f, 25.f));
+	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("fpsText", fpsText));
+
 	//Background panel
 	Animation					panelAnim;
 	panelAnim.LoadAnimation("editor-sidePanel.vAnim");

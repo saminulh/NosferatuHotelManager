@@ -43,6 +43,9 @@ void Init()
 {
 	srand((unsigned int)time(NULL));
 
+	screensManager.GetView().setSize(screensManager.GetWindow().getDefaultView().getSize());
+	screensManager.GetView().setCenter(screensManager.GetWindow().getDefaultView().getCenter());
+
 	//Restart timer so that it's zero when the window actually starts
 	screensManager.m_timer.restart();
 	while (screensManager.GetWindow().isOpen())
@@ -68,12 +71,20 @@ void Init()
 			}
 
 			//Frame Updates
-			screensManager.m_mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
+			//screensManager.m_mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
+			screensManager.m_mousePos = screensManager.GetWindow().mapPixelToCoords(sf::Mouse::getPosition(screensManager.GetWindow()));
 			Utilities::Update();
+			userInputManager.Update(sf::seconds(screensManager.m_timePerFrame));
 			guiManager.Update();
 
 			auto TestDebug = editor.m_currentTileInShortList;
+		}
 
+		//Begin render loop here
+		{
+			guiManager.GetCustomTextsMap()["fpsText"].ChangeText("FPS: " + std::to_string((unsigned int)Utilities::getFPS(sf::seconds(screensManager.m_elapsedTime))));
+
+			screensManager.GetWindow().setView(screensManager.GetView());
 			/*********** Clear the screen ******************/
 			screensManager.GetWindow().clear();
 
