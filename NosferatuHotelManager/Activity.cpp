@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Activity.h"
 
+Activity::Activity()
+{
+}
+
 Activity::Activity(std::string _name, int _npcID, std::vector<int> _IDsOfPeopleInvolved, int _baseOdds, int _daysOfActivity, int _executionLowerBound, int _executionUpperBound, bool _useDuration, int _duration, int _endTime, int _variance){
 	activityManager.pushNewActivity(*this);
 	activityID = activityManager.getActivityStackSize();
@@ -30,6 +34,10 @@ Activity::Activity(std::string _name, int _npcID, std::vector<int> _IDsOfPeopleI
 
 int Activity::getActivityID() {
 	return activityID;
+}
+
+std::vector<int> Activity::getIDsOfPeopleInvolved() {
+	return IDsOfPeopleInvolved;
 }
 
 int Activity::getExecutionLowerBound() {

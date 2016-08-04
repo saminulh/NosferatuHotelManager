@@ -4,10 +4,14 @@
 class ActivityRequest {
 	int activityID;
 	int requesterCharacterID;
+	int requesteeCharacterID;
+	int requestType;
 
 public:
-	ActivityRequest(int actID, int charID, int requestType);
+	ActivityRequest(int actID, int _requesterNPCID, int _requesteeNPCID, int _requestType);
 	int getActivityID();
-	int getCharacterID();
+	int getRequesterNPCID();
+	int getRequesteeNPCID();
+	int getRequestType();
 };
 

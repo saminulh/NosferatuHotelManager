@@ -6,6 +6,8 @@
 
 class NPC : public Character {
 private:
+	int								npcID;
+
 	char							personType;
 	int								basePerceptiveness;
 	int								baseFriendliness;
@@ -18,12 +20,14 @@ private:
 	std::map<int, int>				friendlinessModifiers;
 
 	std::vector<Activity>			activitiesByPhaseOfDay;
+	Activity*						currentActivity;
 
 	DecisionMaker					decisionMaker;
 
 public:
 	NPC(std::string type);
 
+	int								getNPCID();
 	char							getPersonType();
 	int								getPerceptiveness();
 	int								getBaseFriendliness();
@@ -36,6 +40,9 @@ public:
 
 	int								getFriendlinessTowardsCharacter(int characterID);
 	void							setFriendlinessToCharacter(int characterID, int newFriendliness);
+
+	Activity*						getCurrentActivity();
+	void							setCurrentActivity(Activity* _currentActivity);
 
 };
 

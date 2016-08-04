@@ -5,10 +5,15 @@
 #include "../Activity.h"
 
 NPC::NPC(std::string type) {
-	characterManager.pushNewCharacter(*this);
-	characterID = characterManager.getCharacterStackSize();
+	npcManager.pushNewNPC(*this);
+	npcID = npcManager.getNPCStackSize();
 	//ADD TRAITS
-	decisionMaker.setHostCharacterID(characterID);
+	currentActivity = nullptr;
+	decisionMaker.setHostCharacterID(npcID);
+}
+
+int NPC::getNPCID() {
+	return npcID;
 }
 
 char NPC::getPersonType() {
@@ -56,4 +61,12 @@ int NPC::getFriendlinessTowardsCharacter(int characterID) {
 
 void NPC::setFriendlinessToCharacter(int characterID, int newFriendliness) {
 	friendlinessModifiers[characterID] = newFriendliness - baseFriendliness;
+}
+
+Activity* NPC::getCurrentActivity() {
+	return currentActivity;
+}
+
+void NPC::setCurrentActivity(Activity* _currentActivity) {
+	currentActivity = _currentActivity;
 }

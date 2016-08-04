@@ -32,7 +32,7 @@
 #include "ScreensManager.h"
 #include "ActivityManager.h"
 #include "GUIManager.h"
-#include "CharacterManager.h"
+#include "NPCManager.h"
 #include "Utilities.h"
 
 //Create the debug singleton here
@@ -42,7 +42,7 @@ extern AudioManager		audioManager;
 extern ScreensManager	screensManager;
 extern ActivityManager	activityManager;
 extern GUIManager		guiManager;
-extern CharacterManager	characterManager;
+extern NPCManager		npcManager;
 
 //Standard list of key day times
 extern const int MORNINGSTARTHOUR;

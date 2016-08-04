@@ -15,7 +15,7 @@ AudioManager		audioManager;
 ScreensManager		screensManager;
 GUIManager			guiManager;
 ActivityManager		activityManager;
-CharacterManager	characterManager;
+NPCManager			npcManager;
 
 void Init()
 {

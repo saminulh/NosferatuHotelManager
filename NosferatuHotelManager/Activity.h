@@ -3,11 +3,14 @@
 
 class Activity {
 public:
+	Activity();
 	Activity(std::string _name, int _npcID, std::vector<int> _IDsOfPeopleInvolved, int _baseOdds,
 		int _daysOfActivity, int _executionLowerBound, int _executionUpperBound, bool _useDuration,
 		int _duration, int _endTime, int _variance);
 
 	int getActivityID();
+
+	std::vector<int> getIDsOfPeopleInvolved();
 
 	int getExecutionLowerBound();
 	int getExecutionUpperBound();

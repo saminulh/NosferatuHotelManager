@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "Activity.h"
 #include "ActivityRequest.h"
+#include "Character/Character.h"
+#include "Character/NPC.h"
 
 class ActivityManager {
 private:
