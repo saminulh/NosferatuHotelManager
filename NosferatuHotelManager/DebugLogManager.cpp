@@ -32,7 +32,7 @@ void DebugLogManager::Start()
 	file << "[PRIORITY]:\t\tMinimum priority set to 0!" << std::endl;
 }
 
-bool DebugLogManager::Log(int _priority, std::string& _message)
+bool DebugLogManager::Log(int _priority, std::string _message)
 {
 	std::string		finalMessage = "";
 

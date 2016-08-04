@@ -20,7 +20,7 @@ public:
 	2 - Warning
 	3 - Error
 	*/
-	bool				Log(int _priority, std::string& _message);
+	bool				Log(int _priority, std::string _message);
 
 	void				SetPriority(int _newPriority);
 	int					GetPriority();
