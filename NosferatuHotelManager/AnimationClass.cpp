@@ -22,6 +22,7 @@ Animation::~Animation()
 {
 }
 
+///TODO: Make this function smart enough to not reload the same damn animation 10000s of times when loading maps, etc.
 bool Animation::LoadAnimation(std::string _fileName)
 {
 	tinyxml2::XMLDocument		doc;
@@ -89,12 +90,15 @@ bool Animation::LoadAnimation(std::string _fileName)
 
 		_ms = std::stoi(frame->FirstChildElement("ms")->GetText());
 
-
 		//Set values in curFrame to those that were read from file
 		curFrame.SetTextureBounds(_x, _y, _width, _height);
 		curFrame.SetFrameDuration(_ms);
 		curFrame.SetTexture(textureLoc);
 
+		if (cnt == 0)
+		{
+			curFrame.SetSoundEffect(soundLoc);
+		}
 
 		//Save curFrame into the animationList
 		animationList.push_back(curFrame);
@@ -103,6 +107,9 @@ bool Animation::LoadAnimation(std::string _fileName)
 		//Move on to the next frame
 		frame = frame->NextSiblingElement("Frame");
 	}
+
+	//Save the sound effect
+	m_soundEffects.insert(std::pair<std::string, sf::SoundBuffer>(_fileName, audioManager.GetSoundsList()[soundLoc]));
 
 	//Save the loaded animation to the class
 	m_animations.insert( std::pair<std::string, std::vector<AnimationFrame>>(_fileName, animationList) );
@@ -120,6 +127,16 @@ bool Animation::BeginAnimation(std::string _animationName)
 
 	//Set the current animation to this one ... obviously
 	m_CurrentAnim = _animationName;
+	
+	//Check that a sound was meant to be loaded
+	if (m_animations[_animationName][0].GetSoundEffect() != "###")
+	{
+		//Play the corresponding sound
+		m_sound.setBuffer(m_soundEffects[_animationName]);
+		m_sound.play();
+	}
+
+	
 	//Start at the first frame (to make sure that jumping from a longer animation to a shorter one
 	//doesn't result in vector out of range errors)
 	///TODO: Perhaps choose a random animation frame rather than the first one (?)
@@ -135,6 +152,16 @@ std::string& Animation::GetCurrentAnim()
 sf::Sprite & Animation::GetSprite()
 {
 	return m_sprite;
+}
+
+std::string & Animation::GetSoundEffect()
+{
+	return m_animations[m_CurrentAnim][0].GetSoundEffect();
+}
+
+sf::Sound & Animation::GetSound()
+{
+	return m_sound;
 }
 
 void Animation::Update(sf::Time& _deltaTime)

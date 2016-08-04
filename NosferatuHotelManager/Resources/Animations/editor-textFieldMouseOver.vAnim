@@ -2,7 +2,7 @@
 <Animation>
   <Meta>
     <Texture>TextFieldButtons.png</Texture>
-    <Sound>###</Sound>
+    <Sound>rollover2.ogg</Sound>
     <NumFrames>1</NumFrames>
   </Meta>
 

@@ -6,7 +6,9 @@
 class Animation
 {
 	sf::Sprite												m_sprite;
+	sf::Sound												m_sound;
 	std::map <std::string, std::vector<AnimationFrame>>		m_animations;
+	std::map<std::string, sf::SoundBuffer>					m_soundEffects;
 	sf::Time												m_timeSinceLastUpdate;
 	std::string												m_CurrentAnim;
 	unsigned int											m_currentAnimFrame;
@@ -21,6 +23,8 @@ public:
 	bool													BeginAnimation(std::string _animationName);
 	std::string&											GetCurrentAnim();
 	sf::Sprite&												GetSprite();
+	std::string&											GetSoundEffect();
+	sf::Sound&												GetSound();
 
 	//Update may not need to be virtual ...
 	virtual void											Update(sf::Time& _deltaTime);

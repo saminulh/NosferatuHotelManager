@@ -18,6 +18,7 @@ public:
 	void				SetTextureBounds(unsigned int _x, unsigned int _y, unsigned int _width, unsigned int _height);
 	void				SetFrameDuration(unsigned int _ms);
 	void				SetTexture(std::string& _texture);
+	void				SetSoundEffect(std::string& _sound);
 
 	sf::IntRect&		GetTextureBounds();
 	sf::Time&			GetFrameDuration();

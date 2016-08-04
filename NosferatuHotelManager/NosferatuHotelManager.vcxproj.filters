@@ -103,5 +103,6 @@
     <None Include="Resources\Animations\tile-grassPatch2.vAnim" />
     <None Include="Resources\Animations\tile-grassPatch1.vAnim" />
     <None Include="Resources\Animations\tile-dirtPatch1.vAnim" />
+    <None Include="Resources\Sounds\rollover2.ogg" />
   </ItemGroup>
 </Project>

@@ -28,6 +28,11 @@ void AnimationFrame::SetTexture(std::string& _texture)
 	m_texture = _texture;
 }
 
+void AnimationFrame::SetSoundEffect(std::string & _sound)
+{
+	m_soundEffect = _sound;
+}
+
 sf::IntRect& AnimationFrame::GetTextureBounds()
 {
 	return m_textureBounds;

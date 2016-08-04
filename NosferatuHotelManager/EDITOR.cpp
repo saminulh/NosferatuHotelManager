@@ -167,7 +167,7 @@ void Editor::CreateMap(std::string& _fileName)
 	std::cout << "Enter map size y: ";
 	std::cin >> mapSizeY;
 
-
+	sf::Clock		mapGenTimer;
 
 	for (unsigned int cntY = 0; cntY < mapSizeY; cntY++)
 	{
@@ -194,6 +194,8 @@ void Editor::CreateMap(std::string& _fileName)
 		}
 		m_roomMap.push_back(buffer);
 	}
+
+	debug.Log(2, "Map generation took " + std::to_string(mapGenTimer.getElapsedTime().asMilliseconds()) + " milliseconds to generate " + std::to_string(mapSizeX * mapSizeY) + " tiles.");
 }
 
 void Editor::SaveMap(std::string& _FileName)
