@@ -76,7 +76,7 @@ void CustomText::CreateCustomText(std::string _text, sf::Vector2f _pos, sf::Colo
 	m_outlineBottomRight.setStyle(sf::Text::Bold);
 }
 
-void CustomText::ChangeScreenTag(ScreensManager::ScreenTag _newTag)
+void CustomText::ChangeScreenTag(ScreensManager::ScreenTag& _newTag)
 {
 	m_screenTag = _newTag;
 }

@@ -5,20 +5,20 @@
 
 class ActivityManager {
 private:
-	bool runningStatus;
-	std::vector<Activity> activityStack;
-	std::queue<ActivityRequest> activityRequestStack;
+	bool									runningStatus;
+	std::vector<Activity>					activityStack;
+	std::queue<ActivityRequest>				activityRequestStack;
 
 	void requestResolutionManager();
-	void resolveRequest(ActivityRequest activityRequest);
+	void resolveRequest(ActivityRequest		activityRequest);
 
 
 public:
 	ActivityManager();
 
-	void pushNewActivity(Activity activity);
-	void pushNewRequest(ActivityRequest activityRequest);
+	void									pushNewActivity(Activity& activity);
+	void									pushNewRequest(ActivityRequest& activityRequest);
 
-	int getActivityStackSize();
+	int										getActivityStackSize();
 };
 

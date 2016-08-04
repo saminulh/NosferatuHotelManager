@@ -3,11 +3,11 @@
 #include "Activity.h"
 #include "ActivityRequest.h"
 
-void ActivityManager::pushNewActivity(Activity activity) {
+void ActivityManager::pushNewActivity(Activity& activity) {
 	activityStack.push_back(activity);
 }
 
-void ActivityManager::pushNewRequest(ActivityRequest activityRequest) {
+void ActivityManager::pushNewRequest(ActivityRequest& activityRequest) {
 	activityRequestStack.push(activityRequest);
 
 	if (!runningStatus) {

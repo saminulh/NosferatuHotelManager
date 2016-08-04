@@ -137,7 +137,7 @@ sf::Sprite & Animation::GetSprite()
 	return m_sprite;
 }
 
-void Animation::Update(sf::Time _deltaTime)
+void Animation::Update(sf::Time& _deltaTime)
 {
 	m_timeSinceLastUpdate += _deltaTime;
 	//Check if time since last update is longer than animation frame time
@@ -169,7 +169,7 @@ ScreensManager::ScreenTag Animation::GetScreenTag()
 	return m_screenTag;
 }
 
-void Animation::AssignAnimation(std::string _anim, Animation & _ref)
+void Animation::AssignAnimation(std::string& _anim, Animation & _ref)
 {
 	m_animations.clear();
 	m_animations.insert(std::pair < std::string, std::vector<AnimationFrame>>(_anim, _ref.m_animations[_anim]));

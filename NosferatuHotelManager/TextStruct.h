@@ -22,7 +22,7 @@ public:
 	void						CreateCustomText(std::string _text, sf::Vector2f _pos, sf::Color _mainColour = sf::Color::White, 
 														sf::Color _outlineColour = sf::Color::Black, int _fontSize = 30, int _outlineThickness = 3, 
 															std::string _font = "arial.ttf");
-	void						ChangeScreenTag(ScreensManager::ScreenTag _newTag);
+	void						ChangeScreenTag(ScreensManager::ScreenTag& _newTag);
 	void						ChangeText(std::string _newText);
 
 

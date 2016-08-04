@@ -8,7 +8,7 @@ UserInputManager::UserInputManager()
 	m_scrollSpeed = 5;
 }
 
-void UserInputManager::Update(sf::Time _deltaTime)
+void UserInputManager::Update(sf::Time& _deltaTime)
 {
 	m_addedTime = false;
 

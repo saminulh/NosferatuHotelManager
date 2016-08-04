@@ -16,7 +16,7 @@ Button::~Button()
 //1 - Mouse over image/animation
 //2 - Mouse click image/animation
 ///TODO: double check if order actually matters
-void Button::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos)
+void Button::CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos)
 {
 	//Set button to deselected by default
 	m_isSelected = false;
@@ -67,7 +67,7 @@ void Button::OnMouseClick()
 	BeginAnimation(m_mouseClickedButtonAnim);
 }
 
-void Button::Update(sf::Time _deltaTime)
+void Button::Update(sf::Time& _deltaTime)
 {
 	//If the mouse is over the button and not clicked
 	if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))

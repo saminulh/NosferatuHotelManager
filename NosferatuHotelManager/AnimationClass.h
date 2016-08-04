@@ -23,9 +23,9 @@ public:
 	sf::Sprite&												GetSprite();
 
 	//Update may not need to be virtual ...
-	virtual void											Update(sf::Time _deltaTime);
+	virtual void											Update(sf::Time& _deltaTime);
 	virtual void											ChangeScreenTag(ScreensManager::ScreenTag _newTag);
 	ScreensManager::ScreenTag								GetScreenTag();
 
-	void													AssignAnimation(std::string _anim, Animation &_ref);
+	void													AssignAnimation(std::string& _anim, Animation &_ref);
 };

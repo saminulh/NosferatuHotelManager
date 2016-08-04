@@ -10,7 +10,7 @@ ButtonTextField::~ButtonTextField()
 }
 
 //Pass the function that should be executed if/when the user hits enter or releases the textbox - it will be treated as the OnMouseExit event
-void ButtonTextField::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos, sf::Vector2f _relativeUserTextPos)
+void ButtonTextField::CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos, sf::Vector2f _relativeUserTextPos)
 {
 	//Set button to deselected by default
 	m_isSelected = false;
@@ -69,7 +69,7 @@ void ButtonTextField::OnMouseHover()
 {
 }
 
-void ButtonTextField::Update(sf::Time _deltaTime)
+void ButtonTextField::Update(sf::Time& _deltaTime)
 {
 	//If the mouse is over the button and not clicked
 	if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))

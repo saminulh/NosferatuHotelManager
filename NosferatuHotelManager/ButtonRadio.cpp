@@ -15,7 +15,7 @@ ButtonRadio::ButtonRadio()
 //1 - Default True Anim
 //2 - False Hover Anim
 //3 - True Hover Anim
-void ButtonRadio::CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos)
+void ButtonRadio::CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos)
 {
 	//Set button to deselected by default
 	m_isSelected = false;
@@ -70,7 +70,7 @@ void ButtonRadio::OnMouseClick()
 		BeginAnimation(m_falseAnim);
 }
 
-void ButtonRadio::Update(sf::Time _deltaTime)
+void ButtonRadio::Update(sf::Time& _deltaTime)
 {
 	//If the mouse is over the button and not clicked
 	if (GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))

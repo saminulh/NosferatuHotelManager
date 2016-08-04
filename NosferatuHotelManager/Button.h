@@ -19,7 +19,7 @@ public:
 	Button();
 	~Button();
 
-	virtual void			CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void (*_onClickFunction)(void), 
+	virtual void			CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void (*_onClickFunction)(void), 
 										sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
 
 	virtual void			OnMouseOver();
@@ -28,7 +28,7 @@ public:
 	//Used for tooltips, etc.
 	virtual void			OnMouseHover();
 	
-	virtual void			Update(sf::Time _deltaTime);
+	virtual void			Update(sf::Time& _deltaTime);
 	//Might be unnecessary
 	virtual void			OnMouseExit();
 

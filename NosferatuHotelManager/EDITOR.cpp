@@ -37,7 +37,7 @@ void Editor::Init()
 	}
 }
 
-void Editor::LoadMap(std::string _fileName)
+void Editor::LoadMap(std::string& _fileName)
 {
 }
 
@@ -157,7 +157,7 @@ void Editor::LoadResources()
 {
 }
 
-void Editor::CreateMap(std::string _fileName)
+void Editor::CreateMap(std::string& _fileName)
 {
 	unsigned int mapSizeX, mapSizeY;
 	unsigned int tileSize = 32;
@@ -196,11 +196,11 @@ void Editor::CreateMap(std::string _fileName)
 	}
 }
 
-void Editor::SaveMap(std::string _FileName)
+void Editor::SaveMap(std::string& _FileName)
 {
 }
 
-void Editor::LoadListOfPossibleAnims(std::string _fileName)
+void Editor::LoadListOfPossibleAnims(std::string& _fileName)
 {
 	std::ifstream	list;
 	unsigned int	size;

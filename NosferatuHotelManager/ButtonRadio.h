@@ -13,13 +13,13 @@ class ButtonRadio : public Button
 public:
 	ButtonRadio();
 
-	void			CreateButton(std::string _text, std::vector<std::string> _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), 
+	void			CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), 
 									sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
 
 	void			OnMouseOver();
 	void			OnMouseClick();
 
-	void			Update(sf::Time _deltaTime);
+	void			Update(sf::Time& _deltaTime);
 	//Might be unnecessary
 	void			OnMouseExit();
 };

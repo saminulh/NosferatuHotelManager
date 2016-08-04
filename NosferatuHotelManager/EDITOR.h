@@ -16,12 +16,12 @@ public:
 	Editor();
 
 	void									Init();
-	void									LoadMap(std::string _fileName);
+	void									LoadMap(std::string& _fileName);
 	void									LoadEditorResources();
 	void									LoadResources();
-	void									CreateMap(std::string _fileName);
-	void									SaveMap(std::string _FileName);
-	void									LoadListOfPossibleAnims(std::string _fileName);
+	void									CreateMap(std::string& _fileName);
+	void									SaveMap(std::string& _FileName);
+	void									LoadListOfPossibleAnims(std::string& _fileName);
 
 	MapTile&								GetCurrentTileProperties();
 };

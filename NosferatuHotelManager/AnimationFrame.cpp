@@ -5,7 +5,7 @@ AnimationFrame::AnimationFrame()
 {
 }
 
-void AnimationFrame::SetTextureBounds(sf::IntRect _newBounds)
+void AnimationFrame::SetTextureBounds(sf::IntRect& _newBounds)
 {
 	m_textureBounds = _newBounds;
 }
@@ -23,7 +23,7 @@ void AnimationFrame::SetFrameDuration(unsigned int _ms)
 	m_frameDuration = sf::milliseconds(_ms);
 }
 
-void AnimationFrame::SetTexture(std::string _texture)
+void AnimationFrame::SetTexture(std::string& _texture)
 {
 	m_texture = _texture;
 }

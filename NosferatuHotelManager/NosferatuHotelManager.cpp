@@ -76,11 +76,13 @@ void Init()
 			Utilities::Update();
 			userInputManager.Update(sf::seconds(screensManager.m_timePerFrame));
 			guiManager.Update();
+
+			guiManager.GetCustomTextsMap()["fpsText"].ChangeText("FPS: " + std::to_string((unsigned int)Utilities::getFPS(sf::seconds(screensManager.m_elapsedTime))));
 		}
 
 		//Begin render loop here
 		{
-			guiManager.GetCustomTextsMap()["fpsText"].ChangeText("FPS: " + std::to_string((unsigned int)Utilities::getFPS(sf::seconds(screensManager.m_elapsedTime))));
+			
 			screensManager.m_bounds = screensManager.GetViewCullingBounds();
 
 			screensManager.GetWindow().setView(screensManager.GetView());
