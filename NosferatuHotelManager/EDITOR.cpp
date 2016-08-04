@@ -178,7 +178,7 @@ void Editor::CreateMap(std::string _fileName)
 			tile.LoadAnimation("tile-grassPatch1.vAnim");
 			tile.BeginAnimation("tile-grassPatch1.vAnim");
 
-			tile.GetSprite().setPosition((float)(cntX * tileSize), (float)(cntY * tileSize));
+			tile.GetSprite().setPosition((float)(cntY * tileSize), (float)(cntX * tileSize));
 			
 			//Set default values
 			tile.m_xPos					= (float)cntX;
