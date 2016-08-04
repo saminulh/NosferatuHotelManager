@@ -7,5 +7,7 @@ class ActivityRequest {
 
 public:
 	ActivityRequest(int actID, int charID, int requestType);
+	int getActivityID();
+	int getCharacterID();
 };
 

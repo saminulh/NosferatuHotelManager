@@ -19,6 +19,8 @@ public:
 	void pushNewActivity(Activity activity);
 	void pushNewRequest(ActivityRequest activityRequest);
 
+	Activity getActivityByID(int _characterID);
+
 	int getActivityStackSize();
 };
 

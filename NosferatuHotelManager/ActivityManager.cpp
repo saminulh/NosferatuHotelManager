@@ -15,6 +15,10 @@ void ActivityManager::pushNewRequest(ActivityRequest activityRequest) {
 	}
 }
 
+Activity ActivityManager::getActivityByID(int _characterID) {
+	return activityStack[_characterID];
+}
+
 int ActivityManager::getActivityStackSize() {
 	return activityStack.size();
 }
@@ -28,6 +32,8 @@ void ActivityManager::requestResolutionManager() {
 }
 
 void ActivityManager::resolveRequest(ActivityRequest activityRequest){
+	Activity activityToBeResolved = activityManager.getActivityByID(activityRequest.getCharacterID());
+	bool fullConfirmation = true;
 
 }
 
