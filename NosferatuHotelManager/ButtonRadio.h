@@ -19,6 +19,8 @@ public:
 	void			OnMouseOver();
 	void			OnMouseClick();
 
+	void			UpdateTick(bool _newStatus);
+
 	void			Update(sf::Time& _deltaTime);
 	//Might be unnecessary
 	void			OnMouseExit();

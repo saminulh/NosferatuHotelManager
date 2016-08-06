@@ -28,6 +28,7 @@ public:
 	//Used for tooltips, etc.
 	virtual void			OnMouseHover();
 	
+	virtual void			UpdateTick(bool _newStatus);
 	virtual void			Update(sf::Time& _deltaTime);
 	//Might be unnecessary
 	virtual void			OnMouseExit();

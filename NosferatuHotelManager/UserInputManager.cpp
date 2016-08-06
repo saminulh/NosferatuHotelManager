@@ -207,4 +207,34 @@ void UserInputManager::mouseLeftClickOnMap()
 void UserInputManager::mouseRightClickOnMap()
 {
 	std::cout << "Pressed mouse right!" << std::endl;
+
+	//Ensure that the mouse press was within map bounds
+	if ((screensManager.m_mousePos.x >= 0 && screensManager.m_mousePos.y >= 0) &&
+		(screensManager.m_mousePos.x < editor.m_roomMap[0].size() * 32 && screensManager.m_mousePos.y < editor.m_roomMap.size() * 32))
+	{
+		//No references need to be modified here - Ensure animation is loaded
+		guiManager.GetAnimationsMap()["previewAnim"].LoadAnimation(
+			editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].GetCurrentAnim());
+		//Start playing the correct animation
+		guiManager.GetAnimationsMap()["previewAnim"].BeginAnimation(
+			editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].GetCurrentAnim());
+
+		//Copy tile properties - and set the buttons to the correct animation!
+		editor.GetCurrentTileProperties().m_isRoomExit = 
+			editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].m_isRoomExit;
+		//Animation
+		guiManager.GetButtonsMap()["buttonIsRoomExit"]->UpdateTick(editor.GetCurrentTileProperties().m_isRoomExit);
+
+		//Is Door
+		editor.GetCurrentTileProperties().m_isDoor = 
+			editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].m_isDoor;
+		//Animation
+		guiManager.GetButtonsMap()["buttonIsDoor"]->UpdateTick(editor.GetCurrentTileProperties().m_isDoor);
+
+		//Is Solid - BE CAREFUL - THIS ONE HAS A LOWERCASE I
+		editor.GetCurrentTileProperties().m_isSolid = 
+			editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].m_isSolid;
+		//Animation
+		guiManager.GetButtonsMap()["buttonisSolid"]->UpdateTick(editor.GetCurrentTileProperties().m_isSolid);
+	}
 }

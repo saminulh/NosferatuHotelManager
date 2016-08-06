@@ -70,6 +70,17 @@ void ButtonRadio::OnMouseClick()
 		BeginAnimation(m_falseAnim);
 }
 
+void ButtonRadio::UpdateTick(bool _newStatus)
+{
+	m_isTicked = _newStatus;
+
+	//Set button to sprite depending on if it's value is true or false
+	if (m_isTicked)
+		BeginAnimation(m_trueAnim);
+	else
+		BeginAnimation(m_falseAnim);
+}
+
 void ButtonRadio::Update(sf::Time& _deltaTime)
 {
 	//If the mouse is over the button and not clicked

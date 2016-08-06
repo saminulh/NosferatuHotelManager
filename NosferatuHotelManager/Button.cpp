@@ -67,6 +67,11 @@ void Button::OnMouseClick()
 	BeginAnimation(m_mouseClickedButtonAnim);
 }
 
+void Button::UpdateTick(bool _newStatus)
+{
+	//Used as a stub for the radio buttons
+}
+
 void Button::Update(sf::Time& _deltaTime)
 {
 	//If the mouse is over the button and not clicked
