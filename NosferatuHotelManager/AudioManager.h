@@ -21,7 +21,7 @@ public:
 	bool										LoadSound(std::string _fileName);
 	//bool										LoadMusic(std::string _fileName);
 
-	unsigned int								EnqueueSound(int _priority, sf::SoundBuffer _buffer, Animation* _source);
+	unsigned int								EnqueueSound(int _priority, sf::SoundBuffer& _buffer, Animation* _source);
 
 	std::map<std::string, sf::SoundBuffer>&		GetSoundsList();
 	std::map<std::string, sf::Music>&			GetMusicsList();

@@ -109,14 +109,13 @@ bool AudioManager::LoadMusic(std::string _fileName)
 
 Returns 500 if no spot was found
 */
-unsigned int AudioManager::EnqueueSound(int _priority, sf::SoundBuffer _buffer, Animation* _source)
+unsigned int AudioManager::EnqueueSound(int _priority, sf::SoundBuffer& _buffer, Animation* _source)
 {
 	//Priority is used as a start point for the search
 	for (unsigned int cnt = _priority; cnt < soundInstancesList.size(); cnt++)
 	{
 		//Find an empty/unused sf::Sound
-		if (soundInstancesList[cnt].m_sound.getStatus() == sf::Sound::Stopped || 
-			soundInstancesList[cnt].m_sound.getStatus() == sf::Sound::Paused)
+		if (soundInstancesList[cnt].m_sound.getStatus() != sf::Sound::Playing)
 		{
 			soundInstancesList[cnt].m_sound.setBuffer(_buffer);
 			soundInstancesList[cnt].m_sound.play();
