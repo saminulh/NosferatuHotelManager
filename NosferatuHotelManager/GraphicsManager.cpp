@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GraphicsManager.h"
+#include "AnimationFrame.h"
 
 GraphicsManager::GraphicsManager()
 {
@@ -104,4 +105,9 @@ std::map<std::string, sf::Font>& GraphicsManager::GetFontsMap()
 std::map<std::string, sf::Texture>& GraphicsManager::GetTexturesMap()
 {
 	return texturesMap;
+}
+
+std::map<std::string, std::vector<AnimationFrame>>& GraphicsManager::GetAnimationsRepository()
+{
+	return m_globalAnimationsRepository;
 }

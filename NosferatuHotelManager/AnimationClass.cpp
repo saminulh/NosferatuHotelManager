@@ -35,85 +35,109 @@ bool Animation::LoadAnimation(std::string _fileName)
 	std::vector<AnimationFrame>	animationList;
 
 
+	//Before loading the animation, ensure it isn't already loaded - store in a var to have access later
+	auto& item = graphicsManager.GetAnimationsRepository().find(_fileName);
+	if (item == graphicsManager.GetAnimationsRepository().end())
+	{
+		//Resource wasn't found, therefore we load it
 
 	//Set the search folder
-	docLoc = "Resources/Animations/";
-	docLoc += _fileName;
+		docLoc = "Resources/Animations/";
+		docLoc += _fileName;
 
-	//Log to debug - maybe this could be removed
-	debug.Log(0, "Loading ANIMATION '" + _fileName + "' ...");
-	//Load the actual file (string must be passed as a c-string)
-	tinyxml2::XMLError err = doc.LoadFile(docLoc.c_str());
-	
-	if (err != tinyxml2::XML_SUCCESS)
-	{
-		debug.Log(3, "Error reading XML file!");
-	}
+		//Log to debug - maybe this could be removed
+		debug.Log(0, "Loading ANIMATION '" + _fileName + "' ...");
+		//Load the actual file (string must be passed as a c-string)
+		tinyxml2::XMLError err = doc.LoadFile(docLoc.c_str());
 
-	//Get access to root element
-	tinyxml2::XMLElement* root = doc.FirstChildElement("Animation");
-
-	//Grab necessary data as std::string
-	textureLoc = root->FirstChildElement("Meta")->FirstChildElement("Texture")->GetText();
-	soundLoc = root->FirstChildElement("Meta")->FirstChildElement("Sound")->GetText();
-	numFrames = std::stoi(root->FirstChildElement("Meta")->FirstChildElement("NumFrames")->GetText());
-
-
-	//Try to load TEXTURE file - the '###' is reserved, in case the animation does not require a texture/sound effect
-	if (textureLoc != "###")
-		graphicsManager.LoadTexture(textureLoc);
-
-	//Try to load SOUND file
-	if(soundLoc != "###")
-		audioManager.LoadSound(soundLoc);
-
-	//If either field is empty, animation file is broken
-	if (textureLoc == "" || soundLoc == "")
-	{
-		debug.Log(3, "Error loading ANIMATION '" + _fileName + "' - either the required sound or texture were not included in the file! To create an animation" \
-			+ " without a texture or sound, use '###' in place of a texture or sound file name!");
-		return false;
-	}
-
-	//Create handle for parsing through all of the frames
-	tinyxml2::XMLElement* frame = root->FirstChildElement("Frame");
-	for (unsigned int cnt = 0; cnt < numFrames; cnt++)
-	{
-		AnimationFrame	curFrame;
-		unsigned int	_x, _y, _width, _height, _ms;
-
-		//Read data from XML file - for some reason x and y are reversed; this seems to work though, so whatever
-		_y = std::stoi(frame->FirstChildElement("b1")->GetText());
-		_x= std::stoi(frame->FirstChildElement("b2")->GetText());
-		_width = std::stoi(frame->FirstChildElement("b3")->GetText());
-		_height = std::stoi(frame->FirstChildElement("b4")->GetText());
-
-		_ms = std::stoi(frame->FirstChildElement("ms")->GetText());
-
-		//Set values in curFrame to those that were read from file
-		curFrame.SetTextureBounds(_x, _y, _width, _height);
-		curFrame.SetFrameDuration(_ms);
-		curFrame.SetTexture(textureLoc);
-
-		if (cnt == 0)
+		if (err != tinyxml2::XML_SUCCESS)
 		{
-			curFrame.SetSoundEffect(soundLoc);
+			debug.Log(3, "Error reading XML file!");
 		}
 
-		//Save curFrame into the animationList
-		animationList.push_back(curFrame);
+		//Get access to root element
+		tinyxml2::XMLElement* root = doc.FirstChildElement("Animation");
+
+		//Grab necessary data as std::string
+		textureLoc = root->FirstChildElement("Meta")->FirstChildElement("Texture")->GetText();
+		soundLoc = root->FirstChildElement("Meta")->FirstChildElement("Sound")->GetText();
+		numFrames = std::stoi(root->FirstChildElement("Meta")->FirstChildElement("NumFrames")->GetText());
 
 
-		//Move on to the next frame
-		frame = frame->NextSiblingElement("Frame");
+		//Try to load TEXTURE file - the '###' is reserved, in case the animation does not require a texture/sound effect
+		if (textureLoc != "###")
+			graphicsManager.LoadTexture(textureLoc);
+
+		//Try to load SOUND file
+		if (soundLoc != "###")
+			audioManager.LoadSound(soundLoc);
+
+		//If either field is empty, animation file is broken
+		if (textureLoc == "" || soundLoc == "")
+		{
+			debug.Log(3, "Error loading ANIMATION '" + _fileName + "' - either the required sound or texture were not included in the file! To create an animation" \
+				+ " without a texture or sound, use '###' in place of a texture or sound file name!");
+			return false;
+		}
+
+		//Create handle for parsing through all of the frames
+		tinyxml2::XMLElement* frame = root->FirstChildElement("Frame");
+		for (unsigned int cnt = 0; cnt < numFrames; cnt++)
+		{
+			AnimationFrame	curFrame;
+			unsigned int	_x, _y, _width, _height, _ms;
+
+			//Read data from XML file - for some reason x and y are reversed; this seems to work though, so whatever
+			_y = std::stoi(frame->FirstChildElement("b1")->GetText());
+			_x = std::stoi(frame->FirstChildElement("b2")->GetText());
+			_width = std::stoi(frame->FirstChildElement("b3")->GetText());
+			_height = std::stoi(frame->FirstChildElement("b4")->GetText());
+
+			_ms = std::stoi(frame->FirstChildElement("ms")->GetText());
+
+			//Set values in curFrame to those that were read from file
+			curFrame.SetTextureBounds(_x, _y, _width, _height);
+			curFrame.SetFrameDuration(_ms);
+			curFrame.SetTexture(textureLoc);
+
+			if (cnt == 0)
+			{
+				//curFrame.SetSoundEffect(soundLoc);
+			}
+
+			//Save curFrame into the animationList
+			animationList.push_back(curFrame);
+
+
+			//Move on to the next frame
+			frame = frame->NextSiblingElement("Frame");
+		}
+
+		//Save the sound effect
+		if (soundLoc != "###")
+			m_soundEffects.insert(std::pair<std::string, sf::SoundBuffer>(_fileName, audioManager.GetSoundsList()[soundLoc]));
+
+		//Save the loaded animation to the class
+		m_animations.insert(std::pair<std::string, std::vector<AnimationFrame>>(_fileName, animationList));
+		
+		//Save to the global repository
+		graphicsManager.GetAnimationsRepository().insert(std::pair<std::string, std::vector<AnimationFrame>>(_fileName, animationList));
+
+		debug.Log(0, "Successfully loaded ANIMATION '" + _fileName + "'!");
 	}
+	else
+	{
+		//Resource exists; therefore use it and don't load another
+		m_animations.insert(std::pair<std::string, std::vector<AnimationFrame>>(_fileName, item->second));
 
-	//Save the sound effect
-	m_soundEffects.insert(std::pair<std::string, sf::SoundBuffer>(_fileName, audioManager.GetSoundsList()[soundLoc]));
+		//Check if the loaded animation has an associated sound
+		auto& soundItem = audioManager.GetSoundsList().find(item->second[0].GetSoundEffect());
 
-	//Save the loaded animation to the class
-	m_animations.insert( std::pair<std::string, std::vector<AnimationFrame>>(_fileName, animationList) );
-	debug.Log(0, "Successfully loaded ANIMATION '" + _fileName + "'!");
+		if (soundItem != audioManager.GetSoundsList().end() && item->second[0].GetSoundEffect() != "###")
+		{
+			m_soundEffects.insert(std::pair<std::string, sf::SoundBuffer>(_fileName, audioManager.GetSoundsList()[item->second[0].GetSoundEffect()]));
+		}
+	}
 	return true;
 }
 
@@ -132,8 +156,8 @@ bool Animation::BeginAnimation(std::string _animationName)
 	if (m_animations[_animationName][0].GetSoundEffect() != "###")
 	{
 		//Play the corresponding sound
-		m_sound.setBuffer(m_soundEffects[_animationName]);
-		m_sound.play();
+		//m_sound.setBuffer(m_soundEffects[_animationName]);
+		//m_sound.play();
 	}
 
 	
@@ -161,7 +185,8 @@ std::string & Animation::GetSoundEffect()
 
 sf::Sound & Animation::GetSound()
 {
-	return m_sound;
+	//return m_sound;
+	return sf::Sound();
 }
 
 void Animation::Update(sf::Time& _deltaTime)

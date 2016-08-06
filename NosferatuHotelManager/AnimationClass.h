@@ -6,7 +6,11 @@
 class Animation
 {
 	sf::Sprite												m_sprite;
-	sf::Sound												m_sound;
+
+
+	//CANNOT HAVE MORE THAN 256 sf::Sound AND sf::Music instances at any given time!
+	//Going to have to fix this somehow...
+	///sf::Sound												m_sound;
 	std::map <std::string, std::vector<AnimationFrame>>		m_animations;
 	std::map<std::string, sf::SoundBuffer>					m_soundEffects;
 	sf::Time												m_timeSinceLastUpdate;
