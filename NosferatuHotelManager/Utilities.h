@@ -3,6 +3,14 @@
 
 class Utilities {
 public:
+	//Used for FPS counting
+	static unsigned int fpsP1;
+	static unsigned int fpsP2;
+	static unsigned int fpsP3;
+	static unsigned int fpsP4;
+	static unsigned int fpsP5;
+	static unsigned int fpsAvg;
+
 	//Master game time
 	//Formatted as [Day][Hour][Minute]
 	//Hour and minute both occupy exactly two digits each
@@ -12,6 +20,12 @@ public:
 
 	//This will be multiplied to calculate the passage of time
 	static float				m_currentSpeedFactor;
+
+
+	/******		V	Functions	V	**********************/
+
+
+
 
 	static void					Update();
 

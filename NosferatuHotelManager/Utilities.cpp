@@ -8,6 +8,14 @@ bool		Utilities::m_isGamePaused = false;
 //This will be multiplied to calculate the passage of time
 float		Utilities::m_currentSpeedFactor = 5;
 
+
+unsigned int Utilities::fpsP1 = 0;
+unsigned int Utilities::fpsP2 = 0;
+unsigned int Utilities::fpsP3 = 0;
+unsigned int Utilities::fpsP4 = 0;
+unsigned int Utilities::fpsP5 = 0;
+unsigned int Utilities::fpsAvg = 0;
+
 float Utilities::FormatGameTime(float _time)
 {
 	if ((unsigned int)_time % 100 > 60)
@@ -168,5 +176,16 @@ int Utilities::getPhaseOfDay(int time) {
 
 float Utilities::getFPS(const sf::Time & _time)
 {
-	return (1000000.0f / _time.asMicroseconds());
+	fpsP5 = fpsP4;
+	fpsP4 = fpsP3;
+	fpsP3 = fpsP2;
+	fpsP2 = fpsP1;
+	fpsP1 = (unsigned int)(1000000.0f / _time.asMicroseconds());
+
+	fpsAvg = fpsP1 + fpsP2 + fpsP3 + fpsP4 + fpsP5;
+	fpsAvg /= 5;
+
+
+	//This should probably be changed, but w.e
+	return (float)fpsAvg;
 }

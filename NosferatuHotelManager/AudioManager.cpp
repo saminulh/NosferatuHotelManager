@@ -37,7 +37,7 @@ bool AudioManager::LoadSound(std::string _fileName)
 			message = "Successfully loaded SOUND file '";
 			message += _fileName;
 			message += "'!";
-			debug.Log(1, message);
+			debug.Log(0, message);
 		}
 
 		//Save the loaded sound file if successful

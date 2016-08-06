@@ -33,13 +33,6 @@ const int EVENINGENDHOUR = 20;
 const int NIGHTSTARTHOUR = 21;
 const int NIGHTENDHOUR = 5;
 
-
-unsigned int fpsP1		= 0;
-unsigned int fpsP2		= 0;
-unsigned int fpsP3		= 0;
-unsigned int fpsP4		= 0;
-unsigned int fpsP5		= 0;
-unsigned int fpsAvg		= 0;
 void Init()
 {
 	srand((unsigned int)time(NULL));
@@ -78,18 +71,8 @@ void Init()
 			userInputManager.Update(sf::seconds(screensManager.m_timePerFrame));
 			guiManager.Update();
 
-
-			//Temporary FPS averaging
-			fpsP5 = fpsP4;
-			fpsP4 = fpsP3;
-			fpsP3 = fpsP2;
-			fpsP2 = fpsP1;
-			fpsP1 = (unsigned int)Utilities::getFPS(sf::seconds(screensManager.m_elapsedTime));
-			fpsAvg = fpsP1 + fpsP2 + fpsP3 + fpsP4 + fpsP5;
-			fpsAvg /= 5;
-
-
-			guiManager.GetCustomTextsMap()["fpsText"].ChangeText("FPS: " + std::to_string(fpsAvg));
+			//FPS Counter
+			guiManager.GetCustomTextsMap()["fpsText"].ChangeText("FPS: " + std::to_string((unsigned int)Utilities::getFPS(sf::seconds(screensManager.m_elapsedTime))));
 		}
 
 		//Begin render loop here
