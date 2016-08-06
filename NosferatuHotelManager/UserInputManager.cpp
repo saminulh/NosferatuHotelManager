@@ -191,6 +191,16 @@ void UserInputManager::mouseLeftClickOnMap()
 		//Add this tile's reference to the new animation it is using
 		editor.AddUsedAnimation(guiManager.GetAnimationsMap()["previewAnim"].GetCurrentAnim(), 
 			&editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)]);
+
+		//Copy tile properties
+		editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].
+			m_isRoomExit = editor.GetCurrentTileProperties().m_isRoomExit;
+
+		editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].
+			m_isDoor = editor.GetCurrentTileProperties().m_isDoor;
+
+		editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].
+			m_isSolid = editor.GetCurrentTileProperties().m_isSolid;
 	}
 }
 

@@ -89,5 +89,7 @@ void ButtonActions::buttonDownInAnims()
 
 void ButtonActions::buttonSaveMap()
 {
+	std::cout << "Saving ... " << std::endl;
 	editor.SaveMap(editor.m_currentFile);
+	std::cout << "Saved successfully!" << std::endl;
 }
