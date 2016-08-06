@@ -86,3 +86,8 @@ void ButtonActions::buttonDownInAnims()
 	guiManager.GetAnimationsMap()["previewAnim"].BeginAnimation(editor.m_shortTilesList[editor.m_currentTileInShortList].GetCurrentAnim());
 	guiManager.GetCustomTextsMap()["counter"].ChangeText(std::to_string(editor.m_currentTileInShortList + 1) + " / " + std::to_string(editor.m_shortTilesList.size()));
 }
+
+void ButtonActions::buttonSaveMap()
+{
+	editor.SaveMap(editor.m_currentFile);
+}

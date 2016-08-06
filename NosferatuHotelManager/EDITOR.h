@@ -1,6 +1,12 @@
 #pragma once
 #include "MapTile.h"
 
+struct UsedAnimStruct
+{
+	std::string								refAnim;
+	std::vector<Animation*>					referencesList;
+};
+
 class Editor
 {
 public:
@@ -10,8 +16,11 @@ public:
 	MapTile									m_currentTileProperties;
 	unsigned int							m_currentTileInShortList;
 	std::string								m_tilesList;
+	std::string								m_currentFile;
 
-	static tinyxml2::XMLDocument			m_xml;
+	std::vector<UsedAnimStruct>				m_animationsUsed;
+
+	//static tinyxml2::XMLDocument			m_xml;
 
 	Editor();
 
@@ -20,8 +29,11 @@ public:
 	void									LoadEditorResources();
 	void									LoadResources();
 	void									CreateMap(std::string& _fileName);
-	void									SaveMap(std::string& _FileName);
+	void									SaveMap(std::string& _fileName);
 	void									LoadListOfPossibleAnims(std::string& _fileName);
+
+	void									AddUsedAnimation(std::string _anim, Animation* _user);
+	void									RemoveUnusedAnimation(std::string _anim, Animation* _user);
 
 	MapTile&								GetCurrentTileProperties();
 };

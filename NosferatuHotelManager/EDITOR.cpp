@@ -20,6 +20,7 @@ void Editor::Init()
 		//User wants to create a new file
 		std::cout << "Please enter the desired file name: " << std::endl;
 		std::cin >> fileName;
+		m_currentFile = fileName;
 		CreateMap(fileName);
 	}
 	else if (std::getchar() == 'o' || std::getchar() == 'O')
@@ -28,6 +29,7 @@ void Editor::Init()
 		//User wants to open an existing file
 		std::cout << "Please enter the file location to be opened: " << std::endl;
 		std::cin >> fileName;
+		m_currentFile = fileName;
 		LoadMap(fileName);
 	}
 	else
@@ -190,16 +192,87 @@ void Editor::CreateMap(std::string& _fileName)
 			tile.m_tileActivityCode		= 0;
 			tile.m_tileID				= 0;
 
+			AddUsedAnimation("tile-grassPatch1.vAnim", &tile);
+
 			buffer.push_back(tile);
 		}
 		m_roomMap.push_back(buffer);
 	}
 
+	SaveMap(m_currentFile);
+
 	debug.Log(2, "Map generation took " + std::to_string(mapGenTimer.getElapsedTime().asMilliseconds()) + " milliseconds to generate " + std::to_string(mapSizeX * mapSizeY) + " tiles.");
 }
 
-void Editor::SaveMap(std::string& _FileName)
+void Editor::SaveMap(std::string& _fileName)
 {
+	std::ofstream				file;
+	tinyxml2::XMLDocument		doc;
+
+	debug.Log(0, "Saving map to '" + _fileName + "'!");
+
+	//Create root element
+	tinyxml2::XMLNode*			root			= doc.NewElement("NosferatuHotelManagerMap");
+	doc.InsertFirstChild(root);
+
+	//Save relevant meta info
+	tinyxml2::XMLNode*			meta			= doc.NewElement("Meta");
+	root->InsertFirstChild(meta);
+
+	//X and Y Map size
+	tinyxml2::XMLElement*		mapSizeX		= doc.NewElement("MapSizeX");
+	mapSizeX->SetText(m_roomMap[0].size());
+	meta->InsertFirstChild(mapSizeX);
+	tinyxml2::XMLElement*		mapSizeY = doc.NewElement("MapSizeY");
+	mapSizeY->SetText(m_roomMap.size());
+	meta->InsertFirstChild(mapSizeY);
+
+	//Animations
+	tinyxml2::XMLElement*		animationsUsed	= doc.NewElement("AnimationsUsed");
+	root->InsertEndChild(animationsUsed);
+
+	//Save the animations that are used within the map in the 'header'
+	for (unsigned int cnt = 0; cnt < m_animationsUsed.size(); cnt++)
+	{
+		//Create a new node
+		tinyxml2::XMLElement*	node			= doc.NewElement("Animation");
+		//Set the node's value
+		node->SetText(m_animationsUsed[cnt].refAnim.c_str());
+		//Add the node to the file
+		animationsUsed->InsertEndChild(node);
+	}
+
+	//Begin saving the map itself
+	tinyxml2::XMLNode*			map				= doc.NewElement("Map");
+	root->InsertEndChild(map);
+
+	//Iterate through map Y
+	for (unsigned int itr = 0; itr < m_roomMap.size(); itr++)
+	{
+		//Seperate map rows in the XML
+		tinyxml2::XMLNode*		row				= doc.NewElement("Row");
+		//Iterate through map X for current map Y
+		for (unsigned int cnt = 0; cnt < m_roomMap[itr].size(); cnt++)
+		{
+			//Create new element for each tile
+			tinyxml2::XMLElement*	tile		= doc.NewElement("Tile");
+
+			tile->SetAttribute("isRoomExit", m_roomMap[itr][cnt].m_isRoomExit);
+			tile->SetAttribute("isDoor", m_roomMap[itr][cnt].m_isDoor);
+			tile->SetAttribute("isSolid", m_roomMap[itr][cnt].m_isSolid);
+			tile->SetAttribute("Animation", m_roomMap[itr][cnt].GetCurrentAnim().c_str());
+
+			//Save the tile to the row
+			row->InsertEndChild(tile);
+		}
+		//Save the row to the map
+		map->InsertEndChild(row);
+	}
+
+	//Save the map to file
+	doc.SaveFile(_fileName.c_str());
+
+	debug.Log(0, "Successfully saved FILE '" + _fileName + "'!");
 }
 
 void Editor::LoadListOfPossibleAnims(std::string& _fileName)
@@ -227,6 +300,47 @@ void Editor::LoadListOfPossibleAnims(std::string& _fileName)
 			//Save into both lists because copying is wonky
 			m_allTilesList.push_back(anim);
 			m_shortTilesList.push_back(anim);
+		}
+	}
+}
+
+void Editor::AddUsedAnimation(std::string _anim, Animation* _user)
+{
+	//Search the list of used animations to avoid double-adding
+	for (unsigned int cnt = 0; cnt < m_animationsUsed.size(); cnt++)
+	{
+		//We know it's here so we can exit
+		if (m_animationsUsed[cnt].refAnim == _anim)
+			return;
+	}
+	//Add it if it wasn't found
+	UsedAnimStruct		anim;
+	anim.refAnim = _anim;
+	anim.referencesList.push_back(_user);
+	m_animationsUsed.push_back(anim);
+}
+
+void Editor::RemoveUnusedAnimation(std::string _anim, Animation* _user)
+{
+	//Find the animation
+	for (unsigned int cnt = 0; cnt < m_animationsUsed.size(); cnt++)
+	{
+		if (m_animationsUsed[cnt].refAnim == _anim)
+		{
+			//Remove the tile from the list of tiles that use that animation
+			for (unsigned int itr = 0; itr < m_animationsUsed[cnt].referencesList.size(); itr++)
+			{
+				if (m_animationsUsed[cnt].referencesList[itr] == _user)
+				{
+					m_animationsUsed[cnt].referencesList.erase(m_animationsUsed[cnt].referencesList.begin() + itr);
+				}
+			}
+
+			//If the list of dependent tiles is empty, remove the entire animation
+			if (m_animationsUsed[cnt].referencesList.size() == 0)
+			{
+				m_animationsUsed.erase(m_animationsUsed.begin() + cnt);
+			}
 		}
 	}
 }

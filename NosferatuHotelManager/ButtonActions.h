@@ -12,4 +12,6 @@ public:
 
 	static void	buttonUpInAnims();
 	static void	buttonDownInAnims();
+
+	static void	buttonSaveMap();
 };
