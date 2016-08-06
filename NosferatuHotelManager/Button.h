@@ -20,7 +20,7 @@ public:
 	~Button();
 
 	virtual void			CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void (*_onClickFunction)(void), 
-										sf::Vector2f _relativeTextPos = sf::Vector2f(25, 25));
+										sf::Vector2f _relativeTextPos = sf::Vector2f(10.f, 10.f));
 
 	virtual void			OnMouseOver();
 	virtual void			OnMouseClick();

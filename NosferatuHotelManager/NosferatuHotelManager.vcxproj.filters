@@ -79,6 +79,7 @@
     <Image Include="Resources\Textures\BlankTile16x16.png" />
     <Image Include="Resources\Textures\roguelikeSheet_transparent.png" />
     <Image Include="Resources\Textures\ShittyTiles.png" />
+    <Image Include="Resources\Textures\RegularButtons.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animations\testButtonDefaultAnim.vAnim" />
@@ -104,5 +105,8 @@
     <None Include="Resources\Animations\tile-grassPatch1.vAnim" />
     <None Include="Resources\Animations\tile-dirtPatch1.vAnim" />
     <None Include="Resources\Sounds\rollover2.ogg" />
+    <None Include="Resources\Animations\editor-regularDefault.vAnim" />
+    <None Include="Resources\Animations\editor-regularMouseClick.vAnim" />
+    <None Include="Resources\Animations\editor-regularMouseOver.vAnim" />
   </ItemGroup>
 </Project>

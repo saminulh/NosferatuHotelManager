@@ -241,6 +241,7 @@
     <Image Include="Resources\Textures\BlankTile16x16.png" />
     <Image Include="Resources\Textures\HotelEntrance.png" />
     <Image Include="Resources\Textures\Panel.png" />
+    <Image Include="Resources\Textures\RegularButtons.png" />
     <Image Include="Resources\Textures\roguelikeSheet_transparent.png" />
     <Image Include="Resources\Textures\ShittyButton.png" />
     <Image Include="Resources\Textures\ShittyTiles.png" />
@@ -255,6 +256,9 @@
     <None Include="Resources\Animations\editor-downMouseClickButton.vAnim" />
     <None Include="Resources\Animations\editor-downMouseDefaultButton.vAnim" />
     <None Include="Resources\Animations\editor-downMouseOverButton.vAnim" />
+    <None Include="Resources\Animations\editor-regularMouseOver.vAnim" />
+    <None Include="Resources\Animations\editor-regularDefault.vAnim" />
+    <None Include="Resources\Animations\editor-regularMouseClick.vAnim" />
     <None Include="Resources\Animations\editor-sidePanel.vAnim" />
     <None Include="Resources\Animations\editor-textFieldClicked.vAnim" />
     <None Include="Resources\Animations\editor-textFieldDefault.vAnim" />

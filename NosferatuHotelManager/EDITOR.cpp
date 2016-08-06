@@ -68,6 +68,12 @@ void Editor::LoadEditorResources()
 	sliderDownButtonAnims.push_back("editor-downMouseOverButton.vAnim");
 	sliderDownButtonAnims.push_back("editor-downMouseClickButton.vAnim");
 
+	//Load animations for regular buttons
+	std::vector<std::string>	regularButtonAnims;
+	regularButtonAnims.push_back("editor-regularDefault.vAnim");
+	regularButtonAnims.push_back("editor-regularMouseOver.vAnim");
+	regularButtonAnims.push_back("editor-regularMouseClick.vAnim");
+
 	//Radio button for if the tile is a door
 	ButtonRadio*				buttonIsDoor = new ButtonRadio();
 	void						(*isDoor)(void);
@@ -117,6 +123,14 @@ void Editor::LoadEditorResources()
 	decrementAnims = &ButtonActions::buttonDownInAnims;
 	buttonDownInList->CreateButton("", sliderDownButtonAnims, sf::Vector2f(1300.f, 350.f), decrementAnims);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("buttonDownInList", buttonDownInList));
+
+	//Save button
+	Button*						saveButton = new Button();
+	void(*saveButtonAction)();
+	saveButtonAction = &ButtonActions::buttonSaveMap;
+	saveButton->CreateButton("Save", regularButtonAnims, sf::Vector2f(1125.f, 650.f), saveButtonAction, sf::Vector2f(55.f, 5.f));
+	saveButton->BeginAnimation("editor-regularDefault.vAnim");
+	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("saveButton", saveButton));
 
 	//Counter
 	CustomText					counter;
