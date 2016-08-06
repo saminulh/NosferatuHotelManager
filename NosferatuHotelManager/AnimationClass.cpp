@@ -24,6 +24,11 @@ Animation::~Animation()
 {
 }
 
+void Animation::ClearCurrentAnimations()
+{
+	m_animations.clear();
+}
+
 ///TODO: Make this function smart enough to not reload the same damn animation 10000s of times when loading maps, etc.
 bool Animation::LoadAnimation(std::string _fileName)
 {

@@ -65,7 +65,6 @@ void Init()
 			}
 
 			//Frame Updates
-			//screensManager.m_mousePos = sf::Mouse::getPosition(screensManager.GetWindow());
 			screensManager.m_mousePos = screensManager.GetWindow().mapPixelToCoords(sf::Mouse::getPosition(screensManager.GetWindow()));
 			Utilities::Update();
 			userInputManager.Update(sf::seconds(screensManager.m_timePerFrame));
@@ -129,6 +128,7 @@ int main()
 	}
 
 	system("pause");*/
+
 	debug.Start();
 
 	editor.Init();

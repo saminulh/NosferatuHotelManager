@@ -6,12 +6,16 @@ UserInputManager::UserInputManager()
 	m_minTimeToScroll = sf::seconds((float)0.15);
 	m_timeMouseInScrollArea = sf::Time::Zero;
 	m_scrollSpeed = 5;
+
+	m_minTimeBetweenClicks = sf::seconds((float)(0.1));
+	m_timeSinceMouseClick = sf::Time::Zero;
 }
 
 void UserInputManager::Update(sf::Time& _deltaTime)
 {
 	m_addedTime = false;
 
+	/*-------- Begin Mouse Scroll Code ---------------*/
 	//Mouse on far left of screen
 	if ((unsigned int)sf::Mouse::getPosition(screensManager.GetWindow()).x < screensManager.GetWindow().getSize().x / 12)
 	{
@@ -58,7 +62,6 @@ void UserInputManager::Update(sf::Time& _deltaTime)
 		}
 	}
 	//Mouse on far left of screen
-	//if (screensManager.m_mousePos.y > screensManager.GetWindow().getSize().y * 6 / 7)
 	if ((unsigned int)sf::Mouse::getPosition(screensManager.GetWindow()).y > screensManager.GetWindow().getSize().y * 6 / 7)
 	{
 		if (!m_addedTime)
@@ -79,6 +82,36 @@ void UserInputManager::Update(sf::Time& _deltaTime)
 		//Mouse isn't in scroll area
 		m_timeMouseInScrollArea = sf::Time::Zero;
 	}
+	/*-------- End Mouse Scroll Code -----------------*/
+
+
+	/*-------- Begin Mouse Click Code ---------------*/
+	//If enough time has passed and the user is pressing the left mouse button
+	if (m_timeSinceMouseClick >= m_minTimeBetweenClicks &&
+		sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		//If the mouse isn't over the side panel
+		if (!guiManager.GetAnimationsMap()["panelAnim"].GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)))
+		{
+			mouseLeftClickOnMap();
+			m_timeSinceMouseClick = sf::Time::Zero;
+		}
+	}
+
+	//If enough time has passed and the user is pressing the right mouse button
+	if (m_timeSinceMouseClick >= m_minTimeBetweenClicks &&
+		sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
+	{
+		//If the mouse isn't over the side panel
+		if (!guiManager.GetAnimationsMap()["panelAnim"].GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)))
+		{
+			mouseRightClickOnMap();
+			m_timeSinceMouseClick = sf::Time::Zero;
+		}
+	}
+
+	m_timeSinceMouseClick += _deltaTime;
+	/*-------- End Mouse Click Code -----------------*/
 }
 
 void UserInputManager::TextEnteredEvent(sf::Event & _event)
@@ -130,4 +163,38 @@ void UserInputManager::TextEnteredEvent(sf::Event & _event)
 			}
 		}
 	}
+}
+
+void UserInputManager::mouseLeftClickOnMap()
+{
+	std::cout << "Pressed mouse left at " << screensManager.m_mousePos.x << ", " << screensManager.m_mousePos.y << std::endl;
+
+	//Ensure that the mouse press was within map bounds
+	if ((screensManager.m_mousePos.x >= 0 && screensManager.m_mousePos.y >= 0) &&
+		(screensManager.m_mousePos.x < editor.m_roomMap[0].size() * 32 && screensManager.m_mousePos.y < editor.m_roomMap.size() * 32))
+	{
+		//Remove this tile's reference to the previous animation it had
+		editor.RemoveUnusedAnimation(editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].GetCurrentAnim(), 
+			&editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)]);
+		
+		//Clear the tile's loaded animations (a tile should only have one animation)
+		editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].ClearCurrentAnimations();
+
+		//Load the correct animation into the tile
+		editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].
+			LoadAnimation(guiManager.GetAnimationsMap()["previewAnim"].GetCurrentAnim());
+
+		//Assign the tile the preview animation (the one displayed on the center left of the editor panel)
+		editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].
+			BeginAnimation(guiManager.GetAnimationsMap()["previewAnim"].GetCurrentAnim());
+
+		//Add this tile's reference to the new animation it is using
+		editor.AddUsedAnimation(guiManager.GetAnimationsMap()["previewAnim"].GetCurrentAnim(), 
+			&editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)]);
+	}
+}
+
+void UserInputManager::mouseRightClickOnMap()
+{
+	std::cout << "Pressed mouse right!" << std::endl;
 }

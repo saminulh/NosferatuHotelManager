@@ -24,6 +24,7 @@ public:
 	Animation(const Animation &_obj);
 	~Animation();
 
+	void													ClearCurrentAnimations();
 	bool													LoadAnimation(std::string _fileName);
 	bool													BeginAnimation(std::string _animationName);
 	std::string&											GetCurrentAnim();
