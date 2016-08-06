@@ -4,12 +4,15 @@
 #include "../DecisionMaker.h"
 #include "../Activity.h"
 
+NPC::NPC(){
+}
+
 NPC::NPC(std::string type) {
 	npcManager.pushNewNPC(*this);
 	npcID = npcManager.getNPCStackSize();
 	//ADD TRAITS
-	currentActivity = nullptr;
-	decisionMaker.setHostCharacterID(npcID);
+	currentActivityID = -1;
+	decisionMaker.setHostNPCID(npcID);
 }
 
 int NPC::getNPCID() {
@@ -63,10 +66,35 @@ void NPC::setFriendlinessToCharacter(int characterID, int newFriendliness) {
 	friendlinessModifiers[characterID] = newFriendliness - baseFriendliness;
 }
 
-Activity* NPC::getCurrentActivity() {
-	return currentActivity;
+void NPC::setInfluence(int _activityID, int _influence) {
+	activityOdds[_activityID].setInstantaneousInfluence(_influence);
 }
 
-void NPC::setCurrentActivity(Activity* _currentActivity) {
-	currentActivity = _currentActivity;
+void NPC::setInfluence(Activity _activity, int _influence){
+	activityOdds[_activity.getActivityID()].setInstantaneousInfluence(_influence);
+}
+
+int NPC::getTotalOddsOfActivity(int _activityID) {
+	return activityOdds[_activityID].getTotalOdds();
+}
+
+int NPC::getTotalOddsOfActivity(Activity _activity) {
+	return activityOdds[_activity.getActivityID()].getTotalOdds();
+}
+
+int NPC::getCurrentActivityID() {
+	return currentActivityID;
+}
+
+void NPC::setCurrentActivityID(int _currentActivityID) {
+	currentActivityID = _currentActivityID;
+}
+
+bool NPC::interruptActivity(ActivityRequest _activityRequest) {
+
+
+
+
+
+	return false;
 }

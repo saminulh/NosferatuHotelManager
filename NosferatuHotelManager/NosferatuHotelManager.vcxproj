@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Activity.h" />
     <ClInclude Include="ActivityManager.h" />
+    <ClInclude Include="ActivityOdds.h" />
     <ClInclude Include="ActivityRequest.h" />
     <ClInclude Include="AnimationClass.h" />
     <ClInclude Include="AnimationFrame.h" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <ClCompile Include="Activity.cpp" />
     <ClCompile Include="ActivityManager.cpp" />
+    <ClCompile Include="ActivityOdds.cpp" />
     <ClCompile Include="ActivityRequest.cpp" />
     <ClCompile Include="AnimationClass.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />

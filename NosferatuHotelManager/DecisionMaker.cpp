@@ -1,43 +1,44 @@
 #include "stdafx.h"
 #include "DecisionMaker.h"
 
-void DecisionMaker::selectActivities(std::vector<Activity> activityList) {
-	activitiesToChooseFrom.clear();
-	for (std::vector<Activity>::iterator iter = activityList.begin(); iter < activityList.end(); iter++) {
-		if (Utilities::isHourInRange((*iter).getExecutionLowerBound(), (*iter).getExecutionUpperBound(), Utilities::getCurrentHour())) {
-			activitiesToChooseFrom.push_back(*iter);
+void DecisionMaker::selectActivities(std::vector<int> activityIDList) {
+	IDsofActivitiesToChooseFrom.clear();
+	for each (int activityID in activityIDList) {
+		Activity activity = activityManager.getActivityByID(activityID);
+		if (Utilities::isHourInRange(activity.getExecutionLowerBound(), activity.getExecutionUpperBound(), Utilities::getCurrentHour())) {
+			IDsofActivitiesToChooseFrom.push_back(activityID);
 		}
 	}
 }
 
 void DecisionMaker::decideActivity() {
-	std::vector<Activity>::iterator iter;
 	
 	int totalOdds = 0;
 
-	for (iter = activitiesToChooseFrom.begin(); iter < activitiesToChooseFrom.end(); iter++) {
-		totalOdds += (*iter).getTotalOdds();
+	for each (int activityID in IDsofActivitiesToChooseFrom) {
+		Activity activity = activityManager.getActivityByID(activityID);
+		totalOdds += npcManager.getNPCByID(hostNPCID).getTotalOddsOfActivity(activityID);
 	}
 
 	int stoppingPoint = Utilities::randInt(1,totalOdds);
 
-	iter = activitiesToChooseFrom.begin();
+	std::vector<int>::iterator activityIDIter = IDsofActivitiesToChooseFrom.begin();
 
-	while (stoppingPoint > (*iter).getTotalOdds()) {
-		stoppingPoint -= (*iter).getTotalOdds();
-		iter++;
+	while (stoppingPoint > npcManager.getNPCByID(hostNPCID).getTotalOddsOfActivity(*activityIDIter)) {
+		stoppingPoint -= npcManager.getNPCByID(hostNPCID).getTotalOddsOfActivity(*activityIDIter);
+		activityIDIter++;
 	}
 
-	Activity chosenActivity = (*iter);
+	IDsofActivitiesToChooseFrom.erase(activityIDIter);
+	Activity chosenActivity = activityManager.getActivityByID(*activityIDIter);
 
-	activityManager.pushNewRequest(ActivityRequest(chosenActivity.getActivityID(), hostCharacterID, 0));
-
+	activityManager.pushNewRequest(ActivityRequest(chosenActivity.getActivityID(), npcManager.getNPCByID(hostNPCID).getNPCID(), 0));
 }
 
 DecisionMaker::DecisionMaker() {
 
 }
 
-void DecisionMaker::setHostCharacterID(int _hostCharacterID) {
-	hostCharacterID = _hostCharacterID;
+void DecisionMaker::setHostNPCID(int _hostNPCID) {
+	hostNPCID = _hostNPCID;
 }

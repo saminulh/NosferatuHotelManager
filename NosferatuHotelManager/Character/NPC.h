@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "../DecisionMaker.h"
 #include "../Activity.h"
+#include "../ActivityOdds.h"
 
 class NPC : public Character {
 private:
@@ -19,12 +20,15 @@ private:
 
 	std::map<int, int>				friendlinessModifiers;
 
-	std::vector<Activity>			activitiesByPhaseOfDay;
-	Activity*						currentActivity;
+	std::vector<int>				activityIDsByPhaseOfDay;
+	int								currentActivityID;
+
+	std::map<int, ActivityOdds>		activityOdds;
 
 	DecisionMaker					decisionMaker;
 
 public:
+	NPC();
 	NPC(std::string type);
 
 	int								getNPCID();
@@ -41,8 +45,16 @@ public:
 	int								getFriendlinessTowardsCharacter(int characterID);
 	void							setFriendlinessToCharacter(int characterID, int newFriendliness);
 
-	Activity*						getCurrentActivity();
-	void							setCurrentActivity(Activity* _currentActivity);
+	void							setInfluence(int _activityID, int _influence);
+	void							setInfluence(Activity _activity, int _influence);
+
+	int								getTotalOddsOfActivity(int _activityID);
+	int								getTotalOddsOfActivity(Activity _activity);
+
+	int								getCurrentActivityID();
+	void							setCurrentActivityID(int _currentActivityID);
+
+	bool							interruptActivity(ActivityRequest _activityRequest);
 
 };
 

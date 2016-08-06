@@ -2,10 +2,9 @@
 #include "ActivityRequest.h"
 
 
-ActivityRequest::ActivityRequest(int actID, int _requesterCharacterID, int _requesteeCharacterID, int _requestType) {
+ActivityRequest::ActivityRequest(int actID, int _requesterCharacterID, int _requestType) {
 	activityID = actID;
 	requesterCharacterID = _requesterCharacterID;
-	requesterCharacterID = _requesteeCharacterID;
 	requestType = _requestType;
 }
 

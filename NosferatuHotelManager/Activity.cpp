@@ -5,15 +5,11 @@ Activity::Activity()
 {
 }
 
-Activity::Activity(std::string _name, int _npcID, std::vector<int> _IDsOfPeopleInvolved, int _baseOdds, int _daysOfActivity, int _executionLowerBound, int _executionUpperBound, bool _useDuration, int _duration, int _endTime, int _variance){
+Activity::Activity(std::string _name, std::vector<int> _IDsOfPeopleInvolved, int _daysOfActivity, int _executionLowerBound, int _executionUpperBound, bool _useDuration, int _duration, int _endTime, int _variance){
 	activityManager.pushNewActivity(*this);
 	activityID = activityManager.getActivityStackSize();
 
-	activityHostID = _npcID;
-
 	IDsOfPeopleInvolved = _IDsOfPeopleInvolved;
-
-	baseOdds = _baseOdds;
 
 	daysOfActivity = _daysOfActivity;
 
@@ -46,12 +42,4 @@ int Activity::getExecutionLowerBound() {
 
 int Activity::getExecutionUpperBound() {
 	return executionUpperBound;
-}
-
-void Activity::setInfluence(int _influence) {
-	influenceOnOdds = _influence;
-}
-
-int Activity::getTotalOdds() {
-	return baseOdds + influenceOnOdds;
 }

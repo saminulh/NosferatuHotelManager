@@ -3,14 +3,14 @@
 
 class DecisionMaker {
 private:
-	int hostCharacterID;
+	int hostNPCID;
 
-	std::vector<Activity> activitiesToChooseFrom;
-	void selectActivities(std::vector<Activity> activityList);
+	std::vector<int> IDsofActivitiesToChooseFrom;
+	void selectActivities(std::vector<int> activityIDList);
 	void decideActivity();
 
 public:
 	DecisionMaker();
-	void setHostCharacterID(int _hostCharacterID);
+	void setHostNPCID(int _hostNPCID);
 };
 

@@ -8,7 +8,7 @@ class ActivityRequest {
 	int requestType;
 
 public:
-	ActivityRequest(int actID, int _requesterNPCID, int _requesteeNPCID, int _requestType);
+	ActivityRequest(int actID, int _requesterNPCID, int _requestType);
 	int getActivityID();
 	int getRequesterNPCID();
 	int getRequesteeNPCID();
