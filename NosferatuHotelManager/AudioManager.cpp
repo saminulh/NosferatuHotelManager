@@ -3,6 +3,11 @@
 
 AudioManager::AudioManager()
 {
+	//Populate the sound instances list
+	for (unsigned int cnt = 0; cnt < 100; cnt++)
+	{
+		soundInstancesList.push_back(SoundHolder());
+	}
 }
 
 bool AudioManager::LoadSound(std::string _fileName)
@@ -91,6 +96,38 @@ bool AudioManager::LoadMusic(std::string _fileName)
 	return true;
 }
 */
+
+
+
+
+/*
+0	-	9	: GUI
+10	-	14	: Player
+15	-	49	: NPCs
+50	-	69	: Tiles
+69	-	99	: Spare/Other
+
+Returns 500 if no spot was found
+*/
+unsigned int AudioManager::EnqueueSound(int _priority, sf::SoundBuffer _buffer, Animation* _source)
+{
+	//Priority is used as a start point for the search
+	for (unsigned int cnt = _priority; cnt < soundInstancesList.size(); cnt++)
+	{
+		//Find an empty/unused sf::Sound
+		if (soundInstancesList[cnt].m_sound.getStatus() == sf::Sound::Stopped || 
+			soundInstancesList[cnt].m_sound.getStatus() == sf::Sound::Paused)
+		{
+			soundInstancesList[cnt].m_sound.setBuffer(_buffer);
+			soundInstancesList[cnt].m_sound.play();
+			return cnt;
+		}
+	}
+
+	//Error code
+	return 500;
+}
+
 std::map<std::string, sf::SoundBuffer>& AudioManager::GetSoundsList()
 {
 	return soundsMap;
@@ -99,4 +136,9 @@ std::map<std::string, sf::SoundBuffer>& AudioManager::GetSoundsList()
 std::map<std::string, sf::Music>& AudioManager::GetMusicsList()
 {
 	return musicsMap;
+}
+
+std::vector<SoundHolder>& AudioManager::GetSoundInstancesList()
+{
+	return soundInstancesList;
 }

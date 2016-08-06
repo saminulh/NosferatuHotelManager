@@ -6,6 +6,8 @@
 
 Animation::Animation()
 {
+	//Set default audio priority
+	m_audioPriority = 70;
 }
 
 Animation::Animation(const Animation & _obj)
@@ -102,7 +104,7 @@ bool Animation::LoadAnimation(std::string _fileName)
 
 			if (cnt == 0)
 			{
-				//curFrame.SetSoundEffect(soundLoc);
+				curFrame.SetSoundEffect(soundLoc);
 			}
 
 			//Save curFrame into the animationList
@@ -156,6 +158,8 @@ bool Animation::BeginAnimation(std::string _animationName)
 	if (m_animations[_animationName][0].GetSoundEffect() != "###")
 	{
 		//Play the corresponding sound
+		audioManager.EnqueueSound(m_audioPriority, audioManager.GetSoundsList()[m_animations[_animationName][0].GetSoundEffect()], this);
+
 		//m_sound.setBuffer(m_soundEffects[_animationName]);
 		//m_sound.play();
 	}
@@ -181,12 +185,6 @@ sf::Sprite & Animation::GetSprite()
 std::string & Animation::GetSoundEffect()
 {
 	return m_animations[m_CurrentAnim][0].GetSoundEffect();
-}
-
-sf::Sound & Animation::GetSound()
-{
-	//return m_sound;
-	return sf::Sound();
 }
 
 void Animation::Update(sf::Time& _deltaTime)
@@ -225,4 +223,14 @@ void Animation::AssignAnimation(std::string& _anim, Animation & _ref)
 {
 	m_animations.clear();
 	m_animations.insert(std::pair < std::string, std::vector<AnimationFrame>>(_anim, _ref.m_animations[_anim]));
+}
+
+void Animation::SetAudioPriority(unsigned int _newPriority)
+{
+	m_audioPriority = _newPriority;
+}
+
+unsigned int Animation::GetAudioPriority()
+{
+	return m_audioPriority;
 }

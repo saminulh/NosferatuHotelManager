@@ -17,6 +17,7 @@ class Animation
 	std::string												m_CurrentAnim;
 	unsigned int											m_currentAnimFrame;
 	ScreensManager::ScreenTag								m_screenTag;
+	unsigned int											m_audioPriority;
 
 public:
 	Animation();
@@ -28,7 +29,6 @@ public:
 	std::string&											GetCurrentAnim();
 	sf::Sprite&												GetSprite();
 	std::string&											GetSoundEffect();
-	sf::Sound&												GetSound();
 
 	//Update may not need to be virtual ...
 	virtual void											Update(sf::Time& _deltaTime);
@@ -36,4 +36,13 @@ public:
 	ScreensManager::ScreenTag								GetScreenTag();
 
 	void													AssignAnimation(std::string& _anim, Animation &_ref);
+
+	void													SetAudioPriority(unsigned int _newPriority);
+	unsigned int											GetAudioPriority();
+};
+
+struct SoundHolder
+{
+	sf::Sound												m_sound;
+	Animation*												m_source;
 };
