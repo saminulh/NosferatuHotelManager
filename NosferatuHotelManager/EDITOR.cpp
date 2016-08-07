@@ -14,7 +14,9 @@ void Editor::Init()
 {
 	std::cout << "Would you like to [C]reate or [O]pen a file?" << std::endl;
 
-	if (std::getchar() == 'c' || std::getchar() == 'C')
+	char temp = std::getchar();
+
+	if (temp == 'c' || temp == 'C')
 	{
 		std::string fileName;
 		//User wants to create a new file
@@ -23,7 +25,7 @@ void Editor::Init()
 		m_currentFile = fileName;
 		CreateMap(fileName);
 	}
-	else if (std::getchar() == 'o' || std::getchar() == 'O')
+	else if (temp == 'o' || temp == 'O')
 	{
 		std::string fileName;
 		//User wants to open an existing file
@@ -41,6 +43,96 @@ void Editor::Init()
 
 void Editor::LoadMap(std::string& _fileName)
 {
+	unsigned int				mapSizeX, mapSizeY, numAnims;
+	sf::Clock					mapLoadTimer;
+	std::ifstream				file;
+	tinyxml2::XMLDocument		doc;
+
+	debug.Log(0, "Loading map " + _fileName + " ...");
+
+	//Load the actual file (string must be passed as a c-string)
+	tinyxml2::XMLError			err = doc.LoadFile(_fileName.c_str());
+
+	if (err != tinyxml2::XML_SUCCESS)
+	{
+		debug.Log(3, "Error reading XML file!");
+	}
+
+	//Get access to root element
+	tinyxml2::XMLElement*		root = doc.FirstChildElement("NosferatuHotelManagerMap");
+
+	//Load map size
+	mapSizeY = std::stoul(root->FirstChildElement("Meta")->FirstChildElement("MapSizeY")->GetText());
+	mapSizeX = std::stoul(root->FirstChildElement("Meta")->FirstChildElement("MapSizeX")->GetText());
+
+	//Load animations that will be needed to display the map
+	tinyxml2::XMLElement*		animationsUsedNode;
+	animationsUsedNode = root->FirstChildElement("AnimationsUsed");
+	numAnims = std::stoul(animationsUsedNode->Attribute("Size"));
+
+	tinyxml2::XMLElement*		currentNode = animationsUsedNode->FirstChildElement("Animation");
+	//Actually load the necessary animations now
+	for (unsigned int cnt = 0; cnt < numAnims; cnt++)
+	{
+		//Load animation text
+		m_tempLoader.LoadAnimation(currentNode->GetText());
+		//Move to next sibling element
+		currentNode = currentNode->NextSiblingElement("Animation");
+	}
+	
+	//Now load the map
+	tinyxml2::XMLElement*		map;
+	tinyxml2::XMLElement*		column;
+	map = root->FirstChildElement("Map");
+	column = map->FirstChildElement("Column");
+
+	//Iterate through all of the columns in the map
+	for (unsigned int cnt = 0; cnt < mapSizeY; cnt++)
+	{
+		//Create a temp vector to save the tiles
+		std::vector<MapTile>	tempVector;
+		
+		//Set the iterator to the first tile in the current column
+		currentNode = column->FirstChildElement("Tile");
+
+		//Iterate through all of the tiles in the column
+		for (unsigned int itr = 0; itr < mapSizeX; itr++)
+		{
+			MapTile				tile;
+
+			//Load and play the tile's animation
+			tile.LoadAnimation(currentNode->Attribute("Animation"));
+			tile.BeginAnimation(currentNode->Attribute("Animation"));
+
+			//Load the other tile attributes
+			tile.m_isDoor = (bool)currentNode->Attribute("isDoor");
+			tile.m_isRoomExit = (bool)currentNode->Attribute("isRoomExit");
+			tile.m_isSolid = (bool)currentNode->Attribute("isSolid");
+
+			//X position is defined by Y, and Y by X - don't ask why
+			tile.GetSprite().setPosition((float)(cnt * 32), (float)(itr * 32));
+
+			//Set default values - ignore for now
+			tile.m_xPos = (float)cnt;
+			tile.m_yPos = (float)itr;
+
+			//Ignore these for now
+			tile.m_floorNumber = 0;
+			tile.m_tileActivityCode = 0;
+			tile.m_tileID = 0;
+
+			//Set the iterator at the next element
+			currentNode = currentNode->NextSiblingElement("Tile");
+			//Save the tile
+			tempVector.push_back(tile);
+		}
+
+		//Iterate to the next column
+		column = column->NextSiblingElement("Column");
+		//Save the previous column 
+		m_roomMap.push_back(tempVector);
+	}
+
 }
 
 void Editor::LoadEditorResources()
@@ -243,6 +335,7 @@ void Editor::SaveMap(std::string& _fileName)
 
 	//Animations
 	tinyxml2::XMLElement*		animationsUsed	= doc.NewElement("AnimationsUsed");
+	animationsUsed->SetAttribute("Size", m_animationsUsed.size());
 	root->InsertEndChild(animationsUsed);
 
 	//Save the animations that are used within the map in the 'header'
@@ -264,7 +357,7 @@ void Editor::SaveMap(std::string& _fileName)
 	for (unsigned int itr = 0; itr < m_roomMap.size(); itr++)
 	{
 		//Seperate map rows in the XML
-		tinyxml2::XMLNode*		row				= doc.NewElement("Row");
+		tinyxml2::XMLNode*		row				= doc.NewElement("Column");
 		//Iterate through map X for current map Y
 		for (unsigned int cnt = 0; cnt < m_roomMap[itr].size(); cnt++)
 		{

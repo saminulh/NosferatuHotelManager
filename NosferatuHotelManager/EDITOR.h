@@ -20,6 +20,8 @@ public:
 
 	std::vector<UsedAnimStruct>				m_animationsUsed;
 
+	Animation								m_tempLoader;
+
 	//static tinyxml2::XMLDocument			m_xml;
 
 	Editor();

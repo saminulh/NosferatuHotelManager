@@ -189,3 +189,13 @@ float Utilities::getFPS(const sf::Time & _time)
 	//This should probably be changed, but w.e
 	return (float)fpsAvg;
 }
+
+int SearchForStringInVector(std::vector<std::string>& _vector, std::string _target)
+{
+	for (unsigned int cnt = 0; cnt < _vector.size(); cnt++)
+	{
+		if (_vector[cnt] == _target)
+			return cnt;
+	}
+	return -1;
+}

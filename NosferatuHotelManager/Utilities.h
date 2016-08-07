@@ -52,5 +52,7 @@ public:
 	static int					randInt(int lowerBound, int upperBound);
 
 	static float				getFPS(const sf::Time& _time);
+
+	static int					SearchForStringInVector(std::vector<std::string>& _vector, std::string _target);
 };
 

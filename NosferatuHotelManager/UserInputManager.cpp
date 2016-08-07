@@ -171,7 +171,7 @@ void UserInputManager::mouseLeftClickOnMap()
 
 	//Ensure that the mouse press was within map bounds
 	if ((screensManager.m_mousePos.x >= 0 && screensManager.m_mousePos.y >= 0) &&
-		(screensManager.m_mousePos.x < editor.m_roomMap[0].size() * 32 && screensManager.m_mousePos.y < editor.m_roomMap.size() * 32))
+		(screensManager.m_mousePos.y < editor.m_roomMap[0].size() * 32 && screensManager.m_mousePos.x < editor.m_roomMap.size() * 32))
 	{
 		//Remove this tile's reference to the previous animation it had
 		editor.RemoveUnusedAnimation(editor.m_roomMap[(unsigned int)(screensManager.m_mousePos.x / 32)][(unsigned int)(screensManager.m_mousePos.y / 32)].GetCurrentAnim(), 
@@ -210,7 +210,7 @@ void UserInputManager::mouseRightClickOnMap()
 
 	//Ensure that the mouse press was within map bounds
 	if ((screensManager.m_mousePos.x >= 0 && screensManager.m_mousePos.y >= 0) &&
-		(screensManager.m_mousePos.x < editor.m_roomMap[0].size() * 32 && screensManager.m_mousePos.y < editor.m_roomMap.size() * 32))
+		(screensManager.m_mousePos.y < editor.m_roomMap[0].size() * 32 && screensManager.m_mousePos.x < editor.m_roomMap.size() * 32))
 	{
 		//No references need to be modified here - Ensure animation is loaded
 		guiManager.GetAnimationsMap()["previewAnim"].LoadAnimation(
