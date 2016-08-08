@@ -14,4 +14,8 @@ public:
 	static void	buttonDownInAnims();
 
 	static void	buttonSaveMap();
+
+	static void	buttonFileNameField();
+	static void	createMapButton();
+	static void	loadMapButton();
 };

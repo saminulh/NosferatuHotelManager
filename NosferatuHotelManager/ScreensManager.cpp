@@ -5,6 +5,7 @@ ScreensManager::ScreensManager()
 {
 	m_renderWindow.create(sf::VideoMode(1366, 768), "Map Editor");
 	m_elapsedTime = 0;
+	m_currentScreen = ScreensManager::EditorMainScreen;
 }
 
 sf::RenderWindow & ScreensManager::GetWindow()
@@ -49,16 +50,29 @@ std::vector<unsigned int> ScreensManager::GetViewCullingBounds()
 	bounds.push_back(centerY - ((unsigned int)(m_mainView.getSize().y / (32 * 2)) + 2));
 	bounds.push_back(centerY + ((unsigned int)(m_mainView.getSize().y / (32 * 2)) + 2));
 
-	//Still have to figure out why the map load sideways and how to fix it .........
-
-	if (bounds[0] > 100000)
+	if (editor.m_roomMap.size() > 0)
+	{
+		if (editor.m_roomMap[0].size() > 0)
+		{
+			if (bounds[0] > 100000)
+				bounds[0] = 0;
+			if (bounds[1] > editor.m_roomMap.size())
+				bounds[1] = editor.m_roomMap.size() - 1;
+			if (bounds[2] > 100000)
+				bounds[2] = 0;
+			if (bounds[3] > editor.m_roomMap[0].size())
+				bounds[3] = editor.m_roomMap[0].size() - 1;
+		}
+	}
+	else
+	{
+		debug.Log(3, "No room map loaded!");
 		bounds[0] = 0;
-	if (bounds[1] > editor.m_roomMap.size())
-		bounds[1] = editor.m_roomMap.size() - 1;
-	if (bounds[2] > 100000)
+		bounds[1] = 0;
 		bounds[2] = 0;
-	if (bounds[3] > editor.m_roomMap[0].size())
-		bounds[3] = editor.m_roomMap[0].size() - 1;
+		bounds[3] = 0;
+	}
+	
 
 	return			bounds;
 }

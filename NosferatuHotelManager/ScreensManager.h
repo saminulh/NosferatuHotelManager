@@ -8,7 +8,7 @@ public:
 	//Used by graphics objects to identify if they should exist/be drawn
 	enum ScreenTag
 	{
-		MainMenu, SettingsMenu
+		MainMenu, SettingsMenu, Editor, EditorLoading, EditorMainScreen
 	};
 
 	const float					m_timePerFrame = 1 / 30.f;

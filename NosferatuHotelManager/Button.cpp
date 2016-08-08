@@ -115,6 +115,11 @@ void Button::OnMouseExit()
 	BeginAnimation(m_defaultButtonAnim);
 }
 
+unsigned int Button::GetMaxEnterableChars()
+{
+	return 0;
+}
+
 CustomText & Button::GetButtonText()
 {
 	return m_buttonText;

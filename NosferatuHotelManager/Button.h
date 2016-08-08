@@ -33,6 +33,8 @@ public:
 	//Might be unnecessary
 	virtual void			OnMouseExit();
 
+	virtual unsigned int	GetMaxEnterableChars();
+
 	//Virtual function stub for text fields - don't remove
 	virtual bool			IsBeingEdited();
 	virtual CustomText&		GetButtonText();

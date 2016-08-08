@@ -87,7 +87,8 @@ void Init()
 			{
 				for (unsigned int cy = screensManager.m_bounds[2]; cy < screensManager.m_bounds[3]; cy++)
 				{
-					screensManager.GetWindow().draw(editor.m_roomMap[cx][cy].GetSprite());
+					if (editor.m_roomMap[cx][cy].GetScreenTag() == screensManager.GetCurrentScreenTag())
+						screensManager.GetWindow().draw(editor.m_roomMap[cx][cy].GetSprite());
 				}
 			}
 
@@ -103,38 +104,15 @@ void Init()
 
 int main()
 {
-	/*std::cout << "Enter the map's file location: ";
-	std::cin >> mapLoc;
-	
-	tinyxml2::XMLNode* root = doc.NewElement("MapTemplate");
-	doc.InsertFirstChild(root);
-	tinyxml2::XMLElement* element = doc.NewElement("Meta");
-	root->InsertFirstChild(element);
-
-	std::cout << "Enter the map's size x: ";
-	std::cin >> mapX;
-	element->SetAttribute("MapSizeX", mapX);
-
-	std::cout << "Enter the map's size y: ";
-	std::cin >> mapY;
-	element->SetAttribute("MapSizeY", mapY);
-
-	doc.SaveFile("test.xml");
-
-	file.open(mapLoc);
-	if (file.is_open())
-	{
-
-	}
-
-	system("pause");*/
-
+	//Set up logger
 	debug.Start();
 
-	editor.Init();
+	//Load database of ALL tiles
 	editor.LoadListOfPossibleAnims(editor.m_tilesList);
+	//Load editor resources
 	editor.LoadEditorResources();
 
+	//Run the editor!
 	Init();
 
 	return 0;

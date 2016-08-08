@@ -18,13 +18,15 @@ void GUIManager::Update()
 	//Iterate through the animatios map and update everything
 	for (auto& cnt : animationsMap)
 	{
-		cnt.second.Update(sf::seconds(screensManager.m_timePerFrame));
+		if (cnt.second.GetScreenTag() == screensManager.GetCurrentScreenTag())
+			cnt.second.Update(sf::seconds(screensManager.m_timePerFrame));
 	}
 
 	//Iterate through the buttons map and update everything
 	for (auto& cnt : buttonsMap)
 	{
-		cnt.second->Update(sf::seconds(screensManager.m_timePerFrame));
+		if (cnt.second->GetScreenTag() == screensManager.GetCurrentScreenTag())
+			cnt.second->Update(sf::seconds(screensManager.m_timePerFrame));
 	}
 
 	///TODO: Add any other GUI elements that need updating here
@@ -37,28 +39,35 @@ void GUIManager::DrawToWindow()
 	//Start with images
 	for (auto& cnt : animationsMap)
 	{
-		screensManager.GetWindow().draw(cnt.second.GetSprite());
+		if (cnt.second.GetScreenTag() == screensManager.GetCurrentScreenTag())
+			screensManager.GetWindow().draw(cnt.second.GetSprite());
 	}
 
 	//Then buttons
 	for (auto& cnt : buttonsMap)
 	{
-		screensManager.GetWindow().draw(cnt.second->GetSprite());
-		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineTopLeft());
-		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineTopRight());
-		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineBottomLeft());
-		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineBottomRight());
-		screensManager.GetWindow().draw(cnt.second->GetButtonText().GetMainText());
+		if (cnt.second->GetScreenTag() == screensManager.GetCurrentScreenTag())
+		{
+			screensManager.GetWindow().draw(cnt.second->GetSprite());
+			screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineTopLeft());
+			screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineTopRight());
+			screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineBottomLeft());
+			screensManager.GetWindow().draw(cnt.second->GetButtonText().GetOutlineBottomRight());
+			screensManager.GetWindow().draw(cnt.second->GetButtonText().GetMainText());
+		}
 	}
 
 	//Then custom texts
 	for (auto& cnt : customTextsMap)
 	{
-		screensManager.GetWindow().draw(cnt.second.GetOutlineTopLeft());
-		screensManager.GetWindow().draw(cnt.second.GetOutlineTopRight());
-		screensManager.GetWindow().draw(cnt.second.GetOutlineBottomLeft());
-		screensManager.GetWindow().draw(cnt.second.GetOutlineBottomRight());
-		screensManager.GetWindow().draw(cnt.second.GetMainText());
+		if (cnt.second.GetScreenTag() == screensManager.GetCurrentScreenTag())
+		{
+			screensManager.GetWindow().draw(cnt.second.GetOutlineTopLeft());
+			screensManager.GetWindow().draw(cnt.second.GetOutlineTopRight());
+			screensManager.GetWindow().draw(cnt.second.GetOutlineBottomLeft());
+			screensManager.GetWindow().draw(cnt.second.GetOutlineBottomRight());
+			screensManager.GetWindow().draw(cnt.second.GetMainText());
+		}
 	}
 
 	//Finally, texts

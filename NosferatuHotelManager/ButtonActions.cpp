@@ -93,3 +93,31 @@ void ButtonActions::buttonSaveMap()
 	editor.SaveMap(editor.m_currentFile);
 	std::cout << "Saved successfully!" << std::endl;
 }
+
+void ButtonActions::buttonFileNameField()
+{
+}
+
+void ButtonActions::createMapButton()
+{
+	//Debug only
+	std::cout << "File name text field says: " << std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString()) << std::endl;
+	//Change the screen tag to the relevant one
+	screensManager.ChangeScreenTag(ScreensManager::Editor);
+	//Center the view on the map, in case it has scrolled in the mean time
+	screensManager.GetView().setCenter(screensManager.GetWindow().getSize().x / 2, screensManager.GetWindow().getSize().y / 2);
+	//Create the map
+	editor.CreateMap(std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString()));
+}
+
+void ButtonActions::loadMapButton()
+{
+	//Debug only
+	std::cout << "File name text field says: " << std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString()) << std::endl;
+	//Change the screen tag to the relevant one
+	screensManager.ChangeScreenTag(ScreensManager::Editor);
+	//Center the view on the map, in case it has scrolled in the mean time
+	screensManager.GetView().setCenter(screensManager.GetWindow().getSize().x / 2, screensManager.GetWindow().getSize().y / 2);
+	//Load the requested file
+	editor.LoadMap(std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString()));
+}

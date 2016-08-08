@@ -104,6 +104,9 @@ void Editor::LoadMap(std::string& _fileName)
 			tile.LoadAnimation(currentNode->Attribute("Animation"));
 			tile.BeginAnimation(currentNode->Attribute("Animation"));
 
+			//Set the correct screen tag
+			tile.ChangeScreenTag(ScreensManager::Editor);
+
 			//Load the other tile attributes
 			tile.m_isDoor = (bool)currentNode->Attribute("isDoor");
 			tile.m_isRoomExit = (bool)currentNode->Attribute("isRoomExit");
@@ -173,6 +176,7 @@ void Editor::LoadEditorResources()
 	buttonIsDoor->CreateButton("Door", ticksAnims, sf::Vector2f(1300.f,500.f), isDoor, sf::Vector2f(-200.f, 0.f));
 	buttonIsDoor->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isDoor = false;
+	buttonIsDoor->ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsDoor", buttonIsDoor));
 
 	//Radio button for if the tile is a room exit (to be aligned with other room exits)
@@ -182,6 +186,7 @@ void Editor::LoadEditorResources()
 	buttonIsRoomExit->CreateButton("Room Exit", ticksAnims, sf::Vector2f(1300.f, 550.f), isRoomExit, sf::Vector2f(-200.f, 0.f));
 	buttonIsRoomExit->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isRoomExit = false;
+	buttonIsRoomExit->ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonIsRoomExit", buttonIsRoomExit));
 
 	//Radio button for if the tile is solid/pathable
@@ -191,6 +196,7 @@ void Editor::LoadEditorResources()
 	buttonisSolid->CreateButton("Tile Solid", ticksAnims, sf::Vector2f(1300.f, 600.f), isTileSolid, sf::Vector2f(-200.f, 0.f));
 	buttonisSolid->BeginAnimation("editor-tickNo.vAnim");
 	editor.GetCurrentTileProperties().m_isSolid = false;
+	buttonisSolid->ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonRadio*>("buttonisSolid", buttonisSolid));
 
 	//Text field for searching for tiles
@@ -199,6 +205,9 @@ void Editor::LoadEditorResources()
 	searchForMatch = &ButtonActions::buttonSearchForAnims;
 	buttonSearchField->CreateButton("Search", textFieldAnims, sf::Vector2f(1100.f, 440.f), searchForMatch, sf::Vector2f(0.f, -40.f), sf::Vector2f(10.f, 10.f));
 	buttonSearchField->GetSprite().setScale((float)1.3, (float)1);
+	buttonSearchField->SetMaxEnterableChars(15);
+	buttonSearchField->ChangeScreenTag(ScreensManager::Editor);
+	buttonSearchField->GetButtonLabel().ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonTextField*>("buttonSearchField", buttonSearchField));
 	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("buttonSearchForAnims_label", buttonSearchField->GetButtonLabel()));
 
@@ -207,6 +216,7 @@ void Editor::LoadEditorResources()
 	void(*incrementAnims)();
 	incrementAnims = &ButtonActions::buttonUpInAnims;
 	buttonUpInList->CreateButton("", sliderUpButtonAnims, sf::Vector2f(1125.f, 350.f), incrementAnims);
+	buttonUpInList->ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("buttonUpInList", buttonUpInList));
 
 	//Decrement anims
@@ -214,6 +224,7 @@ void Editor::LoadEditorResources()
 	void(*decrementAnims)();
 	decrementAnims = &ButtonActions::buttonDownInAnims;
 	buttonDownInList->CreateButton("", sliderDownButtonAnims, sf::Vector2f(1300.f, 350.f), decrementAnims);
+	buttonDownInList->ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("buttonDownInList", buttonDownInList));
 
 	//Save button
@@ -222,16 +233,19 @@ void Editor::LoadEditorResources()
 	saveButtonAction = &ButtonActions::buttonSaveMap;
 	saveButton->CreateButton("Save", regularButtonAnims, sf::Vector2f(1125.f, 650.f), saveButtonAction, sf::Vector2f(55.f, 5.f));
 	saveButton->BeginAnimation("editor-regularDefault.vAnim");
+	saveButton->ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("saveButton", saveButton));
 
 	//Counter
 	CustomText					counter;
 	counter.CreateCustomText("0 / 0", sf::Vector2f(1185.f, 350.f));
+	counter.ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("counter", counter));
 
 	//Fps text
 	CustomText					fpsText;
 	fpsText.CreateCustomText("FPS: 000", sf::Vector2f(1150.f, 25.f));
+	fpsText.ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("fpsText", fpsText));
 
 	//Background panel
@@ -240,6 +254,7 @@ void Editor::LoadEditorResources()
 	panelAnim.BeginAnimation("editor-sidePanel.vAnim");
 	panelAnim.GetSprite().setPosition(1075.f, 0.f);
 	panelAnim.GetSprite().setScale((float)3.5, (float)6.98);
+	panelAnim.ChangeScreenTag(ScreensManager::Editor);
 	guiManager.GetAnimationsMap().insert(std::pair<std::string, Animation>("panelAnim", panelAnim));
 
 	//Preview animation
@@ -248,6 +263,7 @@ void Editor::LoadEditorResources()
 	previewAnim.BeginAnimation(m_allTilesList[0].GetCurrentAnim());
 	previewAnim.GetSprite().setPosition(1185.f, 150.f);
 	previewAnim.GetSprite().setScale(4.f, 4.f);
+	previewAnim.ChangeScreenTag(ScreensManager::Editor);
 	//Load all possible anims to the preview
 	for (unsigned int cnt = 0; cnt < m_allTilesList.size(); cnt++)
 	{
@@ -258,6 +274,48 @@ void Editor::LoadEditorResources()
 
 
 	m_currentTileInShortList = 0;
+
+
+	//Create map button
+	Button*						createMapButton = new Button();
+	void(*createMapButtonAction)();
+	createMapButtonAction = &ButtonActions::createMapButton;
+	createMapButton->CreateButton("Create New Map", regularButtonAnims, sf::Vector2f(550.f, 375.f), createMapButtonAction, sf::Vector2f(55.f, 5.f));
+	createMapButton->BeginAnimation("editor-regularDefault.vAnim");
+	createMapButton->GetSprite().setScale(2.f, 1.f);
+	createMapButton->ChangeScreenTag(ScreensManager::EditorMainScreen);
+	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("createMapButton", createMapButton));
+
+	//Load map button
+	Button*						loadMapButton = new Button();
+	void(*loadMapButtonAction)();
+	loadMapButtonAction = &ButtonActions::loadMapButton;
+	loadMapButton->CreateButton("Load Existing Map", regularButtonAnims, sf::Vector2f(550.f, 450.f), loadMapButtonAction, sf::Vector2f(55.f, 5.f));
+	loadMapButton->BeginAnimation("editor-regularDefault.vAnim");
+	loadMapButton->GetSprite().setScale(2.f, 1.f);
+	loadMapButton->ChangeScreenTag(ScreensManager::EditorMainScreen);
+	guiManager.GetButtonsMap().insert(std::pair<std::string, Button*>("loadMapButton", loadMapButton));
+
+	//Text field for entering file name
+	ButtonTextField*			buttonFileNameField = new ButtonTextField();
+	void(*fileNameFieldAction)(void);
+	fileNameFieldAction = &ButtonActions::buttonFileNameField;
+	buttonFileNameField->CreateButton("File Name:", textFieldAnims, sf::Vector2f(550.f, 300.f), fileNameFieldAction, sf::Vector2f(0.f, -40.f), sf::Vector2f(10.f, 10.f));
+	buttonFileNameField->GetSprite().setScale((float)2, (float)1);
+	buttonFileNameField->SetMaxEnterableChars(25);
+	buttonFileNameField->ChangeScreenTag(ScreensManager::EditorMainScreen);
+	buttonFileNameField->GetButtonLabel().ChangeScreenTag(ScreensManager::EditorMainScreen);
+	guiManager.GetButtonsMap().insert(std::pair<std::string, ButtonTextField*>("buttonFileNameField", buttonFileNameField));
+	guiManager.GetCustomTextsMap().insert(std::pair<std::string, CustomText>("buttonFileNameField_label", buttonFileNameField->GetButtonLabel()));
+
+	//Background panel - first menu
+	Animation					panelLoginAnim;
+	panelLoginAnim.LoadAnimation("editor-sidePanel.vAnim");
+	panelLoginAnim.BeginAnimation("editor-sidePanel.vAnim");
+	panelLoginAnim.GetSprite().setPosition(450.f, 150.f);
+	panelLoginAnim.GetSprite().setScale((float)5.5, (float)3.75);
+	panelLoginAnim.ChangeScreenTag(ScreensManager::EditorMainScreen);
+	guiManager.GetAnimationsMap().insert(std::pair<std::string, Animation>("panelLoginAnim", panelLoginAnim));
 
 }
 
@@ -285,6 +343,8 @@ void Editor::CreateMap(std::string& _fileName)
 			MapTile	tile;
 			tile.LoadAnimation("tile-grassPatch1.vAnim");
 			tile.BeginAnimation("tile-grassPatch1.vAnim");
+
+			tile.ChangeScreenTag(ScreensManager::Editor);
 
 			tile.GetSprite().setPosition((float)(cntY * tileSize), (float)(cntX * tileSize));
 			

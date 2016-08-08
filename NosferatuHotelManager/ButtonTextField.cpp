@@ -12,6 +12,8 @@ ButtonTextField::~ButtonTextField()
 //Pass the function that should be executed if/when the user hits enter or releases the textbox - it will be treated as the OnMouseExit event
 void ButtonTextField::CreateButton(std::string _text, std::vector<std::string>& _animationsList, sf::Vector2f _pos, void(*_onClickFunction)(void), sf::Vector2f _relativeTextPos, sf::Vector2f _relativeUserTextPos)
 {
+	m_maxEnterableChars = 5;
+
 	//Set button to deselected by default
 	m_isSelected = false;
 	m_isBeingEdited = false;
@@ -127,6 +129,16 @@ void ButtonTextField::OnMouseExit()
 bool ButtonTextField::IsBeingEdited()
 {
 	return m_isBeingEdited;
+}
+
+void ButtonTextField::SetMaxEnterableChars(unsigned int _numChars)
+{
+	m_maxEnterableChars = _numChars;
+}
+
+unsigned int ButtonTextField::GetMaxEnterableChars()
+{
+	return m_maxEnterableChars;
 }
 
 CustomText & ButtonTextField::GetButtonLabel()

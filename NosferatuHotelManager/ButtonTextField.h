@@ -7,6 +7,7 @@ class ButtonTextField : public Button
 {
 	CustomText		m_text;
 	bool			m_isBeingEdited;
+	unsigned int	m_maxEnterableChars;
 public:
 	ButtonTextField();
 	~ButtonTextField();
@@ -25,6 +26,9 @@ public:
 	void			OnMouseExit();
 
 	bool			IsBeingEdited();
+
+	void			SetMaxEnterableChars(unsigned int _numChars);
+	unsigned int	GetMaxEnterableChars();
 
 	//Returns the custom text inherited from button
 	CustomText&		GetButtonLabel();

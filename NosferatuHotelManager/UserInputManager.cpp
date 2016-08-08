@@ -88,7 +88,8 @@ void UserInputManager::Update(sf::Time& _deltaTime)
 	/*-------- Begin Mouse Click Code ---------------*/
 	//If enough time has passed and the user is pressing the left mouse button
 	if (m_timeSinceMouseClick >= m_minTimeBetweenClicks &&
-		sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) &&
+		screensManager.GetCurrentScreenTag() == ScreensManager::Editor)
 	{
 		//If the mouse isn't over the side panel
 		if (!guiManager.GetAnimationsMap()["panelAnim"].GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)))
@@ -100,7 +101,8 @@ void UserInputManager::Update(sf::Time& _deltaTime)
 
 	//If enough time has passed and the user is pressing the right mouse button
 	if (m_timeSinceMouseClick >= m_minTimeBetweenClicks &&
-		sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
+		sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) &&
+		screensManager.GetCurrentScreenTag() == ScreensManager::Editor)
 	{
 		//If the mouse isn't over the side panel
 		if (!guiManager.GetAnimationsMap()["panelAnim"].GetSprite().getGlobalBounds().contains(sf::Vector2f(screensManager.m_mousePos)))
@@ -123,7 +125,8 @@ void UserInputManager::TextEnteredEvent(sf::Event & _event)
 		{
 			//Only the text field being editted should return true here
 			//The user also shouldn't be able to have more than one text field active at a time
-			if (itr.second->IsBeingEdited())
+			if (itr.second->IsBeingEdited() &&
+				itr.second->GetScreenTag() == screensManager.GetCurrentScreenTag())
 			{
 				//Remove the last character
 				itr.second->GetButtonText().ChangeText(itr.second->GetButtonText().GetMainText().getString().substring((size_t)0, 
@@ -144,7 +147,8 @@ void UserInputManager::TextEnteredEvent(sf::Event & _event)
 		{
 			//Only the text field being editted should return true here
 			//The user also shouldn't be able to have more than one text field active at a time
-			if (itr.second->IsBeingEdited())
+			if (itr.second->IsBeingEdited() &&
+				itr.second->GetScreenTag() == screensManager.GetCurrentScreenTag())
 			{
 				itr.second->OnMouseExit();
 			}
@@ -157,7 +161,9 @@ void UserInputManager::TextEnteredEvent(sf::Event & _event)
 		{
 			//Only the text field being editted should return true here
 			//The user also shouldn't be able to have more than one text field active at a time
-			if (itr.second->IsBeingEdited())
+			if (itr.second->IsBeingEdited() &&
+				itr.second->GetScreenTag() == screensManager.GetCurrentScreenTag() &&
+				itr.second->GetButtonText().GetMainText().getString().getSize() < itr.second->GetMaxEnterableChars())
 			{
 				itr.second->GetButtonText().ChangeText(itr.second->GetButtonText().GetMainText().getString() + static_cast<char>(_event.text.unicode));
 			}
@@ -167,7 +173,7 @@ void UserInputManager::TextEnteredEvent(sf::Event & _event)
 
 void UserInputManager::mouseLeftClickOnMap()
 {
-	std::cout << "Pressed mouse left at " << screensManager.m_mousePos.x << ", " << screensManager.m_mousePos.y << std::endl;
+	//std::cout << "Pressed mouse left at " << screensManager.m_mousePos.x << ", " << screensManager.m_mousePos.y << std::endl;
 
 	//Ensure that the mouse press was within map bounds
 	if ((screensManager.m_mousePos.x >= 0 && screensManager.m_mousePos.y >= 0) &&
@@ -206,7 +212,7 @@ void UserInputManager::mouseLeftClickOnMap()
 
 void UserInputManager::mouseRightClickOnMap()
 {
-	std::cout << "Pressed mouse right!" << std::endl;
+	//std::cout << "Pressed mouse right!" << std::endl;
 
 	//Ensure that the mouse press was within map bounds
 	if ((screensManager.m_mousePos.x >= 0 && screensManager.m_mousePos.y >= 0) &&
