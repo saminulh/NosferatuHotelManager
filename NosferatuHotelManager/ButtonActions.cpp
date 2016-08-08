@@ -105,9 +105,10 @@ void ButtonActions::createMapButton()
 	//Change the screen tag to the relevant one
 	screensManager.ChangeScreenTag(ScreensManager::Editor);
 	//Center the view on the map, in case it has scrolled in the mean time
-	screensManager.GetView().setCenter(screensManager.GetWindow().getSize().x / 2, screensManager.GetWindow().getSize().y / 2);
+	screensManager.GetView().setCenter((float)(screensManager.GetWindow().getSize().x / 2), (float)(screensManager.GetWindow().getSize().y / 2));
 	//Create the map
-	editor.CreateMap(std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString()));
+	editor.m_currentFile = std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString());
+	editor.CreateMap(editor.m_currentFile);
 }
 
 void ButtonActions::loadMapButton()
@@ -117,7 +118,8 @@ void ButtonActions::loadMapButton()
 	//Change the screen tag to the relevant one
 	screensManager.ChangeScreenTag(ScreensManager::Editor);
 	//Center the view on the map, in case it has scrolled in the mean time
-	screensManager.GetView().setCenter(screensManager.GetWindow().getSize().x / 2, screensManager.GetWindow().getSize().y / 2);
+	screensManager.GetView().setCenter((float)(screensManager.GetWindow().getSize().x / 2), (float)(screensManager.GetWindow().getSize().y / 2));
 	//Load the requested file
-	editor.LoadMap(std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString()));
+	editor.m_currentFile = std::string(guiManager.GetButtonsMap()["buttonFileNameField"]->GetButtonText().GetMainText().getString());
+	editor.LoadMap(editor.m_currentFile);
 }

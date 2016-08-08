@@ -108,9 +108,9 @@ void Editor::LoadMap(std::string& _fileName)
 			tile.ChangeScreenTag(ScreensManager::Editor);
 
 			//Load the other tile attributes
-			tile.m_isDoor = (bool)currentNode->Attribute("isDoor");
-			tile.m_isRoomExit = (bool)currentNode->Attribute("isRoomExit");
-			tile.m_isSolid = (bool)currentNode->Attribute("isSolid");
+			currentNode->QueryBoolAttribute("isDoor", &tile.m_isDoor);
+			currentNode->QueryBoolAttribute("isRoomExit", &tile.m_isRoomExit);
+			currentNode->QueryBoolAttribute("isSolid", &tile.m_isSolid);
 
 			//X position is defined by Y, and Y by X - don't ask why
 			tile.GetSprite().setPosition((float)(cnt * 32), (float)(itr * 32));
